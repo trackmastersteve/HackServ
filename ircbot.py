@@ -85,8 +85,14 @@ def main():
                     sendmsg(".uptime currently unsupported.", adminname)
 
                 if name.lower() == adminname.lower() and message[:5].find('.scan'): # Respond to .scan [target] command from admin.
-                    #target = message.split(' ', 1)[1]
-                    sendmsg(".scan currently unsupported", adminname)
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        message = ".scan currently unsupported."
+                        target = target.split(' ')[0]
+                    else:
+                        target = name
+                        message = "Could not parse. The command should be in the format of '.scan [target]' to work properly."
+                    sendmsg(message, adminname)
 
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode:
                     sendmsg("oh... okay. :'(")
