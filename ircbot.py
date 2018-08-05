@@ -22,13 +22,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 import socket
 import datetime
 import nmap
 import sys
 
-ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+########################
+##### Bot Settings #####
 server = "chat.freenode.net" # Server
 port = 6667 # Port
 channel = "#channel" # Channel
@@ -36,8 +36,10 @@ botnick = "botnick" # Your bots IRC nick
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick
+##### Bot Settings #####
+########################
 
-
+ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
@@ -53,7 +55,7 @@ def joinchan(chan): # Join channel(s).
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
 
-def sendmsg(msg, target=channel): # Sends massages to the target.
+def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
 def main():
@@ -63,15 +65,18 @@ def main():
         ircmsg = ircmsg.strip('\n\r')
         print(ircmsg)
 
+        # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find("PRIVMSG") != -1:
-            name = ircmsg.split('!',1)[0][1:] # Messages come in from IRC in the format of:
-            message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1] # ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
+            name = ircmsg.split('!',1)[0][1:]
+            message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
             if len(name) < 17:
+                # Respond to anyone telling bot 'Hi'.
                 if message.find('Hi ' + botnick) != -1:
-                    sendmsg("Hello " + name + "!") # Respond to anyone telling bot 'Hi'.
+                    sendmsg("Hello " + name + "!")
 
-                if message[:5].find('.tell') != -1: # Respond to .tell [target] [message] command from anyone.
+                # Respond to .tell [target] [message] command from anyone.
+                if message[:5].find('.tell') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = target.split(' ', 1)[1]
@@ -81,10 +86,12 @@ def main():
                         message = "Could not parse. The message should be in format of '.tell [target] [message]' to work properly."
                     sendmsg(message, target)
 
-                if name.lower() == adminname.lower() and message[:5].find('.uptime'): # Respond to .uptime command from admin.
+                # Respond to .uptime command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.uptime'):
                     sendmsg(".uptime currently unsupported.", adminname)
 
-                if name.lower() == adminname.lower() and message[:5].find('.scan'): # Respond to .scan [target] command from admin.
+                # Respond to .scan [target] command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.scan'):
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = ".scan currently unsupported."
@@ -94,6 +101,7 @@ def main():
                         message = "Could not parse. The command should be in the format of '.scan [target]' to work properly."
                     sendmsg(message, adminname)
 
+                # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode:
                     sendmsg("oh... okay. :'(")
                     ircsock.send(bytes("QUIOT \n", "UTF-8"))
