@@ -24,12 +24,16 @@
 
 
 import socket
+import datetime
+import nmap
+import sys
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server = "chat.freenode.net" # Server
 port = 6667 # Port
 channel = "#channel" # Channel
 botnick = "botnick" # Your bots IRC nick
+botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick
 
@@ -60,14 +64,14 @@ def main():
         print(ircmsg)
 
         if ircmsg.find("PRIVMSG") != -1:
-            name = ircmsg.split('!',1)[0][1:]
-            message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
+            name = ircmsg.split('!',1)[0][1:] # Messages come in from IRC in the format of:
+            message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1] # ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
 
             if len(name) < 17:
                 if message.find('Hi ' + botnick) != -1:
-                    sendmsg("Hello " + name + "!")
+                    sendmsg("Hello " + name + "!") # Respond to anyone telling bot 'Hi'.
 
-                if message[:5].find('.tell') != -1:
+                if message[:5].find('.tell') != -1: # Respond to .tell [target] [message] command from anyone.
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = target.split(' ', 1)[1]
@@ -76,6 +80,13 @@ def main():
                         target = name
                         message = "Could not parse. The message should be in format of '.tell [target] [message]' to work properly."
                     sendmsg(message, target)
+
+                if name.lower() == adminname.lower() and message[:5].find('.uptime'): # Respond to .uptime command from admin.
+                    sendmsg(".uptime currently unsupported.", adminname)
+
+                if name.lower() == adminname.lower() and message[:5].find('.scan'): # Respond to .scan [target] command from admin.
+                    #target = message.split(' ', 1)[1]
+                    sendmsg(".scan currently unsupported", adminname)
 
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode:
                     sendmsg("oh... okay. :'(")
