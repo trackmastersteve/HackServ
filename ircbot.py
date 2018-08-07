@@ -58,6 +58,14 @@ def ping(): # Respond to server Pings.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
+def memory():
+    starttime = datetime.datetime.utcnow()
+    return starttime
+
+def uptime():
+    delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - memory()).total_seconds()))
+    return delta
+    
 def main():
     joinchan(channel)
     while 1:
@@ -88,7 +96,8 @@ def main():
 
                 # Respond to .uptime command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.uptime'):
-                    sendmsg(".uptime currently unsupported.", adminname)
+                    sendmsg("My current uptime:", name)
+                    sendmsg(format(uptime()), name)
 
                 # Respond to .scan [target] command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan'):
