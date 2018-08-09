@@ -43,6 +43,7 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+version = 0.0.2
 
 def joinchan(chan): # Join channel(s).
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
@@ -58,11 +59,11 @@ def ping(): # Respond to server Pings.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
-def memory():
+def memory(): # Used for .uptime command
     starttime = datetime.datetime.utcnow()
     return starttime
 
-def uptime():
+def uptime(): # Used for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - memory()).total_seconds()))
     return delta
     
