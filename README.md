@@ -15,3 +15,5 @@ bye [botnick]
 
 .bn [target] (work in preogress)
 
+.uname (work in progress)
+
