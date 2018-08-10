@@ -10,3 +10,6 @@ So far it only responds to the following commands:
 .tell [target] [message]
 
 bye [botnick]
+
+.rmet [target] (work in progress)
+
