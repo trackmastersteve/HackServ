@@ -13,3 +13,5 @@ bye [botnick]
 
 .rmet [target] (work in progress)
 
+.bn [target] (work in preogress)
+
