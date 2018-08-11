@@ -1,4 +1,4 @@
-# ircbot
+# bot
 Simple IRC bot written in python.
 
 So far it only responds to the following commands:
