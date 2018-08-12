@@ -22,10 +22,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
+author = 'Stephen Harris (trackmastersteve@gmail.com)'
+version = '0.0.3'
+last_modification = '2018.08.12'
+
 import socket
 import datetime
 import nmap
-import sys
 
 ########################
 ##### Bot Settings #####
@@ -43,7 +47,6 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
-version = 0.0.2
 
 def joinchan(chan): # Join channel(s).
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
@@ -66,7 +69,13 @@ def memory(): # Used for .uptime command
 def uptime(): # Used for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - memory()).total_seconds()))
     return delta
-    
+
+def nmapScan(tgthost, tgtport):
+    nmScan = nmap.PortScanner()
+    nmScan.scan(tgthost, tgtport)
+    state = nmapScan[tgthost]['tcp'][int(tgtport)]['state']
+    sendmsg((" [*] " + tgthost + " tcp/" +tgtport + "" + state), adminname)
+
 def main():
     joinchan(channel)
     while 1:
@@ -101,14 +110,15 @@ def main():
                     sendmsg(format(uptime()), name)
 
                 # Respond to .scan [target] command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.scan'):
+                if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
-                        message = ".scan currently unsupported."
+                        message = ".scan currently in beta."
                         target = target.split(' ')[0]
+                        port = target.split(' ', 1)[1]
+                        nmapScan(target, port)
                     else:
-                        target = name
-                        message = "Could not parse. The command should be in the format of '.scan [target]' to work properly."
+                        message = "Could not parse. The command should be in the format of '.scan [target] [port]' to work properly."
                     sendmsg(message, adminname)
 
                 # Respond to 'exitcode' from admin.
