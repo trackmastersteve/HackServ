@@ -114,8 +114,8 @@ def main():
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = ".scan currently in beta."
-                        target = target.split(' ')[0]
                         port = target.split(' ', 1)[1]
+                        target = target.split(' ')[0]
                         nmapScan(target, port)
                     else:
                         message = "Could not parse. The command should be in the format of '.scan [target] [port]' to work properly."
