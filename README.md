@@ -11,6 +11,8 @@ So far it only responds to the following commands:
 
 .tell [target] [message] (sends a msg to a user/channel)
 
+Hello [botnick] (responds to user saying hello to it)
+
 bye [botnick] (tells bot to quit)
 
 .uname (work in progress) (get system info)
