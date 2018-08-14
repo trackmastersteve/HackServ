@@ -5,15 +5,15 @@ Do NOT use this bot on a computer without permission from the owner!
 
 So far it only responds to the following commands:
 
-.uptime (shows bot uptime)
+```.uptime``` (shows bot uptime)
 
-.scan [target] (nmap port scanner) (work in progress)
+```.scan [target]``` (nmap port scanner) (work in progress)
 
-.tell [target] [message] (sends a msg to a user/channel)
+```.tell [target] [message]``` (sends a msg to a user/channel)
 
-Hello [botnick] (responds to user saying hello to it)
+```Hello [botnick]``` (responds to user saying hello to it)
 
-bye [botnick] (tells bot to quit)
+```bye [botnick]``` (tells bot to quit)
 
-.uname (work in progress) (get system info)
+```.uname``` (work in progress) (get system info)
 
