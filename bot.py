@@ -29,6 +29,7 @@ last_modification = '2018.08.12'
 
 import socket
 import datetime
+import platform
 import nmap
 
 ########################
@@ -70,6 +71,10 @@ def uptime(): # Used for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - memory()).total_seconds()))
     return delta
 
+def uname(): # Used for .uname command
+    sysinfo = platform.uname()
+    return sysinfo
+
 def nmapScan(tgthost, tgtport):
     nmScan = nmap.PortScanner()
     nmScan.scan(tgthost, tgtport)
@@ -108,6 +113,11 @@ def main():
                 if name.lower() == adminname.lower() and message[:5].find('.uptime'):
                     sendmsg("My current uptime:", name)
                     sendmsg(format(uptime()), name)
+                    
+                # Respond to .uname command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.uname'):
+                    sendmsg("System Info:", name)
+                    sendmsg(format(uname()), name)
 
                 # Respond to .scan [target] command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
