@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.0.3'
-last_modification = '2018.08.12'
+version = '0.1.0'
+last_modification = '2018.08.14'
 
 import socket
 import datetime
@@ -110,12 +110,12 @@ def main():
                     sendmsg(message, target)
 
                 # Respond to .uptime command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.uptime') != -1:
+                if name.lower() == adminname.lower() and message.find('.uptime') != -1:
                     sendmsg("My current uptime:", name)
                     sendmsg(format(uptime()), name)
                     
                 # Respond to .uname command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.uname') != -1:
+                if name.lower() == adminname.lower() and message.find('.uname') != -1:
                     sendmsg("System Info:", name)
                     sendmsg(format(uname()), name)
 
