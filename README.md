@@ -7,7 +7,7 @@ So far it only responds to the following commands:
 
 ```.uptime``` (shows bot uptime)
 
-```.scan [target]``` (nmap port scanner) (work in progress)
+```.scan [target]``` (nmap port scanner)
 
 ```.tell [target] [message]``` (sends a msg to a user/channel)
 
@@ -15,5 +15,5 @@ So far it only responds to the following commands:
 
 ```bye [botnick]``` (tells bot to quit)
 
-```.uname``` (work in progress) (get system info)
+```.uname``` (get system info)
 
