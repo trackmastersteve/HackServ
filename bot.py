@@ -123,7 +123,7 @@ def main():
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
-                        message = ".scan currently in testing..."
+                        message = "nmap scan has completed!"
                         port = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
                         nmapScan(target, port)
