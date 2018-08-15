@@ -44,6 +44,7 @@ exitcode = "bye " + botnick
 ##### Bot Settings #####
 ########################
 
+starttime = datetime.datetime.utcnow()
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -63,12 +64,8 @@ def ping(): # Respond to server Pings.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
-def memory(): # Used for .uptime command
-    starttime = datetime.datetime.utcnow()
-    return starttime
-
 def uptime(): # Used for .uptime command
-    delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - memory()).total_seconds()))
+    delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - starttime).total_seconds()))
     return delta
 
 def uname(): # Used for .uname command
@@ -82,6 +79,7 @@ def nmapScan(tgtHost, tgtPort):
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def main():
+    memory()
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
@@ -133,7 +131,7 @@ def main():
 
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode:
-                    sendmsg("oh... okay. :'(")
+                    sendmsg("Okay, Bye!")
                     ircsock.send(bytes("QUIT \n", "UTF-8"))
                     return
 
