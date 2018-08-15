@@ -75,11 +75,11 @@ def uname(): # Used for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
-def nmapScan(tgthost, tgtport):
+def nmapScan(tgtHost, tgtPort):
     nmScan = nmap.PortScanner()
-    nmScan.scan(tgthost, tgtport)
-    state = nmapScan[tgthost]['tcp'][int(tgtport)]['state']
-    sendmsg((" [*] " + tgthost + " tcp/" +tgtport + "" + state), adminname)
+    nmScan.scan(tgtHost, tgtPort)
+    state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
+    sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def main():
     joinchan(channel)
@@ -110,12 +110,12 @@ def main():
                     sendmsg(message, target)
 
                 # Respond to .uptime command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.uptime'):
+                if name.lower() == adminname.lower() and message[:5].find('.uptime') != -1:
                     sendmsg("My current uptime:", name)
                     sendmsg(format(uptime()), name)
                     
                 # Respond to .uname command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.uname'):
+                if name.lower() == adminname.lower() and message[:5].find('.uname') != -1:
                     sendmsg("System Info:", name)
                     sendmsg(format(uname()), name)
 
@@ -134,7 +134,7 @@ def main():
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode:
                     sendmsg("oh... okay. :'(")
-                    ircsock.send(bytes("QUIOT \n", "UTF-8"))
+                    ircsock.send(bytes("QUIT \n", "UTF-8"))
                     return
 
         else:
