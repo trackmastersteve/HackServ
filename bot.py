@@ -24,7 +24,7 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.1.0'
+version = '0.1.1'
 last_modification = '2018.08.14'
 
 import socket
