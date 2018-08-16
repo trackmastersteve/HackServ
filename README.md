@@ -17,3 +17,15 @@ So far it only responds to the following commands:
 
 ```.uname``` (get system info)
 
+# TODO
+
+Nickserv identify
+
+Connect using SSL
+
+Accept uploads from admin
+
+Send downloads to admin
+
+Get Public IP
+
