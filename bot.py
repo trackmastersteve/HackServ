@@ -122,9 +122,11 @@ def main():
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = "nmap scan has completed!"
-                        port = target.split(' ', 1)[1]
+                        ports = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        nmapScan(target, port)
+                        ports = [s.strip() for s in str(ports).split(',')]
+                        for port in ports:
+                            nmapScan(target, port)
                     else:
                         message = "Could not parse. The command should be in the format of '.scan [target] [port]' to work properly."
                     sendmsg(message, adminname)
