@@ -19,11 +19,17 @@ So far it only responds to the following commands:
 
 ```bye [botnick]``` (tells bot to quit)
 
+```.join [channel]``` (tells bot to join channel)
+
+```.part [channel]``` (tells bot to part channel)
+
 
 
 # TODO
 
 Nickserv identify
+
+open reverse shell/meterpreter
 
 Accept uploads from admin
 
@@ -33,7 +39,7 @@ Run file/code
 
 ~~connect over SSL~~ 
 
-~~get it address~~ 
+~~get ip address~~ 
 
-
+~~join and part channels~~
 
