@@ -25,13 +25,15 @@ So far it only responds to the following commands:
 
 Nickserv identify
 
-Connect using SSL
-
 Accept uploads from admin
 
 Send downloads to admin
 
 Run file/code
 
-Get Public IP
+~~connect over SSL~~ 
+
+~~get it address~~ 
+
+
 
