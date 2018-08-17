@@ -40,8 +40,8 @@ ip = ipgetter.myip()
 server = "chat.freenode.net" # Server
 port = 6697 # Port (If you want to use standard 6667, comment out the appropriate line down below to turn off SSL.)
 channel = "#channel" # Channel
-#botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
-botnick = ip.replace(".", "-") # Set botnick to ip address.
+botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
+#botnick = ip.replace(".", "-") # Set botnick to ip address.
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick
@@ -53,6 +53,7 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 ircsock.connect((server, port)) # Here we connect to the server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
+botnick = ip.replace(".", "-")
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
 
 def joinchan(chan): # Join channel(s).
