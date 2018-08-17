@@ -38,7 +38,7 @@ import platform
 server = "chat.freenode.net" # Server
 port = 6697 # Port (If you want to use standard 6667, comment out the appropriate line down below to turn off SSL.)
 channel = "#channel" # Channel
-#botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
+botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick
@@ -47,7 +47,7 @@ exitcode = "bye " + botnick
 
 starttime = datetime.datetime.utcnow()
 ip = ipgetter.myip()
-botnick = ip.replace(".", "-")
+botnick = ip.replace(".", "-") # Set botnick to ip address. (Comment this out if you want to use the manually set botnick.)
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 ircsock.connect((server, port)) # Here we connect to the server.
