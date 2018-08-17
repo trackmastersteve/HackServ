@@ -7,6 +7,10 @@ So far it only responds to the following commands:
 
 ```.uptime``` (shows bot uptime)
 
+```.uname``` (get system info)
+
+```.ip``` (get ip address of bot)
+
 ```.scan [target]``` (nmap port scanner)
 
 ```.tell [target] [message]``` (sends a msg to a user/channel)
@@ -15,7 +19,7 @@ So far it only responds to the following commands:
 
 ```bye [botnick]``` (tells bot to quit)
 
-```.uname``` (get system info)
+
 
 # TODO
 
