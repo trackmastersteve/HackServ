@@ -85,7 +85,6 @@ def nmapScan(tgtHost, tgtPort):
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def main():
-    memory()
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
