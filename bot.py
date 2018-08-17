@@ -27,6 +27,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 version = '0.1.6'
 last_modification = '2018.08.16'
 
+import ssl
 import nmap
 import socket
 import ipgetter
