@@ -114,7 +114,7 @@ def main():
                 # Respond to .ip command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
                     sendmsg("My public ip address is:", name)
-                    sendmsg(format(ip())), name)
+                    sendmsg(format(ip()), name)
                 
                 # Respond to .uptime command from admin.
                 if name.lower() == adminname.lower() and message.find('.uptime') != -1:
