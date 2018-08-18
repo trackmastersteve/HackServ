@@ -27,6 +27,8 @@ So far it only responds to the following commands:
 
 # TODO
 
+Help Menu
+
 Nickserv identify
 
 open reverse shell/meterpreter
