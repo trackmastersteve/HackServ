@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.2'
-last_modification = '2018.08.18'
+version = '0.2.5'
+last_modification = '2018.08.19'
 
 import ssl
 import nmap
@@ -87,7 +87,6 @@ def nmapScan(tgtHost, tgtPort):
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def main():
-    #sendmsg("identify " + botnick + " " + botident, "NickServ")
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
@@ -170,8 +169,9 @@ def main():
                     return
 
         else:
-            if ircmsg.find("PING :") != -1:
-                ping()
+            if ircmsg.find("PING") != -1:
+                nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
+                ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
 
 main()
 
