@@ -3,7 +3,9 @@ Simple IRC bot written in python. This bot is for educational purposes only!
 Do NOT use this bot on a computer or network without written permission from the owner!
 
 
-So far it only responds to the following commands:
+This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
+
+# So far it responds to the following commands:
 
 ```.uptime``` (shows bot uptime)
 
@@ -11,7 +13,7 @@ So far it only responds to the following commands:
 
 ```.ip``` (get ip address of bot)
 
-```.scan [target]``` (nmap port scanner)
+```.scan [ip] [port]``` (nmap port scanner)
 
 ```.tell [target] [message]``` (sends a msg to a user/channel)
 
@@ -29,9 +31,13 @@ So far it only responds to the following commands:
 
 Help Menu
 
+send/receive CTCP commands
+
+send/receive DCC commands
+
 Vuln Scan
 
-Auto Vuln / Port Scan
+Auto Vuln / Port Scan on join
 
 open reverse shell/meterpreter
 
