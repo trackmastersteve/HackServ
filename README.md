@@ -27,11 +27,11 @@ So far it only responds to the following commands:
 
 # TODO
 
-Run in the background
-
 Help Menu
 
-Nickserv identify
+Vuln Scan
+
+Auto Vuln / Port Scan
 
 open reverse shell/meterpreter
 
@@ -40,6 +40,10 @@ Accept uploads from admin
 Send downloads to admin
 
 Run file/code
+
+Run in Background
+
+~~NickServ Identify~~
 
 ~~connect over SSL~~ 
 
