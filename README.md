@@ -27,6 +27,8 @@ So far it only responds to the following commands:
 
 # TODO
 
+Run in the background
+
 Help Menu
 
 Nickserv identify
