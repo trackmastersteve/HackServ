@@ -47,6 +47,8 @@ Send downloads to admin
 
 Run file/code
 
+Self update
+
 Run in Background
 
 Persistence
