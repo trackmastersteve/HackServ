@@ -87,7 +87,7 @@ def nmapScan(tgtHost, tgtPort):
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def main():
-    sendmsg("identify " + botnick + " " + botident, "NickServ")
+    #sendmsg("identify " + botnick + " " + botident, "NickServ")
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
@@ -100,6 +100,11 @@ def main():
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
             if len(name) < 17:
+                # Respond to NickServ ident request.
+                if message.find('This nickname is registered') != -1:
+                    target = name
+                    sendmsg("identify " + botident, target)
+                    
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
                     sendmsg("Hello " + name + "!")
