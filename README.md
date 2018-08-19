@@ -49,6 +49,10 @@ Run file/code
 
 Run in Background
 
+Persistence
+
+Better sigterm handling
+
 ~~NickServ Identify~~
 
 ~~connect over SSL~~ 
