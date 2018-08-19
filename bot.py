@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.0'
-last_modification = '2018.08.17'
+version = '0.2.2'
+last_modification = '2018.08.18'
 
 import ssl
 import nmap
