@@ -1,0 +1,2 @@
+python-nmap==0.6.1
+ipgetter==0.7
