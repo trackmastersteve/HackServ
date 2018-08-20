@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.7'
-last_modification = '2018.08.19'
+version = '0.2.8'
+last_modification = '2018.08.20'
 
 import ssl
 import nmap
@@ -61,8 +61,8 @@ def joinchan(chan): # Join channel(s).
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        #print(ircmsg)
-        sendmsg(ircmsg, channel)
+        #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        sendmsg(ircmsg, channel) # Sends messages to the channel/admin. (Will run in background.)
 
 def partchan(chan): # Join channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
@@ -90,13 +90,16 @@ def nmapScan(tgtHost, tgtPort): # Used for .scan command
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
+def setmode(mode, target=channel): # Sets given mode to nick or channel.
+    ircsock.send(bytes("MODE "+ target +" :"+ mode +"\n", "UTF-8"))
+    
 def main():
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        #print(ircmsg)
-        sendmsg(ircmsg, channel)
+        #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        sendmsg(ircmsg, channel) # Sends messages to the channel/admin. (Will run in background.)
 
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
@@ -127,6 +130,18 @@ def main():
                         message = "Could not parse. The message should be in format of '.tell [target] [message]' to work properly."
                     sendmsg(message, target)
 
+                # Respond to the '.mode [target] [mode]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        mode = target.split(' ', 1)[1]
+                        target = target.split(' ')[0]
+                        message = "The mode" + mode + "was set successfully on" + target + "!"
+                    else:
+                        message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
+                    setmode(target, mode)
+                    sendmsg(message, adminname)
+                
                 # Respond to the '.join [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.join') != -1:
                     target = message.split(' ', 1)[1]
