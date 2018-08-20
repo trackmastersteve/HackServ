@@ -49,7 +49,7 @@ Run file/code
 
 Self update
 
-Run in Background - (almost done)
+~~Run in Background - (almost done)~~
 
 Persistence
 
