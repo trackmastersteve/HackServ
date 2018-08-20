@@ -136,7 +136,7 @@ def main():
                     if target.find(' ') != -1:
                         mode = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        message = "The mode" + mode + "was set successfully on" + target + "!"
+                        message = "The mode " + mode + "was set successfully on " + target + "!"
                     else:
                         message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
                     setmode(target, mode)
