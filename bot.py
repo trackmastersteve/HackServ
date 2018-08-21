@@ -62,7 +62,7 @@ def joinchan(chan): # Join channel(s).
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
         #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        sendmsg(ircmsg, channel) # Sends messages to the channel/admin. (Will run in background.)
+        sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background.)
 
 def partchan(chan): # Join channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
@@ -94,12 +94,13 @@ def setmode(mode, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" :"+ mode +"\n", "UTF-8"))
     
 def main():
+    sendmsg(format(ip) + " Online!", adminname)
     joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
         #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        sendmsg(ircmsg, channel) # Sends messages to the channel/admin. (Will run in background.)
+        sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background.)
 
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
@@ -113,7 +114,7 @@ def main():
                 # Respond to NickServ ident request.
                 if message.find('This nickname is registered') != -1:
                     target = name
-                    sendmsg("identify " + botident, target)
+                    sendmsg("identify " + botident, "NickServ")
                     
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
