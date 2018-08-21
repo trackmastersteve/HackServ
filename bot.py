@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.8'
-last_modification = '2018.08.20'
+version = '0.2.9'
+last_modification = '2018.08.21'
 
 import ssl
 import nmap
@@ -34,7 +34,7 @@ import ipgetter
 import datetime
 import platform
 
-ip = ipgetter.myip()
+ip = ipgetter.myip() # Get public IP address
 ########################
 ##### Bot Settings #####
 server = "chat.freenode.net" # Server
@@ -43,7 +43,7 @@ channel = "#channel" # Channel
 botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
-exitcode = "bye " + botnick
+exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings #####
 ########################
 
@@ -71,7 +71,7 @@ def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
 
 def version(): # Respond to VERSION request.
-    ircsock.send(bytes("VERSION : arm0red bot 0.2.7\n", "UTF-8"))
+    ircsock.send(bytes("VERSION : arm0red bot "+ version +"\n", "UTF-8"))
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
@@ -137,7 +137,7 @@ def main():
                     if target.find(' ') != -1:
                         mode = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        message = "The mode " + mode + " was set successfully on " + target + "!"
+                        message = "The mode " + mode + " was set on " + target + "!"
                     else:
                         message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
                     setmode(target, mode)
