@@ -10,7 +10,7 @@ Installation:
 The following packages are required. You'll need to install the following using the
 package manager:
 
-```sudo apt install python3 pip3 nmap```
+```sudo apt install python3 python3-pip nmap```
 
 Then you can install the following using pip3:
 
