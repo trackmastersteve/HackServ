@@ -5,6 +5,18 @@ Do NOT use this bot on a computer or network without written permission from the
 
 This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
 
+Installation:
+
+The following packages are required. You'll need to install the following using the
+package manager:
+
+```sudo apt install python3 pip3 nmap```
+
+Then you can install the following using pip3:
+
+```pip3 install requirements.txt```
+
+
 # So far it responds to the following commands:
 
 ```.uptime``` (shows bot uptime)
@@ -25,7 +37,7 @@ This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
 
 ```.part [channel]``` (tells bot to part channel)
 
-
+```.mode [target] [mode]``` (set mode on nick or channel)
 
 # TODO
 
@@ -33,7 +45,7 @@ Help Menu
 
 send/receive CTCP commands
 
-send/receive DCC commands
+send/receive DCC commands (CHAT and TRANSFER)
 
 Vuln Scan
 
@@ -43,7 +55,7 @@ open reverse shell/meterpreter
 
 Accept uploads from admin
 
-Send downloads to admin
+Send downloads to admin 
 
 Run file/code
 
