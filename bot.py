@@ -115,9 +115,8 @@ def main():
             
             if len(name) < 17:
                 # Respond to NickServ ident request.
-                if name.lower() == 'NickServ'.lower() and message.find('This nickname is registered') != -1:
-                    target = name
-                    sendmsg("identify " + botident, "NickServ")
+                if name.lower() == 'nickserv' and message.find('This nickname is registered') != -1:
+                    ircsock.send("nickserv identify " + botident + "\r\n")
                     
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
