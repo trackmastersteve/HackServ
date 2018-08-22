@@ -29,6 +29,8 @@ Then you can install the following using pip3:
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
 
+```.notice [target] [message]``` (sends a notice to a user/channel)
+
 ```Hello [botnick]``` (responds to user saying hello to it)
 
 ```bye [botnick]``` (tells bot to quit)
