@@ -24,8 +24,8 @@
 
 NOTICE = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
-version = '0.2.9'
-last_modification = '2018.08.21'
+version = '0.3.0'
+last_modification = '2018.08.22'
 
 import ssl
 import nmap
@@ -76,6 +76,9 @@ def version(): # Respond to VERSION request.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
+def notice(notice, target=channel): # Sends a NOTICE to the target.
+    ircsock.send(bytes("NOTICE "+ target +" :"+ notice +"\n", "UTF-8"))
+    
 def uptime(): # Used for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - starttime).total_seconds()))
     return delta
@@ -120,7 +123,7 @@ def main():
                 if message.find('Hi ' + botnick) != -1:
                     sendmsg("Hello " + name + "!")
 
-                # Respond to '.msg [target] [message]' command from anyone.
+                # Respond to '.msg [target] [message]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.msg') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
@@ -131,6 +134,17 @@ def main():
                         message = "Could not parse. The message should be in format of '.msg [target] [message]' to work properly."
                     sendmsg(message, target)
 
+                # Respond to '.notice [target] [message]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.notice') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        message = target.split(' ', 1)[1]
+                        target = target.split(' ')[0]
+                    else:
+                        target = name
+                        message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly.
+                    notice(message, target)
+                
                 # Respond to the '.mode [target] [mode]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
                     target = message.split(' ', 1)[1]
