@@ -142,7 +142,7 @@ def main():
                         target = target.split(' ')[0]
                     else:
                         target = name
-                        message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly.
+                        message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly."
                     notice(message, target)
                 
                 # Respond to the '.mode [target] [mode]' command from admin.
