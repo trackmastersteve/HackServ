@@ -112,7 +112,7 @@ def main():
             
             if len(name) < 17:
                 # Respond to NickServ ident request.
-                if message.find('This nickname is registered') != -1:
+                if name.lower() == 'NickServ'.lower() and message.find('This nickname is registered') != -1:
                     target = name
                     sendmsg("identify " + botident, "NickServ")
                     
@@ -120,15 +120,15 @@ def main():
                 if message.find('Hi ' + botnick) != -1:
                     sendmsg("Hello " + name + "!")
 
-                # Respond to '.tell [target] [message]' command from anyone.
-                if message[:5].find('.tell') != -1:
+                # Respond to '.msg [target] [message]' command from anyone.
+                if name.lower() == adminname.lower() and message[:5].find('.msg') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
                     else:
                         target = name
-                        message = "Could not parse. The message should be in format of '.tell [target] [message]' to work properly."
+                        message = "Could not parse. The message should be in format of '.msg [target] [message]' to work properly."
                     sendmsg(message, target)
 
                 # Respond to the '.mode [target] [mode]' command from admin.
