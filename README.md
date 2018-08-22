@@ -27,7 +27,7 @@ Then you can install the following using pip3:
 
 ```.scan [ip] [port]``` (nmap port scanner)
 
-```.tell [target] [message]``` (sends a msg to a user/channel)
+```.msg [target] [message]``` (sends a msg to a user/channel)
 
 ```Hello [botnick]``` (responds to user saying hello to it)
 
