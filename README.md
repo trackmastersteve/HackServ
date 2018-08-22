@@ -65,6 +65,8 @@ Self update
 
 Persistence
 
+Better error handling (:No such nick/channel)
+
 Better sigterm handling
 
 ~~NickServ Identify~~
