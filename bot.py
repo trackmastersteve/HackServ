@@ -61,8 +61,8 @@ def joinchan(chan): # Join channel(s).
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background.)
+        print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
 
 def partchan(chan): # Join channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
@@ -102,8 +102,8 @@ def main():
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        #print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background.)
+        print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
 
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
@@ -158,17 +158,25 @@ def main():
                 
                 # Respond to the '.join [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.join') != -1:
-                    target = message.split(' ', 1)[1]
-                    message = "Ok, I will join the channel: " + target
-                    joinchan(target)
-                    sendmsg(message, name)
+                    if message.split(' ', 1)[1].startswith('#'):
+                        target = message.split(' ', 1)[1]
+                        message = "Ok, I will join the channel: " + target
+                        joinchan(target)
+                        sendmsg(message, name)
+                    else:
+                        message = "Could not parse. Please make sure the channel is in the format of '#channel'."
+                        sendmsg(message, name)
                 
                 #Respond to the '.part [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.part') != -1:
-                    target = message.split(' ', 1)[1]
-                    message = "Ok, I will part the channel: " + target
-                    partchan(target)
-                    sendmsg(message, name)
+                    if message.split(' ', 1)[1].startwith('#'):
+                        target = message.split(' ', 1)[1]
+                        message = "Ok, I will part the channel: " + target
+                        partchan(target)
+                        sendmsg(message, name)
+                    else:
+                        message = "Could not parse. Please make sure the channel is in the format of '#channel'."
+                        sendmsg(message, name)
 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
