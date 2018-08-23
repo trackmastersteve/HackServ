@@ -162,10 +162,9 @@ def main():
                         target = message.split(' ', 1)[1]
                         message = "Ok, I will join the channel: " + target
                         joinchan(target)
-                        sendmsg(message, name)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
-                        sendmsg(message, name)
+                    sendmsg(message, name)
                 
                 #Respond to the '.part [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.part') != -1:
@@ -173,10 +172,9 @@ def main():
                         target = message.split(' ', 1)[1]
                         message = "Ok, I will part the channel: " + target
                         partchan(target)
-                        sendmsg(message, name)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
-                        sendmsg(message, name)
+                    sendmsg(message, name)
 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
