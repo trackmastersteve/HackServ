@@ -177,7 +177,7 @@ def main():
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
                 
-                #Respond to the '.part [channel]' command from admin.
+                # Respond to the '.part [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.part') != -1:
                     if message.split(' ', 1)[1].startswith('#'):
                         target = message.split(' ', 1)[1]
@@ -187,6 +187,15 @@ def main():
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
 
+                # Respond to the '.cycle [channel]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.cycle') != -1:
+                    if message.split(' ', 1)[1].startswith('#'):
+                        target = message.split(' ', 1)[1]
+                        message = "Ok, cycling " + target + " now!"
+                        cycle(target)
+                    else:
+                        message = "Could not parse. Please make sure the channel is in the format of '#channel'."
+                
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
                     sendmsg("My public ip address is:", name)
