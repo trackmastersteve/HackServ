@@ -24,6 +24,7 @@
 
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
+github = 'https://github.com/trackmastersteve/bot.git'
 version = '0.3.5'
 last_modification = '2018.08.23'
 
@@ -41,8 +42,8 @@ ip = ipgetter.myip() # Get public IP address
 server = "chat.freenode.net" # Server
 port = 6697 # Port (If you want to use standard 6667, comment out the appropriate line down below to turn off SSL.)
 channel = "#channel" # Channel
-botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
-#botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick format.
+#botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
+botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick format.
 botident = "password" # Bots NickServ password
 adminname = "master" # Your IRC nick
 exitcode = "bye " + botnick # Command used to kill the bot.
