@@ -39,6 +39,8 @@ Then you can install the following using pip3:
 
 ```.part [channel]``` (tells bot to part channel)
 
+```.cycle [channel]``` (tells bot to part then join channel)
+
 ```.mode [target] [mode]``` (set mode on nick or channel)
 
 # TODO
@@ -66,6 +68,8 @@ Self update
 ~~Run in Background - (almost done)~~
 
 Persistence
+
+Better handling of disconnects etc.
 
 Better error handling (:No such nick/channel)
 
