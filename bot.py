@@ -25,7 +25,7 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-version = '0.3.6'
+version = '0.3.7'
 last_modification = '2018.08.24'
 
 import ssl
@@ -82,8 +82,8 @@ def cycle(chan): # Part then Join channel(s)
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
 
-def version(): # Respond to VERSION request.
-    ircsock.send(bytes("VERSION : arm0red bot "+ version +"\n", "UTF-8"))
+def sendversion(nick, ver): # Respond to VERSION request.
+    ircsock.send(bytes("PRIVMSG "+ nick +" :VERSION: arm0red bot "+ ver +"\n", "UTF-8"))
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
@@ -115,14 +115,18 @@ def main():
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
+        # Join 'channel' and msg 'admin' after you are fully connected to server.
         if ircmsg.find('NOTICE') != -1:
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
                 joinchan(channel)
                 sendmsg(format(ip) + " Online!", adminname)
                 
+        # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
-            version()
+            name = ircmsg.split('!',1)[0][1:]
+            vers = version
+            sendversion(name, vers)
             
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
