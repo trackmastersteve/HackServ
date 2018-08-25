@@ -41,7 +41,7 @@ Then you can install the following using pip3:
 
 ```.cycle [channel]``` (tells bot to part then join channel) (work in progress)
 
-```.mode [target] [mode]``` (set mode on nick or channel) (work in progress)
+```.mode [target] [mode]``` (set mode on nick or channel)
 
 # TODO
 
