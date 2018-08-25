@@ -25,7 +25,7 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-version = '0.3.7'
+version = '0.3.8'
 last_modification = '2018.08.24'
 
 import ssl
