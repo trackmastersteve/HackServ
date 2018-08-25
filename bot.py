@@ -88,7 +88,7 @@ def sendversion(nick, ver): # Respond to VERSION request.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
-def notice(notice, target=channel): # Sends a NOTICE to the target.
+def sendnotice(notice, target=channel): # Sends a NOTICE to the target.
     ircsock.send(bytes("NOTICE "+ target +" :"+ notice +"\n", "UTF-8"))
     
 def uptime(): # Used for .uptime command
@@ -105,8 +105,8 @@ def nmapScan(tgtHost, tgtPort): # Used for .scan command
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
-def setmode(mode, target=channel): # Sets given mode to nick or channel.
-    ircsock.send(bytes("MODE "+ target +" :"+ mode +"\n", "UTF-8"))
+def setmode(flag, target=channel): # Sets given mode to nick or channel.
+    ircsock.send(bytes("MODE "+ target +" :"+ flag +"\n", "UTF-8"))
     
 def main():
     while 1:
@@ -162,7 +162,7 @@ def main():
                     else:
                         target = name
                         message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly."
-                    notice(message, target)
+                    sendnotice(message, target)
                 
                 # Respond to the '.mode [target] [mode]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
