@@ -173,7 +173,7 @@ def main():
                         message = "The mode " + mode + " was set on " + target + "!"
                     else:
                         message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
-                    setmode(target, mode)
+                    setmode(mode, target)
                     sendmsg(message, adminname)
                 
                 # Respond to the '.join [channel]' command from admin.
