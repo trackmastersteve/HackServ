@@ -25,8 +25,8 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-version = '0.3.8'
-last_modification = '2018.08.24'
+version = '0.3.9'
+last_modification = '2018.08.25'
 
 import ssl
 import sys
@@ -106,7 +106,7 @@ def nmapScan(tgtHost, tgtPort): # Used for .scan command
     sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
 
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
-    ircsock.send(bytes("MODE "+ target +" :"+ flag +"\n", "UTF-8"))
+    ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
     
 def main():
     while 1:
