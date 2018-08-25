@@ -204,6 +204,7 @@ def main():
                         cycle(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
+                    sendmsg(message, name)
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
