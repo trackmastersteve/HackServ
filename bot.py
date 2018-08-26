@@ -38,9 +38,11 @@ import ipgetter
 import datetime
 import platform
 
+starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
-########################
-##### Bot Settings #####
+
+#################################################
+##### Bot Settings ##############################
 server = "chat.freenode.net" # Server to connect to.
 port = 6697 # Port (If you want to use standard port 6667, comment out the appropriate line down below to turn off SSL.)
 serverpass = "password" # Password for IRC Server.
@@ -50,10 +52,9 @@ botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in p
 botident = "password" # Bots NickServ password.
 adminname = "master" # Bot Master's IRC nick.
 exitcode = "bye " + botnick # Command used to kill the bot.
-##### Bot Settings #####
-########################
+##### Bot Settings ##############################
+#################################################
 
-starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
