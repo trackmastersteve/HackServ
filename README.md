@@ -17,7 +17,7 @@ Then you can install the following using pip3:
 ```pip3 install requirements.txt```
 
 
-# So far it responds to the following commands:
+### So far it responds to the following commands:
 
 ```.uptime``` (shows bot uptime)
 
@@ -29,7 +29,7 @@ Then you can install the following using pip3:
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
 
-```.notice [target] [message]``` (sends a notice to a user/channel) (work in progress)
+```.notice [target] [message]``` (sends a notice to a user/channel) (**work in progress**)
 
 ```Hello [botnick]``` (responds to user saying hello to it)
 
@@ -39,7 +39,7 @@ Then you can install the following using pip3:
 
 ```.part [channel]``` (tells bot to part channel)
 
-```.cycle [channel]``` (tells bot to part then join channel) (work in progress)
+```.cycle [channel]``` (tells bot to part then join channel) (**work in progress**)
 
 ```.mode [target] [mode]``` (set mode on nick or channel)
 
