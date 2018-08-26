@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.4.1'
+version = '0.4.2'
 last_modification = '2018.08.26'
 
 import ssl
@@ -115,7 +115,11 @@ def nmapScan(tgtHost, tgtPort): # Used for .scan command
     nmScan = nmap.PortScanner()
     nmScan.scan(tgtHost, tgtPort)
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
-    sendmsg((" [*] " + tgtHost + " tcp/" +tgtPort + "" + state), adminname)
+    if state == 'open':
+        st = '[*]'
+    else:
+        st = '[ ]'
+    sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
