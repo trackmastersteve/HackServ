@@ -1,4 +1,4 @@
-# bot
+# arm0.red bot
 Simple IRC bot written in python. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner!
 
