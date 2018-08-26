@@ -25,6 +25,7 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
+software = 'arm0red bot'
 version = '0.4.0'
 last_modification = '2018.08.26'
 
@@ -85,7 +86,8 @@ def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
 
 def sendversion(nick, ver): # Respond to VERSION request.
-    ircsock.send(bytes("PRIVMSG "+ nick +" :VERSION: arm0red bot "+ ver +"\n", "UTF-8"))
+    ver = software + ' ' + version + ' ' + github
+    ircsock.send(bytes("PRIVMSG "+ nick +" :VERSION: " + ver +"\n", "UTF-8"))
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
