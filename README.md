@@ -6,7 +6,7 @@ Simple IRC bot PoC written in python. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
 
 
-This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
+This bot can connect to IRC over SSL and is compatible with Unrealircd's nospoof:PING.
 
 ### Installation:
 
@@ -28,13 +28,13 @@ Then you can install the following using pip3:
 
 ```.ip``` (get ip address of bot)
 
-```.scan [ip] [port]``` (nmap port scanner)
+```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
 
 ```.notice [target] [message]``` (sends a notice to a user/channel) (**work in progress**)
 
-```Hello [botnick]``` (responds to user saying hello to it)
+```Hello [botnick]``` (responds to any user saying hello to it)
 
 ```bye [botnick]``` (tells bot to quit)
 
@@ -64,7 +64,7 @@ Accept uploads from admin
 
 Send downloads to admin 
 
-Run file/code
+Execute file/code
 
 Self update
 
@@ -74,7 +74,7 @@ Persistence
 
 Better handling of disconnects etc.
 
-Better error handling (:No such nick/channel)
+~~Better error handling (:No such nick/channel)~~
 
 Better sigterm handling
 
