@@ -1,4 +1,7 @@
 # arm0.red bot
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Simple IRC bot written in python. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner!
 
