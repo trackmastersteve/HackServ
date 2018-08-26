@@ -46,11 +46,11 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 server = "chat.freenode.net" # Server to connect to.
 port = 6697 # Port (If you want to use standard port 6667, comment out the appropriate line down below to turn off SSL.)
 serverpass = "password" # Password for IRC Server.
-channel = "#channel" # Channel to join on connect.
+channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
 botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick compatible format.
 botident = "password" # Bots NickServ password.
-adminname = "master" # Bot Master's IRC nick.
+adminname = "arm0red" # Bot Master's IRC nick.
 exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
