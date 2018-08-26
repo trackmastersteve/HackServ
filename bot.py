@@ -232,7 +232,7 @@ def main():
                         for port in ports: # loops through comma seperated list of ports.
                             nmapScan(target, port)
                     else:
-                        message = "Could not parse. The command should be in the format of '.scan [target] [port]' to work properly."
+                        message = "Could not parse. The command should be in the format of '.scan [target] [comma,seperated,ports]' to work properly."
                     sendmsg(message, adminname)
 
                 # Respond to 'exitcode' from admin.
