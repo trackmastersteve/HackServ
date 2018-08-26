@@ -26,12 +26,13 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.4.0'
+version = '0.4.1'
 last_modification = '2018.08.26'
 
 import ssl
 import sys
 import nmap
+import time
 import socket
 import ipgetter
 import datetime
@@ -55,11 +56,17 @@ exitcode = "bye " + botnick # Command used to kill the bot.
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
-ircsock.connect((server, port)) # Here we connect to the server.
-ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
-ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
-ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
 
+def connect():
+    try: # Try and connect to the IRC server.
+        ircsock.connect((server, port)) # Here we connect to the server.
+        ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
+        ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
+        ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+    except: # If you can't connect, wait 10 seconds and try again.
+        time.sleep(10)
+        connect()
+        
 def joinchan(chan): # Join channel(s).
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     ircmsg = ""
@@ -250,6 +257,7 @@ def main():
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
 
+connect()
 main()
 
 
