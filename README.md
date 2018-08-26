@@ -1,6 +1,6 @@
 # bot
 Simple IRC bot written in python. This bot is for educational purposes only!
-Do NOT use this bot on a computer or network without written permission from the owner!
+Do **NOT** use this bot on a computer or network without written permission from the owner!
 
 
 This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
