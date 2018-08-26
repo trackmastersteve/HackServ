@@ -25,8 +25,8 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-version = '0.3.9'
-last_modification = '2018.08.25'
+version = '0.4.0'
+last_modification = '2018.08.26'
 
 import ssl
 import sys
@@ -36,16 +36,17 @@ import ipgetter
 import datetime
 import platform
 
-ip = ipgetter.myip() # Get public IP address
+ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 ########################
 ##### Bot Settings #####
-server = "chat.freenode.net" # Server
-port = 6697 # Port (If you want to use standard 6667, comment out the appropriate line down below to turn off SSL.)
-channel = "#channel" # Channel
+server = "chat.freenode.net" # Server to connect to.
+port = 6697 # Port (If you want to use standard port 6667, comment out the appropriate line down below to turn off SSL.)
+serverpass = "password" # Password for IRC Server.
+channel = "#channel" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
-botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick format.
-botident = "password" # Bots NickServ password
-adminname = "master" # Your IRC nick
+botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick compatible format.
+botident = "password" # Bots NickServ password.
+adminname = "master" # Bot Master's IRC nick.
 exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings #####
 ########################
@@ -54,6 +55,7 @@ starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 ircsock.connect((server, port)) # Here we connect to the server.
+ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
 ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
 ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
 
