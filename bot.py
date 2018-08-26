@@ -66,10 +66,10 @@ def joinchan(chan): # Join channel(s).
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
 
-def partchan(chan): # Join channel(s).
+def partchan(chan): # Part channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
         
-def cycle(chan): # Part then Join channel(s)
+def cycle(chan): # Part then Join channel(s) 
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     ircmsg = ""
@@ -228,8 +228,8 @@ def main():
                         message = "nmap scan has completed!"
                         ports = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        ports = [s.strip() for s in str(ports).split(',')]
-                        for port in ports:
+                        ports = [s.strip() for s in str(ports).split(',')] 
+                        for port in ports: # loops through comma seperated list of ports.
                             nmapScan(target, port)
                     else:
                         message = "Could not parse. The command should be in the format of '.scan [target] [port]' to work properly."
