@@ -5,7 +5,7 @@ Do **NOT** use this bot on a computer or network without written permission from
 
 This bot can connect over SSL and is compatible with Unrealircd's nospoof:PING.
 
-Installation:
+### Installation:
 
 The following packages are required. You'll need to install the following using the
 package manager:
@@ -43,7 +43,7 @@ Then you can install the following using pip3:
 
 ```.mode [target] [mode]``` (set mode on nick or channel)
 
-# TODO
+### TODO
 
 Help Menu
 
