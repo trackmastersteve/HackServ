@@ -48,41 +48,41 @@ Then you can install the following using pip3:
 
 ### TODO
 
-Help Menu
+- [ ] Help Menu
 
-send/receive CTCP commands
+- [ ] send/receive CTCP commands
 
-send/receive DCC commands (CHAT and TRANSFER)
+- [ ] send/receive DCC commands (CHAT and TRANSFER)
 
-Vuln Scan
+- [ ] Vuln Scan
 
-Auto Vuln / Port Scan on join
+- [ ] Auto Vuln / Port Scan on join
 
-open reverse shell/meterpreter
+- [ ] open reverse shell/meterpreter
 
-Accept uploads from admin
+- [ ] Accept uploads from admin
 
-Send downloads to admin 
+- [ ] Send downloads to admin 
 
-Execute file/code
+- [ ] Execute file/code
 
-Self update
+- [ ] Self update
 
-~~Run in Background - (almost done)~~
+- [x] Run in Background - (almost done)
 
-Persistence
+- [ ] Persistence
 
-Better handling of disconnects etc.
+- [ ] Better handling of disconnects etc.
 
-~~Better error handling (:No such nick/channel)~~
+- [x] Better error handling (:No such nick/channel)
 
-Better sigterm handling
+- [ ] Better sigterm handling
 
-~~NickServ Identify~~
+- [x] NickServ Identify
 
-~~connect over SSL~~ 
+- [x] connect over SSL 
 
-~~get ip address~~ 
+- [x] get ip address
 
-~~join and part channels~~
+- [x] join and part channels
 
