@@ -195,6 +195,13 @@ def main():
                     setmode(mode, target)
                     sendmsg(message, adminname)
                 
+                # Respond to the '.nick [newnick]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
+                    target = message.split(' ', 1)[1]
+                    message = "Ok, Changing my nick to: " + target
+                    nick(target)
+                    sendmsg(message, name)
+                
                 # Respond to the '.join [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.join') != -1:
                     if message.split(' ', 1)[1].startswith('#'):
