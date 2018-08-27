@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.4.2'
+version = '0.4.3'
 last_modification = '2018.08.26'
 
 import ssl
@@ -55,7 +55,7 @@ exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
-ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
 def connect():
@@ -92,6 +92,9 @@ def cycle(chan): # Part then Join channel(s)
         
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
+    
+def nick(newnick): # Change botnick.
+    ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
 
 def sendversion(nick, ver): # Respond to VERSION request.
     ver = software + ' ' + version + ' ' + github
