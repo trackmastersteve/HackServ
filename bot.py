@@ -49,7 +49,7 @@ serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
 botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick compatible format.
-botident = "password" # Bots NickServ password.
+nickpass = "password" # Bots NickServ password.
 nickserv = "nickserv" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
 exitcode = "bye " + botnick # Command used to kill the bot.
@@ -156,7 +156,7 @@ def main():
             if len(name) < 17:
                 # Respond to NickServ ident request.
                 if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
-                    sendmsg("identify " + botident, nickserv)
+                    sendmsg("identify " + nickpass, nickserv)
                     
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
