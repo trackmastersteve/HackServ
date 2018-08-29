@@ -294,6 +294,7 @@ try:
     connect()
     main()
 except KeyboardInterrupt:
+    print('KeyboardInterrupt')
     sys.exit()
 
 
