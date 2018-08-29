@@ -187,6 +187,19 @@ def main():
                         message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly."
                     sendnotice(message, target)
                 
+                if name.lower() == adminname.lower() and message[:5].find('.kick') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        reason = target.split(' ', 2)[2]
+                        nick = target.split(' ')[1]
+                        chnl = target.split(' ')[0]
+                        message = nick + " was kicked from " + chnl + " Reason:" + reason
+                        kick(reason, nick, chnl)
+                    else:
+                        message = "Could not parse. The message should be in the format of '.kick [#channel] [nick] [reason]' to work properly."
+                    sendmsg(message, name)
+
+                
                 # Respond to the '.mode [target] [mode]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
                     target = message.split(' ', 1)[1]
