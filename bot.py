@@ -273,8 +273,11 @@ def main():
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
 
-connect()
-main()
+try:
+    connect()
+    main()
+except KeyboardInterrupt:
+    sys.exit()
 
 
 
