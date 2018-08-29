@@ -107,6 +107,9 @@ def sendmsg(msg, target=channel): # Sends messages to the target.
 def sendnotice(notice, target=channel): # Sends a NOTICE to the target.
     ircsock.send(bytes("NOTICE "+ target +" :"+ notice +"\n", "UTF-8"))
     
+def kick(msg, usr, chan): # Kick a user from the channel.
+    ircsock.send(bytes("KICK "+ chan + " " + usr + " :"+ msg +"\n", "UTF-8"))
+    
 def uptime(): # Used for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - starttime).total_seconds()))
     return delta
