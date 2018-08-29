@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.4.5'
+version = '0.4.6'
 last_modification = '2018.08.28'
 
 import ssl
@@ -187,6 +187,7 @@ def main():
                         message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly."
                     sendnotice(message, target)
                 
+                # Respond to '.kick [channel] [nick] [reason]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.kick') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
