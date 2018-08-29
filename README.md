@@ -44,6 +44,8 @@ Then you can install the following using pip3:
 
 ```.cycle [channel]``` (tells bot to part then join channel) (**work in progress**)
 
+```.kick [channel] [nick] [reason]``` (tells bot to kick a user from a channel)
+
 ```.mode [target] [mode]``` (set mode on nick or channel)
 
 ### TODO
