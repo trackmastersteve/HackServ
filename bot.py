@@ -110,15 +110,15 @@ def sendnotice(notice, target=channel): # Sends a NOTICE to the target.
 def kick(msg, usr, chan): # Kick a user from the channel.
     ircsock.send(bytes("KICK "+ chan + " " + usr + " :"+ msg +"\n", "UTF-8"))
     
-def uptime(): # Used for .uptime command
+def uptime(): # Used to get current uptime for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - starttime).total_seconds()))
     return delta
 
-def uname(): # Used for .uname command
+def uname(): # Used to get system info for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
-def nmapScan(tgtHost, tgtPort): # Used for .scan command
+def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .scan command
     nmScan = nmap.PortScanner()
     nmScan.scan(tgtHost, tgtPort)
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
