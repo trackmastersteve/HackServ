@@ -80,7 +80,7 @@ Then you can install the following using pip3:
 
 - [x] Better error handling (:No such nick/channel)
 
-- [ ] Better sigterm handling
+- [x] Better sigterm handling
 
 - [ ] NickServ Identify
 
