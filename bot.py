@@ -215,12 +215,12 @@ def main():
                 
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
-                    if target == message.split(' ', 1)[1] != -1:
+                    if message.split(' ', 1)[1] != -1:
                         target = message.split(' ', 1)[1]
                         message = "Ok, Changing my nick to: " + target
                         newnick(target)
                     else:
-                        message = "Could not parse. Make sure the command is in the format of '.nick [newnick]' to work properly."
+                        message = "Could not parse. Please make sure the command is in the format of '.nick [newnick]' to work properly."
                     sendmsg(message, name)
                 
                 # Respond to the '.join [channel]' command from admin.
