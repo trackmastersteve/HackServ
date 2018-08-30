@@ -49,8 +49,8 @@ serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
 botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick compatible format.
-nickpass = "password" # Bots NickServ password.
-nickserv = "nickserv" # Nickname service name. (sometimes it's differnet on some networks.)
+nspass = "password" # Bots NickServ password.
+nserv = "nickserv" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
 exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings ##############################
@@ -94,7 +94,7 @@ def cycle(chan): # Part then Join channel(s)
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
     
-def nick(newnick): # Change botnick.
+def newnick(newnick): # Change botnick.
     ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
 
 def sendversion(nick, ver): # Respond to VERSION request.
@@ -158,8 +158,8 @@ def main():
 
             if len(name) < 17:
                 # Respond to NickServ ident request.
-                if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
-                    sendmsg("identify " + nickpass, nickserv)
+                if name.lower() == nserv.lower() and message.find('This nickname is registered') != -1:
+                    sendmsg("identify " + nspass, nserv)
                     
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
@@ -215,9 +215,12 @@ def main():
                 
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
-                    target = message.split(' ', 1)[1]
-                    message = "Ok, Changing my nick to: " + target
-                    nick(target)
+                    if target = message.split(' ', 1)[1] != -1:
+                        target = message.split(' ', 1)[1]
+                        message = "Ok, Changing my nick to: " + target
+                        newnick(target)
+                    else:
+                        message = "Could not parse. Make sure the command is in the format of '.nick [newnick]' to work properly."
                     sendmsg(message, name)
                 
                 # Respond to the '.join [channel]' command from admin.
