@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.4.7'
+version = '0.4.8'
 last_modification = '2018.08.29'
 
 import ssl
@@ -215,7 +215,7 @@ def main():
                 
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
-                    if target = message.split(' ', 1)[1] != -1:
+                    if target == message.split(' ', 1)[1] != -1:
                         target = message.split(' ', 1)[1]
                         message = "Ok, Changing my nick to: " + target
                         newnick(target)
