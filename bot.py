@@ -131,6 +131,9 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
     
+def help(name, msg):
+    ircsock.send(bytes("PRIVMSG "+ name +" :"+ msg +"\n", "UTF-8"))
+    
 def main():
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
