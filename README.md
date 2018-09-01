@@ -22,6 +22,8 @@ Then you can install the following using pip3:
 
 ### So far it responds to the following commands:
 
+```.help``` (HELP menu)
+
 ```.uptime``` (shows bot uptime)
 
 ```.uname``` (get system info)
