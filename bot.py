@@ -131,8 +131,8 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
     
-def help(name, msg):
-    ircsock.send(bytes("PRIVMSG "+ name +" :"+ msg +"\n", "UTF-8"))
+def sendhelp(msg, target=channel):
+    ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
     
 def main():
     while 1:
@@ -202,7 +202,6 @@ def main():
                     else:
                         message = "Could not parse. The message should be in the format of '.kick [#channel] [nick] [reason]' to work properly."
                     sendmsg(message, name)
-
                 
                 # Respond to the '.mode [target] [mode]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
@@ -255,6 +254,10 @@ def main():
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
+                
+                if name.lower() == adminname.lower() and message.find('.help') != -1:
+                    message = "The 'help menu' is coming soon!"
+                    sendhelp(msg, name)
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
