@@ -255,8 +255,12 @@ def main():
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
                 
-                if name.lower() == adminname.lower() and message.find('.help') != -1:
-                    message = "The 'help menu' is coming soon!"
+                # Respond to the '.help' command.
+                if message.find('.help') != -1:
+                    if name.lower() == adminname.lower():
+                        message = "The 'admin help menu' is coming soon!"
+                    else:
+                        message = "The 'help menu' is coming soon!"
                     sendhelp(msg, name)
                 
                 # Respond to '.ip' command from admin.
