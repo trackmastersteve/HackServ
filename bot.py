@@ -337,7 +337,7 @@ def main():
                 break
 
 try:
-    if connected = False:
+    if connected == False:
         connect()
         main()
 except KeyboardInterrupt:
