@@ -56,18 +56,23 @@ exitcode = "bye " + botnick # Command used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
+lastping = time.time() # Time at last PING.
+threshold = 60 
+connected = False
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
 def connect():
-    try: # Try and connect to the IRC server.
-        ircsock.connect((server, port)) # Here we connect to the server.
-        ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
-        ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
-        ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
-    except: # If you can't connect, wait 10 seconds and try again.
-        time.sleep(10)
-        connect()
+    while connected == False:
+        try: # Try and connect to the IRC server.
+            ircsock.connect((server, port)) # Here we connect to the server.
+            ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
+            ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
+            ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+            connected = True
+        except: # If you can't connect, wait 10 seconds and try again.
+            time.sleep(10)
+            connect()
         
 def joinchan(chan): # Join channel(s).
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
@@ -132,7 +137,7 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
 
 def main():
-    while 1:
+    while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
@@ -327,10 +332,14 @@ def main():
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 last_ping = time.time()
+            if (time.time() - lastping) > threshold:
+                connected = False
+                break
 
 try:
-    connect()
-    main()
+    if connected = False:
+        connect()
+        main()
 except KeyboardInterrupt:
     print('KeyboardInterrupt')
     sys.exit()
