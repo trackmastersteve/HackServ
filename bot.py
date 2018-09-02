@@ -261,7 +261,7 @@ def main():
                         message = "The 'admin help menu' is coming soon!"
                     else:
                         message = "The 'help menu' is coming soon!"
-                    sendhelp(msg, name)
+                    sendhelp(message, name)
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
