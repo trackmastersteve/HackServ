@@ -22,7 +22,7 @@ Then you can install the following using pip3:
 
 ### So far it responds to the following commands:
 
-```.help``` (HELP menu) (***work in progress**)
+```.help``` (HELP menu) (**work in progress**)
 
 ```.uptime``` (shows bot uptime)
 
