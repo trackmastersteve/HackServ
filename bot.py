@@ -254,13 +254,33 @@ def main():
                 
                 # Respond to the '.help' command.
                 if message.find('.help') != -1:
+                    message = "End of Help."
                     if name.lower() == adminname.lower():
-                        message = "The 'admin help menu' is coming soon!"
+                        helpmsg = """
+                                  '.help' shows this message.,
+                                  '.uptime' (shows bot uptime),
+                                  '.uname' (get system info),
+                                  '.ip' (get ip address of bot),
+                                  '.scan [ip] [comma seperated ports]' (nmap port scanner),
+                                  '.msg [target] [message]' (sends a msg to a user/channel),
+                                  '.notice [target] [message]' (sends a notice to a user/channel) (work in progress),
+                                  'Hello [botnick]' (responds to any user saying hello to it),
+                                  'bye [botnick]' (tells bot to quit),
+                                  '.join [channel]' (tells bot to join channel),
+                                  '.part [channel]' (tells bot to part channel),
+                                  '.cycle [channel]' (tells bot to part then join channel) (work in progress),
+                                  '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
+                                  '.mode [target] [mode]' (set mode on nick or channel),
+                                  '.nick [newnick]' (sets a new botnick) (work in progress)
+                                  """
                     else:
-                        message = """
-                        '.help' shows this message.
-                        'Hello [botnick]' responds to any user saying hello to it.
-                        """
+                        helpmsg = """
+                                  '.help' shows this message.,
+                                  'Hello [botnick]' responds to any user saying hello to it.
+                                  """
+                    helpmsg = [m.strip() for m in str(helpmsg).split(',')]
+                    for line in helpmsg:
+                        sendmsg(line, name)
                     sendmsg(message, name)
                 
                 # Respond to '.ip' command from admin.
