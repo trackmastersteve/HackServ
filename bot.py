@@ -130,10 +130,7 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
 
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
-    
-def sendhelp(msg, target=channel):
-    ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
-    
+
 def main():
     while 1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
@@ -260,8 +257,11 @@ def main():
                     if name.lower() == adminname.lower():
                         message = "The 'admin help menu' is coming soon!"
                     else:
-                        message = "The 'help menu' is coming soon!"
-                    sendhelp(message, name)
+                        message = """
+                        '.help' shows this message.
+                        'Hello [botnick]' responds to any user saying hello to it.
+                        """
+                    sendmsg(message, name)
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
