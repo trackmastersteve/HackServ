@@ -138,6 +138,10 @@ def main():
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
+        # Change nickname if current nickname is already in use.
+        if ircmsg.find('Nickname is already in use') != -1:
+            botnick = "abot" + str(time.time())
+        
         # Join 'channel' and msg 'admin' after you are fully connected to server.
         if ircmsg.find('NOTICE') != -1:
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
@@ -322,6 +326,7 @@ def main():
             if ircmsg.find("PING") != -1:
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
+                last_ping = time.time()
 
 try:
     connect()
