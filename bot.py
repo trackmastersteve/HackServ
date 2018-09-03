@@ -140,6 +140,7 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
 
 def main():
     global connected
+    global botnick
     global lastping
     while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
