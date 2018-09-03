@@ -335,7 +335,7 @@ def main():
             if ircmsg.find("PING") != -1:
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
-                last_ping = time.time()
+                lastping = time.time()
             if (time.time() - lastping) > threshold:
                 connected = False
                 break
