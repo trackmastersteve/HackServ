@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.5.4'
+version = '0.5.5'
 last_modification = '2018.09.02'
 
 import ssl
@@ -277,14 +277,14 @@ def main():
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
                                   '.notice [target] [message]' (sends a notice to a user/channel) (work in progress),
-                                  'Hello [botnick]' (responds to any user saying hello to it),
-                                  'bye [botnick]' (tells bot to quit),
                                   '.join [channel]' (tells bot to join channel),
                                   '.part [channel]' (tells bot to part channel),
                                   '.cycle [channel]' (tells bot to part then join channel) (work in progress),
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
-                                  '.nick [newnick]' (sets a new botnick) (work in progress)
+                                  '.nick [newnick]' (sets a new botnick) (work in progress),
+                                  'Hello [botnick]' (responds to any user saying hello to it),
+                                  'bye [botnick]' (tells bot to quit)
                                   """
                     else:
                         helpmsg = """
