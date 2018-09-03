@@ -148,7 +148,7 @@ def main():
         
         # Change nickname if current nickname is already in use.
         if ircmsg.find('Nickname is already in use') != -1:
-            botnick = "abot" + random.randint(10000,99999)
+            botnick = "abot" + str(random.randint(10000,99999))
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8"))
         
         # Join 'channel' and msg 'admin' after you are fully connected to server.
