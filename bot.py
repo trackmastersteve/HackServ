@@ -63,7 +63,7 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variab
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
 def connect():
-    while connected == False:
+    while connected is False:
         try: # Try and connect to the IRC server.
             ircsock.connect((server, port)) # Here we connect to the server.
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
