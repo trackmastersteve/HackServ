@@ -69,6 +69,7 @@ def connect():
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+            global connected
             connected = True
         except: # If you can't connect, wait 10 seconds and try again.
             time.sleep(10)
@@ -333,16 +334,17 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 last_ping = time.time()
             if (time.time() - lastping) > threshold:
+                global connected
                 connected = False
                 break
 
-try:
-    if connected == False:
+while connected is False:
+    try:
         connect()
         main()
-except KeyboardInterrupt:
-    print('KeyboardInterrupt')
-    sys.exit()
+    except KeyboardInterrupt:
+        print('KeyboardInterrupt')
+        sys.exit()
 
 
 
