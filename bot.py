@@ -342,12 +342,13 @@ def main():
                 connected = False
                 break
                 
-try:
-    connect()
-    main()
-except KeyboardInterrupt:
-    print('KeyboardInterrupt')
-    sys.exit()
+while connected is False:
+    try:
+        connect()
+        main()
+    except KeyboardInterrupt:
+        print('KeyboardInterrupt')
+        sys.exit()
 
 
 
