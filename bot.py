@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.5.1'
+version = '0.5.2'
 last_modification = '2018.09.02'
 
 import ssl
@@ -63,13 +63,13 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variab
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
 def connect():
+    global connected
     while connected is False:
         try: # Try and connect to the IRC server.
             ircsock.connect((server, port)) # Here we connect to the server.
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
-            global connected
             connected = True
         except: # If you can't connect, wait 10 seconds and try again.
             time.sleep(10)
@@ -138,6 +138,7 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
 
 def main():
+    global connected
     while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
@@ -334,17 +335,15 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 last_ping = time.time()
             if (time.time() - lastping) > threshold:
-                global connected
                 connected = False
                 break
-
-while connected is False:
-    try:
-        connect()
-        main()
-    except KeyboardInterrupt:
-        print('KeyboardInterrupt')
-        sys.exit()
+                
+try:
+    connect()
+    main()
+except KeyboardInterrupt:
+    print('KeyboardInterrupt')
+    sys.exit()
 
 
 
