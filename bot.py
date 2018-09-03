@@ -26,7 +26,7 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.5.2'
+version = '0.5.3'
 last_modification = '2018.09.02'
 
 import ssl
@@ -147,7 +147,8 @@ def main():
         
         # Change nickname if current nickname is already in use.
         if ircmsg.find('Nickname is already in use') != -1:
-            botnick = "abot" + str(time.time())
+            botnick = "abot" + random.randint(10000,99999)
+            ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8"))
         
         # Join 'channel' and msg 'admin' after you are fully connected to server.
         if ircmsg.find('NOTICE') != -1:
