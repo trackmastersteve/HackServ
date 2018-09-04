@@ -67,11 +67,13 @@ def connect():
     global connected
     while connected is False:
         try: # Try and connect to the IRC server.
+            print("Connecting...")
             ircsock.connect((server, port)) # Here we connect to the server.
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
             connected = True
+            main()
         except: # If you can't connect, wait 10 seconds and try again.
             time.sleep(10)
             connect()
@@ -284,7 +286,7 @@ def main():
                                   '.cycle [channel]' (tells bot to part then join channel) (work in progress),
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
-                                  '.nick [newnick]' (sets a new botnick) (work in progress),
+                                  '.nick [newnick]' (sets a new botnick),
                                   'Hello [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
@@ -340,15 +342,12 @@ def main():
                 lastping = time.time()
             if (time.time() - lastping) > threshold:
                 connected = False
-                break
+                connect()
+                #break
                 
-while connected is False:
-    try:
-        connect()
-        main()
-    except KeyboardInterrupt:
-        print('KeyboardInterrupt')
-        sys.exit()
-
-
-
+try:
+    connect()
+    #main()
+except KeyboardInterrupt:
+    print('KeyboardInterrupt')
+    sys.exit()
