@@ -1,6 +1,6 @@
 # arm0.red bot
 
-[![Version](https://img.shields.io/badge/version-0.5.7-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
+[![Version](https://img.shields.io/badge/version-0.5.8-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
 
 Simple IRC bot PoC written in python. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
@@ -78,7 +78,7 @@ Then you can install the following using pip3:
 
 - [ ] Persistence
 
-- [ ] Better handling of disconnects etc.
+- [ ] Better handling of disconnects etc. - (almost done)
 
 - [x] Better error handling (:No such nick/channel)
 
