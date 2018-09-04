@@ -58,8 +58,8 @@ exitcode = "bye " + botnick # Command used to kill the bot.
 #################################################
 
 lastping = time.time() # Time at last PING.
-threshold = 200 
-connected = False
+threshold = 200 # Ping timeout before reconnect.
+connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
 ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
