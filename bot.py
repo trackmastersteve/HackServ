@@ -349,5 +349,5 @@ try:
     connect()
     #main()
 except KeyboardInterrupt:
-    print('KeyboardInterrupt')
+    print('Bot killed [ctrl + c]... Shutting down')
     sys.exit()
