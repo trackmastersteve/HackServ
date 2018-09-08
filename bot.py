@@ -232,9 +232,9 @@ def main():
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
                     if message.split(' ', 1)[1] != -1:
-                        target = message.split(' ', 1)[1]
-                        message = "Ok, Changing my nick to: " + target
-                        newnick(target)
+                        botnick = message.split(' ', 1)[1]
+                        message = "Ok, Changing my nick to: " + botnick
+                        newnick(botnick)
                     else:
                         message = "Could not parse. Please make sure the command is in the format of '.nick [newnick]' to work properly."
                     sendmsg(message, name)
