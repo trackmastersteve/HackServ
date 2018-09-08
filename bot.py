@@ -53,7 +53,7 @@ botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in p
 nspass = "password" # Bots NickServ password.
 nserv = "nickserv" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
-exitcode = "bye " + botnick # Command used to kill the bot.
+exitcode = "bye" # Command used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
@@ -330,7 +330,7 @@ def main():
                     sendmsg(message, adminname)
 
                 # Respond to 'exitcode' from admin.
-                if name.lower() == adminname.lower() and message.rstrip() == exitcode:
+                if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsock.send(bytes("QUIT \n", "UTF-8"))
                     return
