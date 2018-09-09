@@ -1,6 +1,6 @@
 # arm0.red bot
 
-[![Version](https://img.shields.io/badge/version-0.5.8-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
+[![Version](https://img.shields.io/badge/version-0.5.9-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
 
 Simple IRC bot PoC written in python. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
@@ -54,8 +54,6 @@ Then you can install the following using pip3:
 
 ### TODO
 
-- [x] Help Menu
-
 - [ ] send/receive CTCP commands
 
 - [ ] send/receive DCC commands (CHAT and TRANSFER)
@@ -64,7 +62,7 @@ Then you can install the following using pip3:
 
 - [ ] Auto Vuln / Port Scan on join
 
-- [ ] open reverse shell/meterpreter
+- [ ] open reverse shell/meterpreter (trying to figure out how to create secondary sockets for this)
 
 - [ ] Accept uploads from admin
 
@@ -74,21 +72,23 @@ Then you can install the following using pip3:
 
 - [ ] Self update
 
-- [x] Run in Background - (almost done)
+- [ ] Run in Background - (almost done) (you can currently comment out the 'print' statements to run in the BG)
 
 - [ ] Persistence
 
-- [ ] Better handling of disconnects etc. - (almost done)
+- [ ] Better handling of disconnects etc. - (a bug is preventing this)
 
 - [x] Better error handling (:No such nick/channel)
 
 - [x] Better sigterm handling
 
-- [ ] NickServ Identify
+- [ ] NickServ Identify (a bug is preventing this)
 
 - [x] connect over SSL 
 
 - [x] get ip address
 
 - [x] join and part channels
+
+- [x] .help menu
 
