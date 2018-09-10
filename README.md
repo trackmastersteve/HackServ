@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.5.9-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
 
-Simple IRC bot PoC written in python. This bot is for educational purposes only!
+Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
 
 
@@ -54,15 +54,15 @@ Then you can install the following using pip3:
 
 ### TODO
 
-- [ ] send/receive CTCP commands
+- [ ] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
-- [ ] send/receive DCC commands (CHAT and TRANSFER)
+- [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
 - [ ] Vuln Scan
 
 - [ ] Auto Vuln / Port Scan on join
 
-- [ ] open reverse shell/meterpreter (trying to figure out how to create secondary sockets for this)
+- [ ] Open reverse shell/meterpreter (**trying to figure out how to create secondary sockets for this**)
 
 - [ ] Accept uploads from admin
 
@@ -72,23 +72,23 @@ Then you can install the following using pip3:
 
 - [ ] Self update
 
-- [ ] Run in Background - (almost done) (you can currently comment out the 'print' statements to run in the BG)
+- [ ] Run in Background - (**almost done**) (you can currently comment out the '**print**' statements to run in the BG)
 
 - [ ] Persistence
 
-- [ ] Better handling of disconnects etc. - (a bug is preventing this)
+- [ ] Better handling of disconnects etc. - (**a bug is preventing this**)
 
-- [x] Better error handling (:No such nick/channel)
+- [x] Better error handling
 
 - [x] Better sigterm handling
 
-- [ ] NickServ Identify (a bug is preventing this)
+- [ ] NickServ Identify (**a bug is preventing this**)
 
-- [x] connect over SSL 
+- [x] Connect over SSL 
 
-- [x] get ip address
+- [x] Get ip address
 
-- [x] join and part channels
+- [x] Join and Part Channels
 
-- [x] .help menu
+- [x] Help Menu
 
