@@ -287,7 +287,7 @@ def main():
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
-                                  'Hello [botnick]' (responds to any user saying hello to it),
+                                  'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
                     else:
