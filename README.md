@@ -36,7 +36,7 @@ Then you can install the following using pip3:
 
 ```.notice [target] [message]``` (sends a notice to a user/channel) (**work in progress**)
 
-```Hello [botnick]``` (responds to any user saying hello to it)
+```Hi [botnick]``` (responds to any user saying hello to it)
 
 ```bye [botnick]``` (tells bot to quit)
 
