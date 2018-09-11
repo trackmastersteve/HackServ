@@ -45,6 +45,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 #################################################
 ##### Bot Settings ##############################
 server = "chat.freenode.net" # Server to connect to.
+ssl = True
 port = 6697 # Port (If you want to use standard port 6667, comment out the appropriate line down below to turn off SSL.)
 serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
@@ -61,13 +62,14 @@ lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
+if ssl:
+    ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
 
 def connect():
     global connected
-    while connected is False:
+    while not connected:
         try: # Try and connect to the IRC server.
-            print("Connecting to " + server + ":" + port)
+            print("Connecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -75,10 +77,31 @@ def connect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            print("Failed to connect to " + server + ":" + port + ". Retrying in 10 seconds...")
+            print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
-            connect()
-        
+            reconnect()
+
+def reconnect:
+    global connected
+    global ircsock
+    while not connected:
+        ircsock.close()
+        ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
+        if ssl:
+            ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
+        try:
+            print("Reconnecting to " + str(server) + ":" + str(port))
+            ircsock.connect((server, port)) # Here we connect to the server.
+            ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
+            ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
+            ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+            connected = True
+            main()
+        except: # If you can't connect, wait 10 seconds and try again.
+            print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            time.sleep(10)
+            reconnect()
+            
 def joinchan(chan): # Join channel(s).
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     ircmsg = ""
@@ -150,6 +173,13 @@ def main():
         ircmsg = ircmsg.strip('\n\r')
         print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
+        
+        # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
+        if ircmsg.find('Too many connections from your IP') != -1:
+            print("Too many connections from this IP! Reconnecting in 30 seconds...")
+            connected = False
+            time.sleep(30)
+            reconnect()
         
         # Change nickname if current nickname is already in use.
         if ircmsg.find('Nickname is already in use') != -1:
@@ -334,7 +364,7 @@ def main():
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsock.send(bytes("QUIT \n", "UTF-8"))
-                    return
+                    sys.exit()
 
         else:
             if ircmsg.find("PING") != -1:
@@ -343,12 +373,12 @@ def main():
                 lastping = time.time()
             if (time.time() - lastping) > threshold:
                 connected = False
-                connect()
-                #break
+                reconnect()
                 
 try:
     connect()
-    #main()
 except KeyboardInterrupt:
+    ircsock.send(bytes("QUIT [ctrl + c] \n", "UTF-8"))
     print('... Killed Bot using [ctrl + c], Shutting down!')
     sys.exit()
+    
