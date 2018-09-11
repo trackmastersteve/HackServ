@@ -26,8 +26,8 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.6.0'
-last_modification = '2018.09.10'
+version = '0.6.2'
+last_modification = '2018.09.11'
 
 import ssl
 import sys
@@ -45,8 +45,8 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 #################################################
 ##### Bot Settings ##############################
 server = "chat.freenode.net" # Server to connect to.
-ssl = True
-port = 6697 # Port (If you want to use standard port 6667, comment out the appropriate line down below to turn off SSL.)
+ssl = True # Connect using SSL or not.
+port = 6697 # Port to connect to.
 serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
@@ -62,8 +62,8 @@ lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-if ssl:
-    ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
+if ssl: # If True, connect using SSL.
+    ircsock = ssl.wrap_socket(ircsock)
 
 def connect():
     global connected
@@ -87,8 +87,8 @@ def reconnect:
     while not connected:
         ircsock.close()
         ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-        if ssl:
-            ircsock = ssl.wrap_socket(ircsock) # Comment this line out if you don't want to use SSL.
+        if ssl: # If True, connect using SSL.
+            ircsock = ssl.wrap_socket(ircsock) 
         try:
             print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
