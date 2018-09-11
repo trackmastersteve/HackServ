@@ -67,7 +67,7 @@ def connect():
     global connected
     while connected is False:
         try: # Try and connect to the IRC server.
-            print("Connecting...")
+            print("Connecting to " + server + ":" + port)
             ircsock.connect((server, port)) # Here we connect to the server.
             ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -75,6 +75,7 @@ def connect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
+            print("Failed to connect to " + server + ":" + port + ". Retrying in 10 seconds...")
             time.sleep(10)
             connect()
         
