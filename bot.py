@@ -363,7 +363,7 @@ def main():
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
-                    ircsock.send(bytes("QUIT \n", "UTF-8"))
+                    ircsock.send(bytes("QUIT Killed by " + adminname + "\n", "UTF-8"))
                     sys.exit()
 
         else:
@@ -378,7 +378,7 @@ def main():
 try:
     connect()
 except KeyboardInterrupt:
-    ircsock.send(bytes("QUIT [ctrl + c] \n", "UTF-8"))
+    ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     print('... Killed Bot using [ctrl + c], Shutting down!')
     sys.exit()
     
