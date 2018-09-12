@@ -45,7 +45,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 #################################################
 ##### Bot Settings ##############################
 server = "chat.freenode.net" # Server to connect to.
-ssl = True # Connect using SSL or not.
+usessl = True # Connect using SSL or not.
 port = 6697 # Port to connect to.
 serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
@@ -62,7 +62,7 @@ lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-if ssl: # If True, connect using SSL.
+if usessl: # If True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 
 def connect():
@@ -81,13 +81,13 @@ def connect():
             time.sleep(10)
             reconnect()
 
-def reconnect:
+def reconnect():
     global connected
     global ircsock
     while not connected:
         ircsock.close()
         ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-        if ssl: # If True, connect using SSL.
+        if usessl: # If True, connect using SSL.
             ircsock = ssl.wrap_socket(ircsock) 
         try:
             print("Reconnecting to " + str(server) + ":" + str(port))
