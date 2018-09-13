@@ -45,12 +45,13 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 #################################################
 ##### Bot Settings ##############################
 server = "chat.freenode.net" # Server to connect to.
-usessl = True # Connect using SSL or not.
+usessl = True # Connect using SSL. (True or False)
 port = 6697 # Port to connect to.
 serverpass = "password" # Password for IRC Server.
 channel = "#arm0red" # Channel to join on connect.
-#botnick = "botnick" # Your bots IRC nick (If you want to set this manually, comment out the line below to disable ip-to-nick.)
-botnick = "ip" + ip.replace(".", "_") # Change bots nick to IP address, but in proper IRC nick compatible format.
+#botnick = "botnick" # Your bots IRC nick.
+#botnick = "ip" + ip.replace(".", "_") # Set bots nick to IP address, but in proper IRC nick compatible format.
+botnick = "abot" + str(random.randint(10000,99999)) # Set bots IRC Nick to abot + 5 random numbers.
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
@@ -62,7 +63,7 @@ lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-if usessl: # If True, connect using SSL.
+if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 
 def connect():
@@ -85,9 +86,9 @@ def reconnect():
     global connected
     global ircsock
     while not connected:
-        ircsock.close()
+        ircsock.close() # Close previous socket.
         ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
-        if usessl: # If True, connect using SSL.
+        if usessl: # If SSL is True, connect using SSL.
             ircsock = ssl.wrap_socket(ircsock) 
         try:
             print("Reconnecting to " + str(server) + ":" + str(port))
@@ -114,7 +115,7 @@ def joinchan(chan): # Join channel(s).
 def partchan(chan): # Part channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
         
-def cycle(chan): # Part then Join channel(s) 
+def cyclechan(chan): # Part then Join channel(s) 
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     ircmsg = ""
@@ -295,7 +296,7 @@ def main():
                     if message.split(' ', 1)[1].startswith('#'):
                         target = message.split(' ', 1)[1]
                         message = "Ok, cycling " + target + " now!"
-                        cycle(target)
+                        cyclechan(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
@@ -367,17 +368,17 @@ def main():
                     sys.exit()
 
         else:
-            if ircmsg.find("PING") != -1:
+            if ircmsg.find("PING") != -1: # Reply to PINGs.
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time()
-            if (time.time() - lastping) > threshold:
+            if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
                 connected = False
                 reconnect()
                 
-try:
+try: 
     connect()
-except KeyboardInterrupt:
+except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     print('... Killed Bot using [ctrl + c], Shutting down!')
     sys.exit()
