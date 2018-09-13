@@ -189,10 +189,16 @@ def main():
         
         # Join 'channel' and msg 'admin' after you are fully connected to server.
         if ircmsg.find('NOTICE') != -1:
+            name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
                 joinchan(channel)
                 sendmsg(format(ip) + " Online!", adminname)
+                
+            # Respond to NickServ ident request.
+            if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
+                sendmsg("IDENTIFY " + format(nspass), nickserv)
+                sendmsg("IDENTIFIED: " + format(nspass), adminname)
                 
         # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
@@ -206,10 +212,6 @@ def main():
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
             if len(name) < 17:
-                # Respond to NickServ ident request.
-                if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
-                    sendmsg("IDENTIFY " + format(nspass), nickserv)
-                    
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
                     sendmsg("Hello " + name + "!")
