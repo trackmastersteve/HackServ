@@ -168,6 +168,7 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
 def main():
     global connected
     global botnick
+    global ip
     global lastping
     while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
@@ -336,6 +337,7 @@ def main():
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
+                    ip = ipgetter.myip()
                     sendmsg("My public ip address is:", name)
                     sendmsg(format(ip), name)
                 
