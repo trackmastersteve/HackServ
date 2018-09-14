@@ -99,7 +99,7 @@ def reconnect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
             reconnect()
             
@@ -374,6 +374,7 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time()
             if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
+                print('PING time exceeded threshold')
                 connected = False
                 reconnect()
                 
