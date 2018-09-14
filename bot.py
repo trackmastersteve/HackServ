@@ -338,18 +338,15 @@ def main():
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
                     ip = ipgetter.myip()
-                    sendmsg("My public ip address is:", name)
-                    sendmsg(format(ip), name)
+                    sendmsg("My public ip address is: " + format(ip), name)
                 
                 # Respond to '.uptime' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uptime') != -1:
-                    sendmsg("My current uptime:", name)
-                    sendmsg(format(uptime()), name)
+                    sendmsg("My current uptime: " + format(uptime()), name)
                     
                 # Respond to '.uname' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
-                    sendmsg("System Info:", name)
-                    sendmsg(format(uname()), name)
+                    sendmsg("System Info: " + format(uname()), name)
 
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
