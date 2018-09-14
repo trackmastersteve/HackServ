@@ -328,7 +328,7 @@ def main():
                     else:
                         helpmsg = """
                                   '.help' shows this message.,
-                                  'Hello [botnick]' responds to any user saying hello to it.
+                                  'Hi [botnick]' responds to any user saying hello to it.
                                   """
                     helpmsg = [m.strip() for m in str(helpmsg).split(',')]
                     for line in helpmsg:
