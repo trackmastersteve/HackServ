@@ -201,8 +201,8 @@ def main():
                 
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
-                sendmsg("IDENTIFY " + format(nspass), nickserv)
-                sendmsg("IDENTIFIED: " + format(nspass), adminname)
+                sendmsg("IDENTIFY %s" % nspass, nickserv)
+                sendmsg("IDENTIFIED: %s" % nspass, adminname)
                 
         # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
