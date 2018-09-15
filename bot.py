@@ -212,6 +212,7 @@ def main():
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('PRIVMSG',1)[1].split(':',1)[1]
 
+            # IRC Nicks are normally less than 17 characters long.
             if len(name) < 17:
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
@@ -372,14 +373,14 @@ def main():
             if ircmsg.find("PING") != -1: # Reply to PINGs.
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
-                lastping = time.time()
+                lastping = time.time() # Set time of last PING.
             if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
                 print('PING time exceeded threshold')
                 connected = False
                 reconnect()
                 
-try: 
-    connect()
+try: # Here is where we actually start the Bot.
+    connect() 
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     print('... Killed Bot using [ctrl + c], Shutting down!')
