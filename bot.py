@@ -56,7 +56,7 @@ botnick = "abot" + str(random.randint(10000,99999)) # Set bots IRC Nick to abot 
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
-exitcode = "bye" # Command used to kill the bot.
+exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
