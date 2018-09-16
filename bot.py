@@ -72,7 +72,7 @@ def connect():
     global connected
     while not connected:
         try: # Try and connect to the IRC server.
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Connecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
@@ -82,7 +82,7 @@ def connect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
             reconnect()
@@ -96,7 +96,7 @@ def reconnect():
         if usessl: # If SSL is True, connect using SSL.
             ircsock = ssl.wrap_socket(ircsock) 
         try:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
@@ -106,7 +106,7 @@ def reconnect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
             reconnect()
@@ -117,7 +117,7 @@ def joinchan(chan): # Join channel(s).
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
 
@@ -131,7 +131,7 @@ def cyclechan(chan): # Part then Join channel(s)
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        if debumode:
+        if debumode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
         
@@ -183,13 +183,13 @@ def main():
     while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
             #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
         # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
         if ircmsg.find('Too many connections from your IP') != -1:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Too many connections from this IP! Reconnecting in 30 seconds...")
             connected = False
             time.sleep(30)
@@ -387,7 +387,7 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time() # Set time of last PING.
             if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print('PING time exceeded threshold')
                 connected = False
                 reconnect()
@@ -396,7 +396,7 @@ try: # Here is where we actually start the Bot.
     connect() 
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print('... Killed Bot using [ctrl + c], Shutting down!')
     sys.exit()
     
