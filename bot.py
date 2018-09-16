@@ -44,6 +44,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 
 #################################################
 ##### Bot Settings ##############################
+debugmode = True
 server = "chat.freenode.net" # Server to connect to.
 usessl = True # Connect using SSL. (True or False)
 port = 6697 # Port to connect to.
@@ -71,7 +72,8 @@ def connect():
     global connected
     while not connected:
         try: # Try and connect to the IRC server.
-            print("Connecting to " + str(server) + ":" + str(port))
+            if debugmode:
+                print("Connecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
@@ -80,7 +82,8 @@ def connect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            if debugmode:
+                print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
             reconnect()
 
@@ -93,7 +96,8 @@ def reconnect():
         if usessl: # If SSL is True, connect using SSL.
             ircsock = ssl.wrap_socket(ircsock) 
         try:
-            print("Reconnecting to " + str(server) + ":" + str(port))
+            if debugmode:
+                print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
@@ -102,7 +106,8 @@ def reconnect():
             connected = True
             main()
         except: # If you can't connect, wait 10 seconds and try again.
-            print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            if debugmode:
+                print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             time.sleep(10)
             reconnect()
             
@@ -112,7 +117,8 @@ def joinchan(chan): # Join channel(s).
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        if debugmode:
+            print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
 
 def partchan(chan): # Part channel(s).
@@ -125,7 +131,8 @@ def cyclechan(chan): # Part then Join channel(s)
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+        if debumode:
+            print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
         #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
         
 def ping(): # Respond to server Pings.
@@ -176,12 +183,14 @@ def main():
     while connected:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
-        print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
+        if debugmode:
+            print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
+            #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
         # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
         if ircmsg.find('Too many connections from your IP') != -1:
-            print("Too many connections from this IP! Reconnecting in 30 seconds...")
+            if debugmode:
+                print("Too many connections from this IP! Reconnecting in 30 seconds...")
             connected = False
             time.sleep(30)
             reconnect()
@@ -378,7 +387,8 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time() # Set time of last PING.
             if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
-                print('PING time exceeded threshold')
+                if debugmode:
+                    print('PING time exceeded threshold')
                 connected = False
                 reconnect()
                 
@@ -386,6 +396,7 @@ try: # Here is where we actually start the Bot.
     connect() 
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
-    print('... Killed Bot using [ctrl + c], Shutting down!')
+    if debugmode:
+        print('... Killed Bot using [ctrl + c], Shutting down!')
     sys.exit()
     
