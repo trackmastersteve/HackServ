@@ -72,7 +72,7 @@ Then you can install the following using pip3:
 
 - [ ] Self update
 
-- [ ] Run in Background - (**almost done**) (you can currently comment out the '**print**' statements to run in the BG)
+- [x] Run in Background - (debugmode = False allows bot to run in the background)
 
 - [ ] Persistence
 
