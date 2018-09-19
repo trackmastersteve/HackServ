@@ -76,13 +76,13 @@ Then you can install the following using pip3:
 
 - [ ] Persistence
 
-- [ ] Better handling of disconnects etc. - (**a bug is preventing this**)
+- [ ] Better handling of disconnects etc. - (**a bug is preventing this**) (in testing)
 
 - [x] Better error handling
 
 - [x] Better sigterm handling
 
-- [ ] NickServ Identify (**a bug is preventing this**)
+- [ ] NickServ Identify (**a bug is preventing this**) (in testing)
 
 - [x] Connect over SSL 
 
