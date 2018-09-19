@@ -393,8 +393,8 @@ def main():
                 connected = False
                 reconnect()
                 
-            if not ircmsg:
-                if debugmode:
+            if not ircmsg: # If no response from server, try and reconnect.
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print('Disconnected from server')
                 connected = False
                 reconnect()
