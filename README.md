@@ -58,11 +58,7 @@ Then you can install the following using pip3:
 
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
-- [ ] Vuln Scan
-
 - [ ] Auto Vuln / Port Scan on join
-
-- [ ] Open reverse shell/meterpreter (**trying to figure out how to create secondary sockets for this**)
 
 - [ ] Accept uploads from admin
 
@@ -72,23 +68,27 @@ Then you can install the following using pip3:
 
 - [ ] Self update
 
-- [x] Run in Background - (debugmode = False allows bot to run in the background)
-
 - [ ] Persistence
 
-- [ ] Better handling of disconnects etc. - (**a bug is preventing this**) (in testing)
+- [ ] Vuln Scan
+
+- [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
+
+- [ ] Better handling of disconnects etc. - (**PING timeout is the only disconnect left to fix**)
+
+- [ ] NickServ Identify (**a bug is preventing this**) (in testing)
+
+- [x] Run in Background - (debugmode = False allows bot to run in the background)
 
 - [x] Better error handling
 
 - [x] Better sigterm handling
 
-- [ ] NickServ Identify (**a bug is preventing this**) (in testing)
+- [x] Join and Part Channels
 
 - [x] Connect over SSL 
 
 - [x] Get ip address
-
-- [x] Join and Part Channels
 
 - [x] Help Menu
 
