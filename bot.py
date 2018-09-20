@@ -71,11 +71,11 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variab
 if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 
-def curtime(sc): # Get current time.
+def curtime(sc):
     global ctime
-    ctime = time.time()
+    ctime = time.time() # Set current time as variable.
     return ctime
-    st.enter(10, 1, curtime, (sc,))
+    st.enter(10, 1, curtime, (sc,)) # Restart this scheduler.
     
 def connect():
     global connected
@@ -409,9 +409,9 @@ def main():
                 reconnect()
                 
 try: # Here is where we actually start the Bot.
-    connect()
-    st.enter(10, 1, curtime, (st,))
-    st.run()
+    connect() # Connect to server.
+    st.enter(10, 1, curtime, (st,)) # Set time scheduler.
+    st.run() # Start time scheduler.
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     if debugmode: # If debugmode is True, msgs will print to screen.
