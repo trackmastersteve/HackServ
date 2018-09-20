@@ -62,8 +62,8 @@ exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
-st = sched.scheduler(time.time, time.sleep)
-ctime = time.time()
+st = sched.scheduler(time.time, time.sleep) # Time Scheduler.
+ctime = time.time() # Current time.
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
@@ -71,7 +71,7 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variab
 if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 
-def curtime(sc):
+def curtime(sc): # Get current time.
     global ctime
     ctime = time.time()
     return ctime
