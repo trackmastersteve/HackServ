@@ -33,6 +33,7 @@ import ssl
 import sys
 import nmap
 import time
+import sched
 import random
 import socket
 import ipgetter
@@ -61,6 +62,8 @@ exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
 
+st = sched.scheduler(time.time, time.sleep)
+ctime = time.time()
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 connected = False # Variable to say if bot is connected or not.
@@ -68,6 +71,12 @@ ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variab
 if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 
+def curtime(sc):
+    global ctime
+    ctime = time.time()
+    return ctime
+    st.enter(10, 1, curtime, (sc,))
+    
 def connect():
     global connected
     while not connected:
@@ -387,7 +396,7 @@ def main():
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time() # Set time of last PING.
                 
-            if (time.time() - lastping) > threshold: # If last PING was longer than set threshold, try and reconnect.
+            if (ctime - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
                 if debugmode: # If debugmode is True, msgs will print to screen.
                     print('PING time exceeded threshold')
                 connected = False
@@ -400,7 +409,9 @@ def main():
                 reconnect()
                 
 try: # Here is where we actually start the Bot.
-    connect() 
+    connect()
+    st.enter(10, 1, curtime, (st,))
+    st.run()
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     if debugmode: # If debugmode is True, msgs will print to screen.
