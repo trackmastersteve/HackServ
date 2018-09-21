@@ -66,6 +66,8 @@ Then you can install the following using pip3:
 
 - [ ] Execute file/code
 
+- [ ] Proxy Scanner
+
 - [ ] Self update
 
 - [ ] Persistence
@@ -74,13 +76,13 @@ Then you can install the following using pip3:
 
 - [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
 
-- [ ] Better handling of disconnects etc. - (**PING timeout is the only disconnect left to fix**)
+- [x] Better handling of disconnects etc. - (**PING timeout is the only disconnect left to fix**) (in testing)
 
-- [ ] NickServ Identify (**a bug is preventing this**) (in testing)
+- [x] NickServ Identify (**a bug is preventing this**) (in testing)
 
 - [x] Run in Background - (debugmode = False allows bot to run in the background)
 
-- [x] Better error handling
+- [x] Better error handling (still a few bugs to work out)
 
 - [x] Better sigterm handling
 
