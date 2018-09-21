@@ -4,8 +4,6 @@
 
 Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
-
-
 This bot can connect to IRC over SSL and is compatible with Unrealircd's nospoof:PING.
 
 ### Installation:
@@ -73,6 +71,8 @@ Then you can install the following using pip3:
 - [ ] Persistence
 
 - [ ] Vuln Scan
+
+- [ ] DoS/DDoS
 
 - [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
 
