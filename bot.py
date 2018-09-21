@@ -45,7 +45,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 
 #################################################
 ##### Bot Settings ##############################
-debugmode = True # If True, all print msgs will be active. (use False if you want to run in the background)
+debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
 server = "chat.freenode.net" # Server to connect to.
 usessl = True # Connect using SSL. (True or False)
 port = 6697 # Port to connect to.
@@ -214,6 +214,7 @@ def main():
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
+                time.sleep(30)
                 joinchan(channel)
                 sendmsg(format(ip) + " Online!", adminname)
                 
