@@ -215,7 +215,7 @@ def main():
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
                 joinchan(channel)
-                sendmsg(format(ip) + " Online!", adminname)
+                #sendmsg(format(ip) + " Online!", adminname)
                 
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
