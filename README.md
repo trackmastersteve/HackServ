@@ -68,6 +68,8 @@ Then clone this project by running the following command:
 
 - [ ] Execute file/code
 
+- [ ] Self Replicating
+
 - [ ] Proxy Scanner
 
 - [ ] Self update
