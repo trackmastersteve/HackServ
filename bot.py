@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #
-# ircbot.py
+# arm0red bot
+# bot.py
 #
 # Copyright (c) 2018 Stephen Harris <trackmastersteve@gmail.com>
 #
@@ -151,8 +152,8 @@ def newnick(newnick): # Change botnick.
     ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
 
 def sendversion(nick, ver): # Respond to VERSION request.
-    ver = software + ' ' + version + ' ' + github
-    ircsock.send(bytes("PRIVMSG "+ nick +" :VERSION: " + ver +"\n", "UTF-8"))
+    ver = software + ' ' + version + ' Download it at: ' + github
+    ircsock.send(bytes("VERSION "+ nick +" :VERSION " + ver +"\n", "UTF-8"))
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
