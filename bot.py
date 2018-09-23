@@ -335,6 +335,7 @@ def main():
                                   '.uptime' (shows bot uptime),
                                   '.uname' (get 1-line system info),
                                   '.sysinfo' (get formated system info),
+                                  ',osversion' (get OS version info),
                                   '.ip' (get ip address of bot),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
