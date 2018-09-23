@@ -133,7 +133,7 @@ def joinchan(chan): # Join channel(s).
 def partchan(chan): # Part channel(s).
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
         
-def cyclechan(chan): # Part then Join channel(s) 
+def pjchan(chan): # Part then Join channel(s) 
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     ircmsg = ""
@@ -325,11 +325,11 @@ def main():
                     sendmsg(message, name)
 
                 # Respond to the '.cycle [channel]' command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.cycle') != -1:
+                if name.lower() == adminname.lower() and message[:5].find('.pj') != -1:
                     if message.split(' ', 1)[1].startswith('#'):
                         target = message.split(' ', 1)[1]
                         message = "Ok, cycling " + target + " now!"
-                        cyclechan(target)
+                        pjchan(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
                     sendmsg(message, name)
@@ -348,10 +348,10 @@ def main():
                                   '.ip' (get ip address of bot),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
-                                  '.ntc [target] [message]' (sends a notice to a user/channel) (work in progress),
+                                  '.ntc [target] [message]' (sends a notice to a user/channel),
                                   '.join [channel]' (tells bot to join channel),
                                   '.part [channel]' (tells bot to part channel),
-                                  '.cycle [channel]' (tells bot to part then join channel) (work in progress),
+                                  '.pj [channel]' (tells bot to part then join channel),
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
