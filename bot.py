@@ -398,6 +398,10 @@ def main():
                 # Respond to '.osversion' command from admin.
                 if name.lower() == adminname.lower() and message.find('.osversion') != -1:
                     sendmsg("OS Version: " + format(platform.version()), adminname)
+                    
+                # Respond to '.linuxmemory' command from admin.
+                if name.lower() == adminname.lower() and message.find('.linuxmemory') != -1:
+                    linuxMemory()
                                 
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
