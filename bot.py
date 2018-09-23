@@ -171,6 +171,14 @@ def uname(): # Used to get system info for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
+def linuxMemory():
+    sendmsg("Memory Info: ", adminname)
+    with open("/proc/meminfo", "r") as f:
+        lines = f.readlines()
+
+    sendmsg("     " + lines[0].strip(), adminname)
+    sendmsg("     " + lines[1].strip(), adminname)
+
 def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .scan command
     nmScan = nmap.PortScanner()
     nmScan.scan(tgtHost, tgtPort)
