@@ -146,7 +146,7 @@ def newnick(newnick): # Change botnick.
 
 def sendversion(nick, ver): # Respond to VERSION request.
     ver = software + ' ' + version + ' Download it at: ' + github
-    ircsock.send(bytes("VERSION "+ nick +" :VERSION " + ver +"\n", "UTF-8"))
+    ircsock.send(bytes("NOTICE "+ nick +" :VERSION " + ver +"\n", "UTF-8"))
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
