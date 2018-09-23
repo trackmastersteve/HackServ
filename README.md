@@ -1,6 +1,6 @@
 # arm0.red bot
 
-[![Version](https://img.shields.io/badge/version-0.7.4-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
+[![Version](https://img.shields.io/badge/version-0.7.5-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
 
 Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
@@ -43,7 +43,7 @@ Then clone this project by running the following command:
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
 
-```.notice [target] [message]``` (sends a notice to a user/channel) (**work in progress**)
+```.ntc [target] [message]``` (sends a notice to a user/channel)
 
 ```Hi [botnick]``` (responds to any user saying hello to it)
 
@@ -53,7 +53,7 @@ Then clone this project by running the following command:
 
 ```.part [channel]``` (tells bot to part channel)
 
-```.cycle [channel]``` (tells bot to part then join channel) (**work in progress**)
+```.pj [channel]``` (tells bot to part then join channel)
 
 ```.kick [channel] [nick] [reason]``` (tells bot to kick a user from a channel)
 
@@ -93,7 +93,7 @@ Then clone this project by running the following command:
 
 - [x] NickServ Identify (**a bug is preventing this**) (in testing)
 
-- [x] Run in Background - (debugmode = False allows bot to run in the background)
+- [x] Run in Background - (debugmode = False setting allows bot to run in the background)
 
 - [x] Better error handling (still a few bugs to work out)
 
