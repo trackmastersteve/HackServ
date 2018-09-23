@@ -157,8 +157,8 @@ def sendversion(nick, ver): # Respond to VERSION request.
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
 
-def sendnotice(notice, target=channel): # Sends a NOTICE to the target.
-    ircsock.send(bytes("NOTICE "+ target +" :"+ notice +"\n", "UTF-8"))
+def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
+    ircsock.send(bytes("NOTICE "+ target +" :"+ ntc +"\n", "UTF-8"))
     
 def kick(msg, usr, chan): # Kick a user from the channel.
     ircsock.send(bytes("KICK "+ chan + " " + usr + " :"+ msg +"\n", "UTF-8"))
@@ -258,8 +258,8 @@ def main():
                         message = "Could not parse. The message should be in format of '.msg [target] [message]' to work properly."
                     sendmsg(message, target)
 
-                # Respond to '.notice [target] [message]' command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.notice') != -1:
+                # Respond to '.ntc [target] [message]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.ntc') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = target.split(' ', 1)[1]
@@ -267,7 +267,7 @@ def main():
                     else:
                         target = name
                         message = "Could not parse. The message should be in the format of '.notice [target] [message]' to work properly."
-                    sendnotice(message, target)
+                    sendntc(message, target)
                 
                 # Respond to '.kick [channel] [nick] [reason]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.kick') != -1:
@@ -348,7 +348,7 @@ def main():
                                   '.ip' (get ip address of bot),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
-                                  '.notice [target] [message]' (sends a notice to a user/channel) (work in progress),
+                                  '.ntc [target] [message]' (sends a notice to a user/channel) (work in progress),
                                   '.join [channel]' (tells bot to join channel),
                                   '.part [channel]' (tells bot to part channel),
                                   '.cycle [channel]' (tells bot to part then join channel) (work in progress),
