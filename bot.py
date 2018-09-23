@@ -137,14 +137,7 @@ def partchan(chan): # Part channel(s).
 def pjchan(chan): # Part then Join channel(s) 
     ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
-    ircmsg = ""
-    while ircmsg.find("End of /NAMES list.") == -1:
-        ircmsg = ircsock.recv(2048).decode("UTF-8")
-        ircmsg = ircmsg.strip('\n\r')
-        if debumode: # If debugmode is True, msgs will print to screen.
-            print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
-        
+    
 def ping(): # Respond to server Pings.
     ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
     
@@ -246,7 +239,7 @@ def main():
             if len(name) < 17:
                 # Respond to anyone saying 'Hi [botnick]'.
                 if message.find('Hi ' + botnick) != -1:
-                    sendmsg("Hello " + name + "!")
+                    sendntc("Hello " + name + "!", name)
 
                 # Respond to '.msg [target] [message]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.msg') != -1:
