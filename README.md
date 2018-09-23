@@ -28,7 +28,9 @@ Then clone this project by running the following command:
 
 ```.uptime``` (shows bot uptime)
 
-```.uname``` (get system info)
+```.uname``` (get 1-line system info)
+
+```.sysinfo``` (get formated system info)
 
 ```.ip``` (get ip address of bot)
 
