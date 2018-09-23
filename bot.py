@@ -333,7 +333,8 @@ def main():
                         helpmsg = """
                                   '.help' shows this message.,
                                   '.uptime' (shows bot uptime),
-                                  '.uname' (get system info),
+                                  '.uname' (get 1-line system info),
+                                  '.sysinfo' (get formated system info),
                                   '.ip' (get ip address of bot),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
