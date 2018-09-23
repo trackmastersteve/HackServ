@@ -380,7 +380,7 @@ def main():
                     # Release
                     sendmsg("Release: " + format(platform.release()), adminname)
                     # Version
-                    sendmsg("Version :" + format(platform.release()), adminname)
+                    sendmsg("Version :" + format(platform.version()), adminname)
                     # Architecture
                     sendmsg("Architecture: " + format(platform.architecture()[0]), adminname)
                     # Machine
