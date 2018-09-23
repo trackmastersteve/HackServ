@@ -173,12 +173,12 @@ def uname(): # Used to get system info for .uname command
     return sysinfo
 
 def linuxMemory():
-    sendmsg("Memory Info: ", adminname)
+    sendntc("Memory Info: ", adminname)
     with open("/proc/meminfo", "r") as f:
         lines = f.readlines()
 
-    sendmsg("     " + lines[0].strip(), adminname)
-    sendmsg("     " + lines[1].strip(), adminname)
+    sendntc("     " + lines[0].strip(), adminname)
+    sendntc("     " + lines[1].strip(), adminname)
 
 def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .scan command
     nmScan = nmap.PortScanner()
@@ -224,7 +224,7 @@ def main():
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
                 joinchan(channel)
-                #sendmsg(format(ip) + " Online!", adminname)
+                sendntc(format(ip) + " Online!", adminname)
                 
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
@@ -281,7 +281,7 @@ def main():
                         kick(reason, nick, chnl)
                     else:
                         message = "Could not parse. The message should be in the format of '.kick [#channel] [nick] [reason]' to work properly."
-                    sendmsg(message, name)
+                    sendntc(message, name)
                 
                 # Respond to the '.mode [target] [mode]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.mode') != -1:
@@ -293,7 +293,7 @@ def main():
                     else:
                         message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
                     setmode(mode, target)
-                    sendmsg(message, adminname)
+                    sendntc(message, adminname)
                 
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
@@ -303,7 +303,7 @@ def main():
                         newnick(botnick)
                     else:
                         message = "Could not parse. Please make sure the command is in the format of '.nick [newnick]' to work properly."
-                    sendmsg(message, name)
+                    sendntc(message, name)
                 
                 # Respond to the '.join [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.join') != -1:
@@ -313,7 +313,7 @@ def main():
                         joinchan(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
-                    sendmsg(message, name)
+                    sendntc(message, name)
                 
                 # Respond to the '.part [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.part') != -1:
@@ -323,9 +323,9 @@ def main():
                         partchan(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
-                    sendmsg(message, name)
+                    sendntc(message, name)
 
-                # Respond to the '.cycle [channel]' command from admin.
+                # Respond to the '.pj [channel]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.pj') != -1:
                     if message.split(' ', 1)[1].startswith('#'):
                         target = message.split(' ', 1)[1]
@@ -333,7 +333,7 @@ def main():
                         pjchan(target)
                     else:
                         message = "Could not parse. Please make sure the channel is in the format of '#channel'."
-                    sendmsg(message, name)
+                    sendntc(message, name)
                 
                 # Respond to the '.help' command.
                 if message.find('.help') != -1:
@@ -352,7 +352,7 @@ def main():
                                   '.ntc [target] [message]' (sends a notice to a user/channel),
                                   '.join [channel]' (tells bot to join channel),
                                   '.part [channel]' (tells bot to part channel),
-                                  '.pj [channel]' (tells bot to part then join channel),
+                                  '.pj [channel]' (tells bot to part then rejoin channel),
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
@@ -366,40 +366,40 @@ def main():
                                   """
                     helpmsg = [m.strip() for m in str(helpmsg).split(',')]
                     for line in helpmsg:
-                        sendmsg(line, name)
-                    sendmsg(message, name)
+                        sendntc(line, name)
+                    sendntc(message, name)
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
                     ip = ipgetter.myip()
-                    sendmsg("My public ip address is: " + format(ip), name)
+                    sendntc("My public ip address is: " + format(ip), name)
                 
                 # Respond to '.uptime' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uptime') != -1:
-                    sendmsg("My current uptime: " + format(uptime()), name)
+                    sendntc("My current uptime: " + format(uptime()), name)
                     
                 # Respond to '.uname' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
-                    sendmsg("System Info: " + format(uname()), adminname)
+                    sendntc("System Info: " + format(uname()), adminname)
                     
                 # Respond to '.sysinfo' command from admin.
                 if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
                     # System
-                    sendmsg("System: " + format(platform.system()), adminname)
+                    sendntc("System: " + format(platform.system()), adminname)
                     # Node
-                    sendmsg("Node: " + format(platform.node()), adminname)
+                    sendntc("Node: " + format(platform.node()), adminname)
                     # Release
-                    sendmsg("Release: " + format(platform.release()), adminname)
+                    sendntc("Release: " + format(platform.release()), adminname)
                     # Version
-                    sendmsg("Version :" + format(platform.version()), adminname)
+                    sendntc("Version :" + format(platform.version()), adminname)
                     # Architecture
-                    sendmsg("Architecture: " + format(platform.architecture()[0]), adminname)
+                    sendntc("Architecture: " + format(platform.architecture()[0]), adminname)
                     # Machine
-                    sendmsg("Machine: " + format(platform.machine()), adminname)
+                    sendntc("Machine: " + format(platform.machine()), adminname)
                     
                 # Respond to '.osversion' command from admin.
                 if name.lower() == adminname.lower() and message.find('.osversion') != -1:
-                    sendmsg("OS Version: " + format(platform.version()), adminname)
+                    sendntc("OS Version: " + format(platform.version()), adminname)
                     
                 # Respond to '.linuxmemory' command from admin.
                 if name.lower() == adminname.lower() and message.find('.linuxmemory') != -1:
