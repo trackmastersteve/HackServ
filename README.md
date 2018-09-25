@@ -89,17 +89,17 @@ Then clone this project by running the following command:
 
 - [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
 
-- [x] Better handling of disconnects etc.
-
-- [x] NickServ Identify
-
 - [x] Run in Background - (debugmode = False setting allows bot to run in the background)
 
 - [x] Better error handling (still a few bugs to work out)
 
+- [x] Better handling of disconnects etc.
+
 - [x] Better sigterm handling
 
 - [x] Join and Part Channels
+
+- [x] NickServ Identify
 
 - [x] Connect over SSL 
 
