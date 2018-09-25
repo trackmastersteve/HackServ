@@ -68,7 +68,7 @@ connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
 if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
-ircsock.settimeout(240)
+ircsock.settimeout(240) # Set socket timeout.
 
 def connect():
     global connected
