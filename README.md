@@ -87,6 +87,8 @@ Then clone this project by running the following command:
 
 - [ ] DoS/DDoS
 
+- [ ] Run single shell commands
+
 - [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
 
 - [x] Run in Background - (debugmode = False setting allows bot to run in the background)
