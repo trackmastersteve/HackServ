@@ -417,12 +417,11 @@ def main():
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
                 lastping = time.time() # Set time of last PING.
-                
-            if (time.time() - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
-                if debugmode: # If debugmode is True, msgs will print to screen.
-                    print('PING time exceeded threshold')
-                connected = False
-                reconnect()
+                if (time.time() - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
+                    if debugmode: # If debugmode is True, msgs will print to screen.
+                        print('PING time exceeded threshold')
+                    connected = False
+                    reconnect()
                 
             if not ircmsg: # If no response from server, try and reconnect.
                 if debugmode: # If debugmode is True, msgs will print to screen.
@@ -432,6 +431,7 @@ def main():
                 
 try: # Here is where we actually start the Bot.
     connect() # Connect to server.
+    
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
     if debugmode: # If debugmode is True, msgs will print to screen.
