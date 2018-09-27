@@ -133,7 +133,8 @@ def pjchan(chan): # Part then Join channel(s)
     ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
     
 def ping(): # Respond to server Pings.
-    ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
+    ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
+    #ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
     
 def newnick(newnick): # Change botnick.
     ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
