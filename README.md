@@ -95,7 +95,7 @@ Then clone this project by running the following command:
 
 - [x] Better error handling (still a few bugs to work out)
 
-- [ ] Better handling of disconnects etc. (**ping timeout still exists**)
+- [x] Better handling of disconnects etc.
 
 - [x] Better sigterm handling
 
