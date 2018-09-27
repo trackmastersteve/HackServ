@@ -86,6 +86,7 @@ def connect():
         except: # If you can't connect, wait 10 seconds and try again.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            connected = False
             time.sleep(10)
             reconnect()
 
@@ -110,6 +111,7 @@ def reconnect():
         except: # If you can't connect, wait 10 seconds and try again.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
+            connected = False
             time.sleep(10)
             reconnect()
             
