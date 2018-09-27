@@ -337,6 +337,7 @@ def main():
                     if name.lower() == adminname.lower():
                         helpmsg = """
                                   '.help' shows this message.,
+                                  '.username' (shows username of machine the bot is running on),
                                   '.uptime' (shows bot uptime),
                                   '.uname' (get 1-line system info),
                                   '.sysinfo' (get formated system info),
