@@ -160,6 +160,10 @@ def uname(): # Used to get system info for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
+def macaddress():
+    ma = ':'.join(hex(uuid.getnode()).strip('0x').strip('L')[i:i+2] for i in range(0,11,2)).upper()
+    return ma
+
 def linuxMemory():
     sendntc("Memory Info: ", adminname)
     with open("/proc/meminfo", "r") as f:
@@ -369,6 +373,10 @@ def main():
                 # Respond to '.uname' command from admin.
                 if name.lower() == adminname.lower() and message.find('.uname') != -1:
                     sendntc("System Info: " + format(uname()), adminname)
+                    
+                # Respond to '.macaddress' command from admin.
+                if name.lower() == adminname.lower() and message.find('.macaddress') != -1:
+                    sendntc("Mac Address: " + format(macaddress()), adminname
                     
                 # Respond to '.sysinfo' command from admin.
                 if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
