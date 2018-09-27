@@ -390,8 +390,13 @@ def main():
                     sendntc("OS Version: " + format(platform.version()), adminname)
                     
                 # Respond to '.linuxmemory' command from admin.
-                if name.lower() == adminname.lower() and message.find('.linuxmemory') != -1:
-                    linuxMemory()
+                if name.lower() == adminname.lower() and message.find('.memory') != -1:
+                    if platform.system() == 'Linux':
+                        message = "End of Memory Info.
+                        linuxMemory()
+                    else:
+                        message = "Only Linux is currently supported."
+                    sendntc(message, name)
                                 
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
