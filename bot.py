@@ -345,7 +345,7 @@ def main():
                                   '.sysinfo' (get formated system info),
                                   '.osversion' (get OS version info),
                                   '.memory' (get memory stats info),
-                                  '.ip' (get ip address of bot),
+                                  '.ip' (get public ip address of bot),
                                   '.macaddress' (get mac address info),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
