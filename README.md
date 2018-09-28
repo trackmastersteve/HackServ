@@ -27,6 +27,8 @@ Then clone this project by running the following command:
 
 ```.help``` (HELP menu)
 
+```.username``` (shows username of machine bot is running on)
+
 ```.uptime``` (shows bot uptime)
 
 ```.uname``` (get 1-line system info)
