@@ -162,7 +162,7 @@ def uname(): # Used to get system info for .uname command
     sysinfo = platform.uname()
     return sysinfo
 
-def username():
+def username(): # Used to get the OS username for .username command.
     usrnm = os.getenv('USER', os.getenv('USERNAME', 'user'))
     return usrnm
 
