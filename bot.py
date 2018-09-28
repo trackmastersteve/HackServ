@@ -166,7 +166,7 @@ def username(): # Used to get the OS username for .username command.
     usrnm = os.getenv('USER', os.getenv('USERNAME', 'user'))
     return usrnm
 
-def macaddress():
+def macaddress(): # Used to get macaddress for .macaddress command.
     ma = ':'.join(hex(uuid.getnode()).strip('0x').strip('L')[i:i+2] for i in range(0,11,2)).upper()
     return ma
 
