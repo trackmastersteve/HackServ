@@ -41,6 +41,8 @@ Then clone this project by running the following command:
 
 ```.ip``` (get ip address of bot)
 
+```.macaddress``` (get mac address info)
+
 ```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
