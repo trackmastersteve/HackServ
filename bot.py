@@ -30,10 +30,12 @@ software = 'arm0red bot'
 version = '0.7.9'
 last_modification = '2018.09.27'
 
+import os
 import ssl
 import sys
 import nmap
 import time
+import uuid
 import random
 import socket
 import ipgetter
