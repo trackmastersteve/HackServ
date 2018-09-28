@@ -170,7 +170,7 @@ def macaddress(): # Used to get macaddress for .macaddress command.
     ma = ':'.join(hex(uuid.getnode()).strip('0x').strip('L')[i:i+2] for i in range(0,11,2)).upper()
     return ma
 
-def linuxMemory():
+def linuxMemory(): # Get linux system memory info for .memory command.
     sendntc("Memory Info: ", adminname)
     with open("/proc/meminfo", "r") as f:
         lines = f.readlines()
