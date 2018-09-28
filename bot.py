@@ -407,10 +407,10 @@ def main():
                 if name.lower() == adminname.lower() and message.find('.osversion') != -1:
                     sendntc("OS Version: " + format(platform.version()), adminname)
                     
-                # Respond to '.linuxmemory' command from admin.
+                # Respond to '.memory' command from admin.
                 if name.lower() == adminname.lower() and message.find('.memory') != -1:
                     if platform.system() == 'Linux':
-                        message = "End of Memory Info.
+                        message = "End of Memory Info."
                         linuxMemory()
                     else:
                         message = "Only Linux is currently supported."
