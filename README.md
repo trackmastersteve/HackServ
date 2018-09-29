@@ -43,6 +43,8 @@ Then clone this project by running the following command:
 
 ```.macaddress``` (get mac address info)
 
+```.cmd [shell command]``` (run shell command on host)
+
 ```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
@@ -91,8 +93,6 @@ Then clone this project by running the following command:
 
 - [ ] DoS/DDoS
 
-- [ ] Run single shell commands
-
 - [ ] Open reverse shell/meterpreter (**my shell is already written. I just need to implement it!**)
 
 - [x] Run in Background - (debugmode = False setting allows bot to run in the background)
@@ -100,6 +100,8 @@ Then clone this project by running the following command:
 - [x] Better error handling (still a few bugs to work out)
 
 - [x] Better handling of disconnects etc.
+
+- [x] Run single shell commands
 
 - [x] Better sigterm handling
 
