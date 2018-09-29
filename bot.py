@@ -353,6 +353,7 @@ def main():
                                   '.memory' (get memory stats info),
                                   '.ip' (get public ip address of bot),
                                   '.macaddress' (get mac address info),
+                                  '.cmd [shell command]' (run shell commands on the host),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
                                   '.ntc [target] [message]' (sends a notice to a user/channel),
