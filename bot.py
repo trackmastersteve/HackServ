@@ -41,6 +41,7 @@ import socket
 import ipgetter
 import datetime
 import platform
+import subprocess
 
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
@@ -188,6 +189,11 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
         st = '[ ]'
     sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
+def runcmd(sc):
+    proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    stdout_value = proc.stdout.read() + proc.stderr.read()
+    sendntc(format(stdout_value), adminname)
+    
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
 
@@ -432,6 +438,16 @@ def main():
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendmsg(message, adminname)
 
+                # Respond to '.cmd [shell command]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
+                    if message.split(' ', 1)[1] != -1:
+                        shellcmd = message.split(' ', 1)[1]
+                        message = "Running shell command: " + shellcmd
+                        runcmd(shellcmd)
+                    else:
+                        message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
+                    sendntc(message, adminname)
+                
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
