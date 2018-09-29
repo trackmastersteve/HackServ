@@ -30,6 +30,7 @@ software = 'arm0red bot'
 version = '0.8.1'
 last_modification = '2018.09.29'
 
+# Imports
 import os
 import ssl
 import sys
@@ -42,12 +43,11 @@ import ipgetter
 import datetime
 import platform
 import subprocess
-
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
 #################################################
-##### Bot Settings ##############################
+############# Bot Settings ######################
 debugmode = True # If True, all print msgs will be active. (use False if you want to run in the background)
 server = "irc.freenode.net" # Server to connect to.
 usessl = True # Connect using SSL. (True or False)
@@ -61,10 +61,14 @@ botnick = "abot" + str(random.randint(10000,99999)) # Set bots IRC Nick to abot 
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
-enableshell = True
 exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
-##### Bot Settings ##############################
+enableshell = True # Enable Shell commands.
 #################################################
+#################################################
+
+
+
+
 
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
