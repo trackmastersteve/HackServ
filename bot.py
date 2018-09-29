@@ -375,7 +375,7 @@ def main():
                                   '.ip' (get public ip address of bot),
                                   '.macaddress' (get mac address info),
                                   '.rshell [target] [port]' (reverse shell) (work in progress),
-                                      (listener can be downloaded at https://github.com/trackmastersteve/shell.git),
+                                  ....listener can be downloaded at https://github.com/trackmastersteve/shell.git,
                                   '.cmd [shell command]' (run shell commands on the host),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
