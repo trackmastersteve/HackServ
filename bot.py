@@ -61,6 +61,7 @@ botnick = "abot" + str(random.randint(10000,99999)) # Set bots IRC Nick to abot 
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
+enableshell = True
 exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
 ##### Bot Settings ##############################
 #################################################
@@ -441,13 +442,16 @@ def main():
 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
-                    if message.split(' ', 1)[1] != -1:
-                        shellcmd = message.split(' ', 1)[1]
-                        message = "Running shell command: " + shellcmd
-                        runcmd(shellcmd)
+                    if enableshell:
+                        if message.split(' ', 1)[1] != -1:
+                            shellcmd = message.split(' ', 1)[1]
+                            message = "Running shell command: " + shellcmd
+                            runcmd(shellcmd)
+                        else:
+                            message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
+                        sendntc(message, adminname)
                     else:
-                        message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
-                    sendntc(message, adminname)
+                        sendntc("Shell commands are disabled!", adminname)
                 
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
