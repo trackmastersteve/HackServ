@@ -328,7 +328,7 @@ def main():
                     sendntc(message, adminname)
                 
                 # Respond to the '.raw [command]' command from admin.
-                if name,lower() == adminname.lower() and message[:5].find('.raw') != -1:
+                if name.lower() == adminname.lower() and message[:5].find('.raw') != -1:
                     if message.split(' ', 1)[1] != -1:
                         rawc = message.split(' ', 1)[1]
                         message = "Sending '" + rawc + "' to the server!"
