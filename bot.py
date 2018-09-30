@@ -478,6 +478,8 @@ def main():
                         else:
                             message = "Could not parse. The command should be in the format of '.rshell [target] [port]' to work properly."
                         sendntc(message, adminname)
+                    else:
+                        sendntc("Shell commands are disabled!", adminname)
                 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
