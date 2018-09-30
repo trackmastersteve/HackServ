@@ -221,6 +221,9 @@ def runcmd(sc):
     
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
+    
+def rawCommand(rc):
+    ircsock.send(bytes(rc +"\n", "UTF-8"))
 
 def main():
     global connected
