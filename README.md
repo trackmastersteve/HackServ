@@ -75,7 +75,7 @@ Then clone this project by running the following command:
 
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
-- [ ] Auto Vuln / Port Scan on join
+- [ ] Auto Vuln/Port/Proxy Scan on join
 
 - [ ] Accept uploads from admin
 
