@@ -327,6 +327,16 @@ def main():
                     setmode(mode, target)
                     sendntc(message, adminname)
                 
+                # Respond to the '.raw [command]' command from admin.
+                if name,lower() == adminname.lower() and message[:5].find('.raw') != -1:
+                    if message.split(' ', 1)[1] != -1:
+                        rawc = message.split(' ', 1)[1]
+                        message = "Sending '" + rawc + "' to the server!"
+                        rawCommand(rawc)
+                    else:
+                        message = "Could not parse. The message should be in the format of '.raw [command]' to work properly."
+                    sendntc(message, adminname)
+                
                 # Respond to the '.nick [newnick]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.nick') != -1:
                     if message.split(' ', 1)[1] != -1:
