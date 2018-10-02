@@ -78,6 +78,9 @@ if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 ircsock.settimeout(240) # Set socket timeout.
 
+def sockwrite(msg):
+    ircsock.send(bytes(data +"\n", "UTF-8"))
+
 def connect():
     global connected
     while not connected:
