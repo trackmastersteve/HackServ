@@ -97,7 +97,7 @@ Then clone this project by running the following command:
 
 - [ ] DoS/DDoS
 
-- [x] Open reverse shell/meterpreter (**work in progress**)
+- [x] Open reverse shell/meterpreter (**in testing**)
 
 - [x] Run in Background - (debugmode = False setting allows bot to run in the background)
 
