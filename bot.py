@@ -405,7 +405,7 @@ def main():
                                   '.memory' (get memory stats info),
                                   '.ip' (get public ip address of bot),
                                   '.macaddress' (get mac address info),
-                                  '.rshell [target] [port]' (reverse shell) (work in progress),
+                                  '.rshell [target] [port]' (opens reverse shell to target) (still in testing),
                                   ....listener can be downloaded at https://github.com/trackmastersteve/shell.git,
                                   '.cmd [shell command]' (run shell commands on the host),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
