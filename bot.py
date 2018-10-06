@@ -363,11 +363,11 @@ def main():
                     if target.find(' ') != -1:
                         download_file = target.split(' ', 1)[1]
                         download_url = target.split(' ')[0]
-                        message = "The file " + download_file + " will is downloading from " + download_url + "..."
+                        message = "The file " + download_file + " is downloading from " + download_url + "..."
                         download(download_url, download_file)
                     else:
                         message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
-                    sendntc(message)
+                    sendntc(message, adminname)
                                
                 # Respond to the '.raw [command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.raw') != -1:
