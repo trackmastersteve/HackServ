@@ -218,7 +218,7 @@ def rShell(rsHost, rsPort):
                 if len(data) > 0:
                     sproc = subprocess.Popen(data, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                     stdout_value = sproc.stdout.read() + sproc.stderr.read()
-                    output_str = str(stdout_value)
+                    output_str = str(stdout_value, "UTF-8")
                     currentWD = os.getcwd() + "> "
                     rs.sendto(str.encode(currentWD + output_str), (str(rsHost), int(rsPort)))
             except Exception as rsex:
