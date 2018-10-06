@@ -438,6 +438,7 @@ def main():
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
                                   '.raw [command]' (sends a raw command to the server),
+                                  '.dl [url] [file] (downloads [url] and saves as [file]),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
