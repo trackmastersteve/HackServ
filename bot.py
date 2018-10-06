@@ -248,11 +248,12 @@ def download(link, file):
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
 def execute(file):
-    exec(open(str(file)).read())
+    #exec(open(str(file)).read())
+    os.system(str(file))
     
 def update():
     download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
-    exec(open('bot-latest.py').read())
+    os.system('python3 bot-latest.py')
 
 def main():
     global connected
