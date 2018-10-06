@@ -244,8 +244,8 @@ def rawCommand(rc):
     
 def download(link, file):
     url = str(link)
-    urllib.request.urlretrieve(url, str(file)
-    sendntc(str(file) +" successfully downloaded from "+ str(link) +"!", adminname)
+    urllib.request.urlretrieve(url, str(file))
+    sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
 def update():
     download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
