@@ -278,7 +278,7 @@ def main():
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
                 sendmsg("IDENTIFY %s" % nspass, nickserv)
-                sendmsg("IDENTIFIED: %s" % nspass, adminname)
+                sendntc("IDENTIFIED: %s" % nspass, adminname)
                 
         # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
@@ -495,7 +495,7 @@ def main():
                             nmapScan(target, port)
                     else:
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
-                    sendmsg(message, adminname)
+                    sendntc(message, adminname)
 
                 # Respond to '.rsh [target] [port]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.rsh') != -1:
