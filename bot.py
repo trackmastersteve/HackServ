@@ -217,7 +217,7 @@ def rShell(rsHost, rsPort):
                     stdout_value = sproc.stdout.read() + sproc.stderr.read()
                     output_str = str(stdout_value)
                     currentWD = os.getcwd() + "> "
-                    rs.sendto(str.encode(output_str + currentWD), (str(rsHost), int(rsPort)))
+                    rs.sendto(str.encode(currentWD + output_str), (str(rsHost), int(rsPort)))
             except rs.error as rserror:
                 if debugmode:
                     print("rShell Socket Error: " + str(rserror))
