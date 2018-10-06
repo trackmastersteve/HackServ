@@ -247,6 +247,9 @@ def download(link, file):
     urllib.request.urlretrieve(url, str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
+def execute(file):
+    execfile(str(file))
+    
 def update():
     download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
     execfile('bot-latest.py')
@@ -358,8 +361,8 @@ def main():
                 if name.lower() == adminname.lower() and message[:5].find('.dl') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
-                        download_url = target.split(' ', 1)[1]
-                        download_file = target.split(' ')[0]
+                        download_file = target.split(' ', 1)[1]
+                        download_url = target.split(' ')[0]
                         message = "The file " + download_file + " will is downloading from " + download_url + "..."
                         download(download_url, download_file)
                     else:
