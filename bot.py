@@ -247,6 +247,10 @@ def download(link, file):
     urllib.request.urlretrieve(url, str(file)
     sendntc(str(file) +" successfully downloaded from "+ str(link) +"!", adminname)
 
+def update():
+    download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
+    execfile('bot-latest.py')
+
 def main():
     global connected
     global botnick
