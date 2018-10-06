@@ -121,7 +121,7 @@ def reconnect():
             ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
             connected = True
             main()
-        except Exception as ireconnex: # If you can't connect, wait 10 seconds and try again.
+        except Exception as irconnex: # If you can't connect, wait 10 seconds and try again.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Exception: " + str(irconnex))
                 print("Failed to reconnect to " + str(server) + ":" + str(port) + ". Retrying in 10 seconds...")
