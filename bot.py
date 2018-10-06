@@ -245,6 +245,7 @@ def rawCommand(rc):
 def download(link, file):
     url = str(link)
     urllib.request.urlretrieve(url, str(file)
+    sendntc(str(file) +" successfully downloaded from "+ str(link) +"!", adminname)
 
 def main():
     global connected
@@ -355,7 +356,7 @@ def main():
                     if target.find(' ') != -1:
                         download_url = target.split(' ', 1)[1]
                         download_file = target.split(' ')[0]
-                        message = "The file " + download_file + " will be downloaded from " + download_url + "!"
+                        message = "The file " + download_file + " will is downloading from " + download_url + "..."
                         download(download_url, download_file)
                     else:
                         message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
