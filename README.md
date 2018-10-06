@@ -43,7 +43,7 @@ Then clone this project by running the following command:
 
 ```.macaddress``` (get mac address info)
 
-```.rshell [target] [port]``` (reverse shell to target)
+```.rsh [target] [port]``` (reverse shell to target)
 
 ```.cmd [shell command]``` (run shell command on host)
 
