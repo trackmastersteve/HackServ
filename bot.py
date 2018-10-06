@@ -43,6 +43,7 @@ import ipgetter
 import datetime
 import platform
 import subprocess
+import urllib.request
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
@@ -240,6 +241,10 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
     
 def rawCommand(rc):
     ircsock.send(bytes(rc +"\n", "UTF-8"))
+    
+def download(link, file):
+    url = str(link)
+    urllib.request.urlretrieve(url, str(file)
 
 def main():
     global connected
