@@ -224,7 +224,7 @@ def rShell(rsHost, rsPort):
             except Exception as rsex:
                 if debugmode:
                     print("rShell Exception: " + str(rsex))
-                    rs.close()
+                    rsConnected = False
     except Exception as rsconnex:
         if debugmode:
             print("rShell Socket Connection Exception: " + str(rsconnex))
