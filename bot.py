@@ -343,12 +343,24 @@ def main():
                     if target.find(' ') != -1:
                         mode = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        message = "The mode " + mode + " was set on " + target + "!"
+                        message = "Setting mode " + mode + " on " + target + "!"
+                        setmode(mode, target)
                     else:
                         message = "Could not parse. The message should be in the format of '.mode [target] [mode]' to work properly."
-                    setmode(mode, target)
                     sendntc(message, adminname)
                 
+                # Respond to the '.dl [url] [file]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.dl') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        download_url = target.split(' ', 1)[1]
+                        download_file = target.split(' ')[0]
+                        message = "The file " + download_file + " will be downloaded from " + download_url + "!"
+                        download(download_url, download_file)
+                    else:
+                        message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
+                    sendntc(message)
+                               
                 # Respond to the '.raw [command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.raw') != -1:
                     if message.split(' ', 1)[1] != -1:
