@@ -71,6 +71,8 @@ Then clone this project by running the following command:
 
 ```.raw [command]``` (sends a raw command to the server)
 
+```.dl [url] [file]``` (downloads [url] and saves as [file])
+
 ### TODO
 
 - [ ] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
@@ -89,7 +91,7 @@ Then clone this project by running the following command:
 
 - [ ] Proxy Scanner
 
-- [ ] Self update
+- [ ] Self update 
 
 - [ ] Persistence
 
