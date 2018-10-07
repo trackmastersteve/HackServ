@@ -595,8 +595,8 @@ try: # Here is where we actually start the Bot.
     connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
-    ircsock.send(bytes("QUIT Killed Bot using [ctrl + c] \n", "UTF-8"))
+    ircsock.send(bytes("QUIT Terminated Bot using [ctrl + c] \n", "UTF-8"))
     if debugmode: # If debugmode is True, msgs will print to screen.
-        print('... Killed Bot using [ctrl + c], Shutting down!')
+        print('... Terminated Bot using [ctrl + c], Shutting down!')
     sys.exit()
     
