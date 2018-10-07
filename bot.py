@@ -253,7 +253,8 @@ def execute(file):
     
 def update():
     download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
-    os.system('python3 bot-latest.py')
+    runcmd('./bot.py')
+    #os.system('python3 bot-latest.py')
 
 def main():
     global connected
