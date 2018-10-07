@@ -48,12 +48,15 @@ starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
 #################################################
-############# Bot Settings ######################
+############# Booleans ##########################
 debugmode = True # If True, all print msgs will be active. (use False if you want to run in the background)
-server = "irc.freenode.net" # Server to connect to.
 usessl = True # Connect using SSL. (True or False)
-port = 6697 # Port to connect to.
 useservpass = False # Use a password to connect to IRC Server. (True or False)
+enableshell = True # Enable Shell commands.
+#################################################
+############# Bot Settings ######################
+server = "irc.freenode.net" # Server to connect to.
+port = 6697 # Port to connect to.
 serverpass = "password" # Password for IRC Server. (UnrealIRCD uses this as default NickServ ident method)
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick.
@@ -63,7 +66,6 @@ nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
 exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
-enableshell = True # Enable Shell commands.
 #################################################
 #################################################
 
