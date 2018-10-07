@@ -52,7 +52,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
 usessl = True # Connect using SSL. (True or False)
 useservpass = False # Use a password to connect to IRC Server. (True or False)
-usesasl = False
+usesasl = False # Authenticate using SASL. (True or False)
 enableshell = True # Enable Shell commands. (True or False)
 #################################################
 ############# Bot Settings ######################
