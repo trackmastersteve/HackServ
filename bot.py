@@ -503,7 +503,7 @@ def main():
                     # Release
                     sendntc("Release: " + format(platform.release()), adminname)
                     # Version
-                    sendntc("Version :" + format(platform.version()), adminname)
+                    sendntc("Version: " + format(platform.version()), adminname)
                     # Architecture
                     sendntc("Architecture: " + format(platform.architecture()[0]), adminname)
                     # Machine
