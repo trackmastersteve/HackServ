@@ -283,7 +283,7 @@ def main():
         if ircmsg.find("ACK :sasl") != -1:
             if usesasl:
                 if debugmode:
-                    print("Authenticating with SASL PLAIN.")
+                    print("Authenticating with SASL PLAIN.") # Request PLAIN Auth.
                 ircsock.send(bytes("AUTHENTICATE PLAIN\n", "UTF-8"))
         if ircmsg.find("AUTHENTICATE +") != -1:
             if usesasl:
@@ -291,12 +291,12 @@ def main():
                     print("Sending %s Password: %s to SASL." % (nickserv, nspass))
                 authpass = botnick + '\x00' + botnick + '\x00' + nspass
                 ap_encoded = str(base64.b64encode(authpass.encode("UTF-8")), "UTF-8")
-                ircsock.send(bytes("AUTHENTICATE %s \n" % ap_encoded, "UTF-8"))
+                ircsock.send(bytes("AUTHENTICATE %s \n" % ap_encoded, "UTF-8")) # Authenticate with SASL.
         if ircmsg.find("SASL authentication successful") != -1:
             if usesasl:
                 if debugmode:
                     print("Sending CAP END command.")
-                ircsock.send(bytes("CAP END\n", "UTF-8"))
+                ircsock.send(bytes("CAP END\n", "UTF-8")) # End the SASL Authentication.
         
         # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
         if ircmsg.find('Too many connections from your IP') != -1:
