@@ -93,7 +93,7 @@ def connect():
                 print("Connecting to " + str(server) + ":" + str(port))
             ircsock.connect_ex((server, port)) # Here we connect to the server.
             if usesasl:
-                sockwrite("CAP REQ :sasl")
+                sockwrite("CAP REQ :sasl") # Request SASL Authentication.
                 if debugmode:
                     print("Requesting SASL login.")
             if useservpass: # If useservpass is True, send serverpass to server to connect.
@@ -124,7 +124,7 @@ def reconnect():
                 print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect_ex((server, port)) # Here we connect to the server.
             if usesasl:
-                sockwrite("CAP REQ :sasl")
+                sockwrite("CAP REQ :sasl") # Request SASL Authentication.
                 if debugmode:
                     print("Requesting SASL login.")            
             if useservpass: # If useservpass is True, send serverpass to server to connect.
