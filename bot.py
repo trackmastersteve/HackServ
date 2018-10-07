@@ -49,9 +49,10 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 
 #################################################
 ############# Booleans ##########################
-debugmode = True # If True, all print msgs will be active. (use False if you want to run in the background)
+debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
 usessl = True # Connect using SSL. (True or False)
 useservpass = False # Use a password to connect to IRC Server. (True or False)
+usesasl = False
 enableshell = True # Enable Shell commands. (True or False)
 #################################################
 ############# Bot Settings ######################
@@ -91,6 +92,10 @@ def connect():
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Connecting to " + str(server) + ":" + str(port))
             ircsock.connect_ex((server, port)) # Here we connect to the server.
+            if usesasl:
+                sockwrite("CAP REQ :sasl")
+                if debugmode:
+                    print("Requesting SASL login.")
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8"))
                 sockwrite("PASS "+ serverpass) # Send the server password to connect to password protected IRC server.
@@ -118,6 +123,10 @@ def reconnect():
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect_ex((server, port)) # Here we connect to the server.
+            if usesasl:
+                sockwrite("CAP REQ :sasl")
+                if debugmode:
+                    print("Requesting SASL login.")            
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
             ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
@@ -269,6 +278,25 @@ def main():
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
             #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
+        
+        # SASL Authentication.
+        if ircmsg.find("ACK :sasl") != -1:
+            if usesasl:
+                if debugmode:
+                    print("Authenticating with SASL PLAIN.")
+                ircsock.send(bytes("AUTHENTICATE PLAIN\n", "UTF-8"))
+        if ircmsg.find("AUTHENTICATE +") != -1:
+            if usesasl:
+                if debugmode:
+                    print("Sending %s Password: %s to SASL." % (nickserv, nspass))
+                authpass = botnick + '\x00' + botnick + '\x00' + nspass
+                ap_encoded = str(base64.b64encode(authpass.encode("UTF-8")), "UTF-8")
+                ircsock.send(bytes("AUTHENTICATE %s \n" % ap_encoded, "UTF-8"))
+        if ircmsg.find("SASL authentication successful") != -1:
+            if usesasl:
+                if debugmode:
+                    print("Sending CAP END command.")
+                ircsock.send(bytes("CAP END\n", "UTF-8"))
         
         # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
         if ircmsg.find('Too many connections from your IP') != -1:
