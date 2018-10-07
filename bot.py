@@ -52,7 +52,7 @@ ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well
 debugmode = True # If True, all print msgs will be active. (use False if you want to run in the background)
 usessl = True # Connect using SSL. (True or False)
 useservpass = False # Use a password to connect to IRC Server. (True or False)
-enableshell = True # Enable Shell commands.
+enableshell = True # Enable Shell commands. (True or False)
 #################################################
 ############# Bot Settings ######################
 server = "irc.freenode.net" # Server to connect to.
