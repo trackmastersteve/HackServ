@@ -246,10 +246,10 @@ def runcmd(sc):
     sendntc(format(stdout_value), adminname)
     
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
-    ircsock.send(bytes("MODE "+ target +" "+ flag +"\n", "UTF-8"))
+    ircsend("MODE "+ target +" "+ flag)
     
 def rawCommand(rc):
-    ircsock.send(bytes(rc +"\n", "UTF-8"))
+    ircsend(rc)
     
 def download(link, file):
     url = str(link)
@@ -258,7 +258,8 @@ def download(link, file):
 
 def execute(file):
     #exec(open(str(file)).read())
-    os.system(str(file))
+    #os.system(str(file))
+    runcmd(file)
     
 def update():
     download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
