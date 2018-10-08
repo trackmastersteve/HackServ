@@ -142,25 +142,23 @@ def reconnect():
             reconnect()
             
 def joinchan(chan): # Join channel(s).
-    ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
+    ircsend("JOIN "+ chan)
     ircmsg = ""
     while ircmsg.find("End of /NAMES list.") == -1:
         ircmsg = ircsock.recv(2048).decode("UTF-8")
         ircmsg = ircmsg.strip('\n\r')
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-        #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin)
 
 def partchan(chan): # Part channel(s).
-    ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
+    ircsend("PART "+ chan)
         
 def pjchan(chan): # Part then Join channel(s) 
-    ircsock.send(bytes("PART "+ chan +"\n", "UTF-8"))
-    ircsock.send(bytes("JOIN "+ chan +"\n", "UTF-8"))
+    ircsend("PART "+ chan)
+    ircsend("JOIN "+ chan)
     
 def ping(): # Respond to server Pings.
-    ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
-    #ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
+    ircsend("PONG " + nospoof)
     
 def newnick(newnick): # Change botnick.
     ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
