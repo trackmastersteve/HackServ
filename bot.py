@@ -124,13 +124,13 @@ def reconnect():
                 print("Reconnecting to " + str(server) + ":" + str(port))
             ircsock.connect_ex((server, port)) # Here we connect to the server.
             if usesasl:
-                sockwrite("CAP REQ :sasl") # Request SASL Authentication.
+                ircsend("CAP REQ :sasl") # Request SASL Authentication.
                 if debugmode:
                     print("Requesting SASL login.")            
             if useservpass: # If useservpass is True, send serverpass to server to connect.
-                ircsock.send(bytes("PASS "+ serverpass +"\n", "UTF-8")) # Send the server password to connect to password protected IRC server.
-            ircsock.send(bytes("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick + " " + botnick + "\n", "UTF-8")) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
-            ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8")) # Assign the nick to the bot.
+                ircsend("PASS "+ serverpass) # Send the server password to connect to password protected IRC server.
+            ircsend("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
+            ircsend(bytes("NICK "+ botnick) # Assign the nick to the bot.
             connected = True
             main()
         except Exception as irconnex: # If you can't connect, wait 10 seconds and try again.
