@@ -161,20 +161,20 @@ def ping(): # Respond to server Pings.
     ircsend("PONG " + nospoof)
     
 def newnick(newnick): # Change botnick.
-    ircsock.send(bytes("NICK "+ newnick +"\n", "UTF-8"))
+    ircsend("NICK "+ newnick)
 
 def sendversion(nick, ver): # Respond to VERSION request.
     ver = software + ' ' + version + ' Download it at: ' + github
-    ircsock.send(bytes("NOTICE "+ nick +" :VERSION " + ver +"\n", "UTF-8"))
+    ircsend("NOTICE "+ nick +" :VERSION " + ver)
     
 def sendmsg(msg, target=channel): # Sends messages to the target.
-    ircsock.send(bytes("PRIVMSG "+ target +" :"+ msg +"\n", "UTF-8"))
+    ircsend("PRIVMSG "+ target +" :"+ msg)
 
 def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
-    ircsock.send(bytes("NOTICE "+ target +" :"+ ntc +"\n", "UTF-8"))
+    ircsend("NOTICE "+ target +" :"+ ntc)
     
 def kick(msg, usr, chan): # Kick a user from the channel.
-    ircsock.send(bytes("KICK "+ chan + " " + usr + " :"+ msg +"\n", "UTF-8"))
+    ircsend("KICK "+ chan + " " + usr + " :"+ msg)
     
 def uptime(): # Used to get current uptime for .uptime command
     delta = datetime.timedelta(seconds=round((datetime.datetime.utcnow() - starttime).total_seconds()))
