@@ -283,19 +283,19 @@ def main():
             if usesasl:
                 if debugmode:
                     print("Authenticating with SASL PLAIN.") # Request PLAIN Auth.
-                ircsock.send(bytes("AUTHENTICATE PLAIN\n", "UTF-8"))
+                ircsend("AUTHENTICATE PLAIN")
         if ircmsg.find("AUTHENTICATE +") != -1:
             if usesasl:
                 if debugmode:
                     print("Sending %s Password: %s to SASL." % (nickserv, nspass))
                 authpass = botnick + '\x00' + botnick + '\x00' + nspass
                 ap_encoded = str(base64.b64encode(authpass.encode("UTF-8")), "UTF-8")
-                ircsock.send(bytes("AUTHENTICATE %s \n" % ap_encoded, "UTF-8")) # Authenticate with SASL.
+                ircsend("AUTHENTICATE " + ap_encoded) # Authenticate with SASL.
         if ircmsg.find("SASL authentication successful") != -1:
             if usesasl:
                 if debugmode:
                     print("Sending CAP END command.")
-                ircsock.send(bytes("CAP END\n", "UTF-8")) # End the SASL Authentication.
+                ircsend("CAP END") # End the SASL Authentication.
         
         # Wait 30 seconds and try to reconnect if 'too many connections from this IP'
         if ircmsg.find('Too many connections from your IP') != -1:
@@ -308,7 +308,7 @@ def main():
         # Change nickname if current nickname is already in use.
         if ircmsg.find('Nickname is already in use') != -1:
             botnick = "abot" + str(random.randint(10000,99999))
-            ircsock.send(bytes("NICK "+ botnick +"\n", "UTF-8"))
+            newnick(botnick)
         
         # Join 'channel' and msg 'admin' after you are fully connected to server.
         if ircmsg.find('NOTICE') != -1:
@@ -465,7 +465,7 @@ def main():
                     message = "End of Help."
                     if name.lower() == adminname.lower():
                         helpmsg = """
-                                  '.help' shows this message.,
+                                  '.help' (shows this message),
                                   '.username' (shows username of machine the bot is running on),
                                   '.uptime' (shows bot uptime),
                                   '.uname' (get 1-line system info),
@@ -495,8 +495,8 @@ def main():
                                   """
                     else:
                         helpmsg = """
-                                  '.help' shows this message.,
-                                  'Hi [botnick]' responds to any user saying hello to it.
+                                  '.help' (shows this message),
+                                  'Hi [botnick]' (responds to any user saying hello to it)
                                   """
                     helpmsg = [m.strip() for m in str(helpmsg).split(',')]
                     for line in helpmsg:
@@ -601,13 +601,13 @@ def main():
                 # Respond to 'exitcode' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
-                    ircsock.send(bytes("QUIT Killed by " + adminname + "\n", "UTF-8"))
+                    ircsend("QUIT Killed by " + adminname)
                     sys.exit()
 
         else:
             if ircmsg.find("PING") != -1: # Reply to PINGs.
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
-                ircsock.send(bytes("PONG " + nospoof +"\n", "UTF-8"))
+                ircsend("PONG " + nospoof)
                 lastping = time.time() # Set time of last PING.
                 if (time.time() - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
                     if debugmode: # If debugmode is True, msgs will print to screen.
@@ -625,7 +625,7 @@ try: # Here is where we actually start the Bot.
     connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
-    ircsock.send(bytes("QUIT Terminated Bot using [ctrl + c] \n", "UTF-8"))
+    ircsend("QUIT Terminated Bot using [ctrl + c]")
     if debugmode: # If debugmode is True, msgs will print to screen.
         print('... Terminated Bot using [ctrl + c], Shutting down!')
     sys.exit()
