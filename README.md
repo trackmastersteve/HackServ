@@ -99,6 +99,8 @@ Then clone this project by running the following command:
 
 - [ ] Persistence
 
+- [ ] Key Logger
+
 - [ ] Vuln Scan
 
 - [ ] DoS/DDoS
