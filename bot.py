@@ -130,7 +130,7 @@ def reconnect():
             if useservpass: # If useservpass is True, send serverpass to server to connect.
                 ircsend("PASS "+ serverpass) # Send the server password to connect to password protected IRC server.
             ircsend("USER "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick +" "+ botnick) # We are basically filling out a form with this line and saying to set all the fields to the bot nickname.
-            ircsend(bytes("NICK "+ botnick) # Assign the nick to the bot.
+            ircsend("NICK "+ botnick) # Assign the nick to the bot.
             connected = True
             main()
         except Exception as irconnex: # If you can't connect, wait 10 seconds and try again.
