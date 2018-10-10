@@ -27,8 +27,8 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.9.2'
-last_modification = '2018.10.08'
+version = '0.9.3'
+last_modification = '2018.10.10'
 
 # Imports
 import os
