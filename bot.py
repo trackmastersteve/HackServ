@@ -77,11 +77,11 @@ exitcode = "bye" # Command 'exitcode + botnick' is used to kill the bot.
 
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
-connected = False # Variable to say if bot is connected or not.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
 if usessl: # If SSL is True, connect using SSL.
     ircsock = ssl.wrap_socket(ircsock)
 ircsock.settimeout(240) # Set socket timeout.
+connected = False # Variable to say if bot is connected or not.
 
 def ircsend(msg):
     ircsock.send(bytes(str(msg) +"\n", "UTF-8"))
@@ -622,7 +622,8 @@ def main():
                 reconnect()
                 
 try: # Here is where we actually start the Bot.
-    connect() # Connect to server.
+    if not connected:
+        connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsend("QUIT Terminated Bot using [ctrl + c]")
