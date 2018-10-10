@@ -588,7 +588,7 @@ def main():
                     if enableshell:
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
-                            message = "Shell Command> " + shellcmd
+                            message = "Shell> " + shellcmd
                             runcmd(shellcmd)
                         else:
                             message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
