@@ -167,7 +167,7 @@ def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
     ircsend("NOTICE "+ target +" :"+ ntc)
     
 def sendversion(nick, ver): # Respond to VERSION request.
-    ver = " :VERSION " + software + ' ' + version + ' Download it at: ' + github
+    ver = "VERSION " + software + ' ' + version + ' Download it at: ' + github
     sendntc(ver, nick)
     #ircsend("NOTICE "+ nick +" :VERSION " + ver)
     
