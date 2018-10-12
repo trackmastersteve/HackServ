@@ -250,7 +250,6 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
 def download(link, file):
-    #url = str(link)
     urllib.request.urlretrieve(str(link), str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
