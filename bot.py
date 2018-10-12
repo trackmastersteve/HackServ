@@ -260,9 +260,9 @@ def execute(file):
     runcmd(file)
     
 def update():
-    download('https://raw.githubusercontent.com/trackmastersteve/bot/master/bot.py', 'bot-latest.py')
-    runcmd('./bot.py')
-    #os.system('python3 bot-latest.py')
+    download('https://arm0.red/bot.py', 'bot-latest.py')
+    runcmd('./bot-latest.py')
+    sys.exit()
 
 def main():
     global connected
