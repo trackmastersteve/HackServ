@@ -85,11 +85,11 @@ Then clone this project by running the following command:
 
 - [ ] Auto Vuln/Port/Proxy Scan on join
 
-- [ ] Accept uploads from admin
+- [ ] Accept uploads from admin (File Server)
 
-- [ ] Send downloads to admin 
+- [ ] Send downloads to admin (File Server) (**testing**)
 
-- [x] Execute file/code (**testing**)
+- [x] Execute file/code
 
 - [ ] Self Replicating
 
@@ -99,7 +99,7 @@ Then clone this project by running the following command:
 
 - [ ] Persistence
 
-- [ ] File Server
+- [ ] File Server (**testing**)
 
 - [ ] Key Logger
 
