@@ -616,6 +616,10 @@ def main():
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
+                # Respond to '.fsdl [target] [port]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.fsdl') != -1:
+                    fileServer()
+
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
                     if enableshell:
