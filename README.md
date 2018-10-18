@@ -47,6 +47,8 @@ Then clone this project by running the following command:
 
 ```.cmd [shell command]``` (run shell command on host)
 
+```.fsdl``` (run file server to download files from)
+
 ```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
 
 ```.msg [target] [message]``` (sends a msg to a user/channel)
