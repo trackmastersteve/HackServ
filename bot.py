@@ -263,6 +263,22 @@ def update():
     runcmd('./bot-latest.py')
     sys.exit()
 
+def retrieveFile(fsname, fs, fsaddr):
+    filename = fs.recv(1024).decode("UTF-8")
+    if os.path.isfile(filename):
+        fs.sendto(str.encode("EXISTS " + str(os.path.getsize(filename))), fsaddr)
+        userResponse = fs.recv(1024).decode("UTF-8")
+        if userResponse[:2] == 'OK':
+            with open(filename, 'rb') as f:
+                bytesToSend = f.read(1024)
+                fs.sendto(bytesToSend, fsaddr)
+                while bytesToSend != "":
+                    bytesToSend = f.read(1024)
+                    fs.sendto(bytesToSend, fsaddr)
+    else:
+        fs.sendto(str.encode("ERR"), fsaddr)
+    fs.close()
+
 def main():
     global connected
     global botnick
