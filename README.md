@@ -101,7 +101,7 @@ Then clone this project by running the following command:
 
 - [ ] Persistence
 
-- [ ] File Server (**testing**)
+- [x] File Server
 
 - [ ] Key Logger
 
