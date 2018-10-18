@@ -279,6 +279,24 @@ def retrieveFile(fsname, fs, fsaddr):
         fs.sendto(str.encode("ERR"), fsaddr)
     fs.close()
 
+def fileServer():
+    host = '127.0.0.1'
+    port = 4444
+    s = socket.socket()
+    s.bind((host, port))
+    s.listen(5)
+    if debugmode:
+        print("[*] File Server (Download) started!")
+    sendntc("[*] File Server (Download) started!", adminname)
+    while True:
+        c, addr = s.accept()
+        if debugmode:
+            print("[+] Client connected ip: " + str(addr))
+        sendntc("[+] Client connected ip: " + str(addr), adminname)
+        t = threading.Thread(target=retrieveFile, args=("retreiveThread", c, addr))
+        t.start()
+    s.close()
+
 def main():
     global connected
     global botnick
