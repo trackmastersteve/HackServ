@@ -77,7 +77,7 @@ Then clone this project by running the following command:
 
 ```.run [file]``` (execute a file)
 
-```.upgrade``` (upgrades the bot.py file)
+```.upgrade [link] [file]``` (upgrades the bot.py file)
 
 ### TODO
 
