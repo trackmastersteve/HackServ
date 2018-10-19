@@ -170,7 +170,6 @@ def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
 def sendversion(nick, ver): # Respond to VERSION request.
     ver = "VERSION " + software + ' ' + version + ' Download it at: ' + github
     sendntc(ver, nick)
-    #ircsend("NOTICE "+ nick +" :VERSION " + ver)
     
 def kick(msg, usr, chan): # Kick a user from the channel.
     ircsend("KICK "+ chan + " " + usr + " :"+ msg)
@@ -308,7 +307,6 @@ def main():
         ircmsg = ircmsg.strip('\n\r')
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-            #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
         # SASL Authentication.
         if ircmsg.find("ACK :sasl") != -1:
@@ -354,7 +352,6 @@ def main():
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
                 sendmsg("IDENTIFY " + nspass, nickserv)
-                #sendntc("IDENTIFIED: " + nspass, adminname)
                 
         # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
