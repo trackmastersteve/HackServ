@@ -259,9 +259,9 @@ def execute(file):
     #os.system(str(file))
     runcmd(file)
     
-def update():
-    download('https://arm0.red/bot.py', 'bot-latest.py')
-    runcmd('./bot-latest.py')
+def update(link, file):
+    download(link, file)
+    runcmd('./' + file)
     sys.exit()
 
 def retrieveFile(fsname, fs, fsaddr):
