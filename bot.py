@@ -253,10 +253,13 @@ def download(link, file):
     urllib.request.urlretrieve(str(link), str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
-def execute(file):
-    #exec(open(str(file)).read())
-    #os.system(str(file))
-    runcmd(file)
+def execute(xType, file):
+    if xType == 'ex':
+        exec(open(str(file)).read())
+    if type == 'sys':
+        os.system(str(file))
+    else:
+        runcmd('./'+ file)
     
 def update(link, file):
     download(link, file)
