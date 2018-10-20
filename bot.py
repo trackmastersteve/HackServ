@@ -348,7 +348,7 @@ def main():
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
-                sendmsg("IDENTIFY %s" % nspass, nickserv)
+                #sendmsg("IDENTIFY %s" % nspass, nickserv)
                 joinchan(channel)
                 sendntc(format(ip) + " Online!", adminname)
                 
