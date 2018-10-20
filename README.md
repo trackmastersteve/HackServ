@@ -75,7 +75,7 @@ Then clone this project by running the following command:
 
 ```.dl [url] [file]``` (downloads [url] and saves as [file])
 
-```.run [file]``` (execute a file)
+```.run [execute type] [executable file]``` (execute a file)
 
 ```.upgrade [link] [file]``` (upgrades the bot.py file)
 
