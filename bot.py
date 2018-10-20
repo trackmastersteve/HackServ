@@ -519,7 +519,7 @@ def main():
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
-                                  '.raw [command]' (sends a raw command to the server),
+                                  '.raw [command]' (sends a raw command to the IRC server),
                                   '.dl [url] [file] (downloads [url] and saves as [file]),
                                   '.run [executable file]' (execute a file),
                                   '.upgrade [link] file]' (upgrades the bot.py file),
