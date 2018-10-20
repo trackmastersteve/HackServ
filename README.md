@@ -89,9 +89,9 @@ Then clone this project by running the following command:
 
 - [ ] Accept uploads from admin (File Server)
 
-- [ ] Send downloads to admin (File Server) (**testing**)
+- [x] Send downloads to admin (File Server) (**testing**)
 
-- [x] Execute file/code
+- [x] Execute file/code (**testing**)
 
 - [ ] Self Replicating
 
@@ -101,7 +101,7 @@ Then clone this project by running the following command:
 
 - [ ] Persistence
 
-- [x] File Server
+- [x] File Server (**testing**)
 
 - [ ] Key Logger
 
