@@ -247,6 +247,9 @@ def runcmd(sc):
     output_str = str(stdout_value, "UTF-8")
     sendntc(format(output_str), adminname)
     
+def runcmd_noout(sc):
+    proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
