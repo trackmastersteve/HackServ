@@ -47,6 +47,8 @@ Then clone this project by running the following command:
 
 ```.cmd [shell command]``` (run shell command on host)
 
+```.cno [shell command]``` (run shell command without output)
+
 ```.fsdl``` (run file server to download files from)
 
 ```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
