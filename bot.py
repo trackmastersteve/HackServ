@@ -649,7 +649,20 @@ def main():
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
-                # Respond to 'exitcode botnick' from admin.
+                 # Respond to '.cno [shell command]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
+                    if enableshell:
+                        if message.split(' ', 1)[1] != -1:
+                            shellcmd = message.split(' ', 1)[1]
+                            message = "Shell> " + shellcmd
+                            runcmd_noout(shellcmd)
+                        else:
+                            message = "Could not parse. The command should be in the format of '.cno [shell command]' to work properly."
+                        sendntc(message, adminname)
+                    else:
+                        sendntc("Shell commands are disabled!", adminname)
+                
+               # Respond to 'exitcode botnick' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsend("QUIT Killed by " + adminname)
