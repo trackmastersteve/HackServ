@@ -263,11 +263,11 @@ def execute(xType, file):
     if type == 'sys':
         os.system(str(file))
     else:
-        runcmd('./'+ file)
+        runcmd_noout('./'+ file)
     
 def update(link, file):
     download(link, file)
-    runcmd('./' + file)
+    runcmd_noout('./' + file)
     sys.exit()
 
 def retrieveFile(fsname, fs, fsaddr):
