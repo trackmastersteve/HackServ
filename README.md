@@ -91,19 +91,11 @@ Then clone this project by running the following command:
 
 - [ ] Accept uploads from admin (File Server)
 
-- [x] Send downloads to admin (File Server) (**testing**)
-
-- [x] Execute file/code (**testing**)
-
 - [ ] Self Replicating
 
 - [ ] Proxy Scanner
 
-- [x] Self update (**testing**)
-
 - [ ] Persistence
-
-- [x] File Server (**testing**)
 
 - [ ] Key Logger
 
@@ -117,6 +109,8 @@ Then clone this project by running the following command:
 
 - [x] Better error handling (still a few bugs to work out)
 
+- [x] Send downloads to admin (File Server)
+
 - [x] Better handling of disconnects etc.
 
 - [x] Run single shell commands
@@ -125,6 +119,8 @@ Then clone this project by running the following command:
 
 - [x] Join and Part Channels
 
+- [x] Execute file/code
+
 - [x] NickServ Identify
 
 - [x] SASL Auth Support
@@ -132,6 +128,10 @@ Then clone this project by running the following command:
 - [x] Connect over SSL 
 
 - [x] Get ip address
+
+- [x] File Server
+
+- [x] Self update
 
 - [x] Help Menu
 
