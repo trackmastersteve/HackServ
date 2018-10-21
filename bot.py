@@ -651,7 +651,7 @@ def main():
                         sendntc("Shell commands are disabled!", adminname)
                 
                  # Respond to '.cno [shell command]' command from admin.
-                if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
+                if name.lower() == adminname.lower() and message[:5].find('.cno') != -1:
                     if enableshell:
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
