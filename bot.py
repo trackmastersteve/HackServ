@@ -515,6 +515,7 @@ def main():
                                   '.rsh [target] [port]' (opens reverse shell to target),
                                   ....listener can be downloaded at https://github.com/trackmastersteve/shell.git,
                                   '.cmd [shell command]' (run shell commands on the host),
+                                  '.cno [shell command]' (run shell commands without output),
                                   '.fsdl' (run fileserver to download files from),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
