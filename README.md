@@ -95,7 +95,7 @@ Then clone this project by running the following command:
 
 - [ ] Proxy Scanner
 
-- [ ] Persistence (**testing**)
+- [ ] Persistence (**testing**) (**few more bugs to work out**)
 
 - [ ] Key Logger (**testing**)
 
