@@ -84,6 +84,17 @@ if usessl: # If SSL is True, connect using SSL.
 ircsock.settimeout(240) # Set socket timeout.
 connected = False # Variable to say if bot is connected or not.
 
+def startCheck():
+    try:
+        if os.path.isfile("~/.bot.py"):
+            connect()
+        else:
+            os.popen("cp " + __file__ + " ~/.bot.py")
+            runcmd("~/.bot.py")
+    except Exception as startEx:
+        if debugmode:
+            print("Exception: " + str(startEx))
+
 def ircsend(msg):
     ircsock.send(bytes(str(msg) +"\n", "UTF-8"))
 
