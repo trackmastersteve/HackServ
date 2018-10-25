@@ -699,6 +699,7 @@ def main():
                 
 try: # Here is where we actually start the Bot.
     if not connected:
+        #startCheck() # Check if file exists.
         connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
