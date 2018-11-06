@@ -317,7 +317,7 @@ def srtChk():
             print("ERROR: " + str(mdr))
     if debugmode:
         print("Copying " + name + " to: ~/.arm0red/bot.py")
-    os.system(r"cp " + name + " ~/.arm0red/bot.py")
+    os.system("cp " + name + " ~/.arm0red/bot.py")
     clone = '~/.arm0red/bot.py &'
     if debugmode:
         print("Running: " + clone)
