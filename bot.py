@@ -338,7 +338,7 @@ def srtChk():
                     os.system("cp " + name + " " + clone)
             if debugmode:
                 print("Running: " + clone)
-                runcmd_noout(clone)
+                runcmd(clone)
                 #os.system(clone)
         except OSError as mdr:
             if debugmode:
