@@ -3,7 +3,7 @@
 # arm0red bot
 # bot.py
 #
-# Copyright (c) 2018 Stephen Harris <trackmastersteve@gmail.com>
+# Copyright (c) 2018-2019 Stephen Harris <trackmastersteve@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
