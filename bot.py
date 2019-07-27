@@ -40,14 +40,14 @@ import uuid
 import base64
 import random
 import socket
-import ipgetter
+from requests import get
 import datetime
 import platform
 import threading
 import subprocess
 import urllib.request
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
-ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
+ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
 #################################################
 ############# Booleans ##########################
@@ -585,7 +585,7 @@ def main():
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
-                    ip = ipgetter.myip()
+                    ip = get('https://api.ipify.org').text
                     sendntc("My public ip address is: " + format(ip), name)
                 
                 # Respond to '.uptime' command from admin.
