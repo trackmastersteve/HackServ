@@ -242,8 +242,8 @@ def rShell(rsHost, rsPort):
     rs.close()
     
 def runcmd(sc):
-    proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    stdout_value = proc.stdout.read() + proc.stderr.read()
+    proc = subprocess.run(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    stdout_value = proc.stdout + proc.stderr
     output_str = str(stdout_value, "UTF-8")
     sendntc(format(output_str), adminname)
     
