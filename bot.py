@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
 version = '0.9.8'
-last_modification = '2019.08.22'
+last_modification = '2019.08.27'
 
 # Imports
 import os
