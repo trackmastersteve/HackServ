@@ -254,7 +254,7 @@ def runcmd(sc):
         if line:
             if debugmode:
                 print(format(line_str))
-                sendntc(format(line_str), adminname)
+            sendntc(format(line_str), adminname)
     pp = proc.poll()
     if debugmode:
         print(pp)
