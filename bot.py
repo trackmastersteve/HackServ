@@ -243,10 +243,23 @@ def rShell(rsHost, rsPort):
     rs.close()
     
 def runcmd(sc):
-    proc = subprocess.run(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    stdout_value = proc.stdout + proc.stderr
-    output_str = str(stdout_value, "UTF-8")
-    sendntc(format(output_str), adminname)
+    proc = subprocess.Popen(shlex.split(sc), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    while True:
+        line = proc.stdout.readline()
+        line_str = str(line, "UTF-8")
+        if line == '' and proc.poll() is not None:
+            if debugmode:
+                print("End of .cmd output.")
+            sendntc("Shell> End.", adminname)
+        if line:
+            if debugmode:
+                print(format(line_str))
+                sendntc(format(line_str), adminname)
+    pp = proc.poll()
+    if debugmode:
+        print(pp)
+    sendntc(pp, adminname)
+    sendntc("Shell> End.", adminname)
     
 def runcmd_noout(sc):
     proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
