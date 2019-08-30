@@ -14,13 +14,13 @@ package manager:
 
 ```sudo apt install python3 python3-pip nmap```
 
-Then you can install the following using pip3:
-
-```pip3 install requirements.txt```
-
 Then clone this project by running the following command:
 
 ```git clone https://github.com/trackmastersteve/bot.git```
+
+Then you can install the following using pip3:
+
+```cd bot && pip3 install requirements.txt```
 
 
 ### So far it responds to the following commands:
