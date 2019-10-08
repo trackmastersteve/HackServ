@@ -1,6 +1,6 @@
 # arm0.red bot
 
-[![Version](https://img.shields.io/badge/version-0.9.5-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
+[![Version](https://img.shields.io/badge/version-0.9.8-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.7-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/bot.svg)](https://github.com/trackmastersteve/bot/network) 
 
 Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
@@ -14,13 +14,13 @@ package manager:
 
 ```sudo apt install python3 python3-pip nmap```
 
-Then you can install the following using pip3:
-
-```pip3 install requirements.txt```
-
 Then clone this project by running the following command:
 
 ```git clone https://github.com/trackmastersteve/bot.git```
+
+Then you can install the following using pip3:
+
+```cd bot && pip3 install requirements.txt```
 
 
 ### So far it responds to the following commands:
@@ -46,6 +46,8 @@ Then clone this project by running the following command:
 ```.rsh [target] [port]``` (reverse shell to target)
 
 ```.cmd [shell command]``` (run shell command on host)
+
+```.cno [shell command]``` (run shell command without output)
 
 ```.fsdl``` (run file server to download files from)
 
@@ -75,7 +77,7 @@ Then clone this project by running the following command:
 
 ```.dl [url] [file]``` (downloads [url] and saves as [file])
 
-```.run [file]``` (execute a file)
+```.run [execute type] [executable file]``` (execute a file)
 
 ```.upgrade [link] [file]``` (upgrades the bot.py file)
 
@@ -87,23 +89,15 @@ Then clone this project by running the following command:
 
 - [ ] Auto Vuln/Port/Proxy Scan on join
 
-- [ ] Accept uploads from admin (File Server)
-
-- [ ] Send downloads to admin (File Server) (**testing**)
-
-- [x] Execute file/code
+- [ ] Accept uploads from admin (File Server) (**testing**)
 
 - [ ] Self Replicating
 
 - [ ] Proxy Scanner
 
-- [x] Self update (**testing**)
+- [ ] Persistence (**testing**) (**still trying to work the bugs out**)
 
-- [ ] Persistence
-
-- [x] File Server
-
-- [ ] Key Logger
+- [ ] Key Logger (**testing**)
 
 - [ ] Vuln Scan
 
@@ -115,6 +109,8 @@ Then clone this project by running the following command:
 
 - [x] Better error handling (still a few bugs to work out)
 
+- [x] Send downloads to admin (File Server)
+
 - [x] Better handling of disconnects etc.
 
 - [x] Run single shell commands
@@ -123,6 +119,8 @@ Then clone this project by running the following command:
 
 - [x] Join and Part Channels
 
+- [x] Execute file/code
+
 - [x] NickServ Identify
 
 - [x] SASL Auth Support
@@ -130,6 +128,10 @@ Then clone this project by running the following command:
 - [x] Connect over SSL 
 
 - [x] Get ip address
+
+- [x] File Server
+
+- [x] Self update
 
 - [x] Help Menu
 

