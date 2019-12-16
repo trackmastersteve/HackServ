@@ -360,6 +360,7 @@ def srtChk(): # Startup Check.
                 print("ERROR: " + str(mdr))
 
 def main():
+    joinchan(channel) #Fix it the auto join :)
     global connected
     global botnick
     global ip
