@@ -87,9 +87,9 @@ Then you can install the following using pip3:
 
 - [ ] Persistence (**testing**) (**still trying to work the bugs out**)
 
-- [ ] Accept uploads from admin (File Server) (**testing**)
-
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
+
+- [ ] Accept uploads from admin (File Server) (**testing**)
 
 - [ ] Auto Vuln/Port/Proxy Scan on join
 
