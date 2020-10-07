@@ -85,19 +85,19 @@ Then you can install the following using pip3:
 
 - [ ] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
+- [ ] Persistence (**testing**) (**still trying to work the bugs out**)
+
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
+
+- [ ] Accept uploads from admin (File Server) (**testing**)
 
 - [ ] Auto Vuln/Port/Proxy Scan on join
 
-- [ ] Accept uploads from admin (File Server) (**testing**)
+- [ ] Key Logger (**testing**)
 
 - [ ] Self Replicating
 
 - [ ] Proxy Scanner
-
-- [ ] Persistence (**testing**) (**still trying to work the bugs out**)
-
-- [ ] Key Logger (**testing**)
 
 - [ ] Vuln Scan
 
