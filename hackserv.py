@@ -26,7 +26,7 @@
 legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALICIOUS INTENT!'
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
-software = 'arm0red bot'
+software = 'HackServ'
 version = '0.9.8'
 last_modification = '2021.02.19'
 
@@ -65,7 +65,7 @@ serverpass = "password" # Password for IRC Server. (UnrealIRCD uses this as defa
 channel = "#arm0red" # Channel to join on connect.
 #botnick = "botnick" # Your bots IRC nick.
 #botnick = "ip" + ip.replace(".", "_") # Set bots nick to IP address, but in proper IRC nick compatible format.
-botnick = "abot["+ str(random.randint(10000,99999)) +"]" # Set bots IRC Nick to abot + 5 random numbers.
+botnick = "hs["+ str(random.randint(10000,99999)) +"]" # Set bots IRC Nick to 'hs' + 5 random numbers.
 nspass = "password" # Bots NickServ password.
 nickserv = "NickServ" # Nickname service name. (sometimes it's differnet on some networks.)
 adminname = "arm0red" # Bot Master's IRC nick.
