@@ -3,7 +3,7 @@
 # arm0red bot
 # bot.py
 #
-# Copyright (c) 2018-2019 Stephen Harris <trackmastersteve@gmail.com>
+# Copyright (c) 2018-2021 Stephen Harris <trackmastersteve@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'arm0red bot'
 version = '0.9.8'
-last_modification = '2019.10.08'
+last_modification = '2021.02.19'
 
 # Imports
 import os
