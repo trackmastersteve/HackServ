@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/bot.git'
 software = 'HackServ'
 version = '0.9.8'
-last_modification = '2021.02.19'
+last_modification = '2021.03.09'
 
 # Imports
 import os
