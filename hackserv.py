@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
-# arm0red bot
-# bot.py
+# HackServ IRC Bot
+# hackserv.py
 #
 # Copyright (c) 2018-2021 Stephen Harris <trackmastersteve@gmail.com>
 #
@@ -584,7 +584,7 @@ def main():
                                   '.raw [command]' (sends a raw command to the IRC server),
                                   '.dl [url] [file] (downloads [url] and saves as [file]),
                                   '.run [execute type] [executable file]' (execute a file),
-                                  '.upgrade [link] file]' (upgrades the bot.py file),
+                                  '.upgrade [link] file]' (upgrades the hackserv.py file),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
