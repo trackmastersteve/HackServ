@@ -1,0 +1,9 @@
+[Unit]
+Description=HackServ IRC Bot Service
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/username/.hackserv.py
+
+[Install]
+WantedBy=multi-user.target
