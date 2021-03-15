@@ -16,11 +16,11 @@ package manager:
 
 Then clone this project by running the following command:
 
-```git clone https://github.com/trackmastersteve/bot.git```
+```git clone https://github.com/trackmastersteve/HackServ.git```
 
 Then you can install the following using pip3:
 
-```cd bot && pip3 install requirements.txt```
+```cd HackServ && pip3 install requirements.txt```
 
 
 ### So far it responds to the following commands:
