@@ -22,6 +22,11 @@ Then you can install the following using pip3:
 
 ```cd HackServ && pip3 install requirements.txt```
 
+If you have sudo privleges, you can make the bot persist:
+
+```sudo useradd hackserv```
+```sudo cp hackserv.service /etc/systemd/system/hackserv.service```
+```sudo systemctl enable --now hackserv.service```
 
 ### So far it responds to the following commands:
 
