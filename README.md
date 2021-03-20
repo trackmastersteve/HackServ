@@ -25,8 +25,11 @@ Then you can install the following using pip3:
 If you have sudo privleges, you can make the bot persist:
 
 ```sudo useradd hackserv```
+
 Edit: ```hackserv.service``` with correct location of script i.e. ```/home/username/.hackserv.py```
+
 ```sudo cp hackserv.service /etc/systemd/system/hackserv.service```
+
 ```sudo systemctl enable --now hackserv.service```
 
 ### So far it responds to the following commands:
