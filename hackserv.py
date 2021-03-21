@@ -657,7 +657,8 @@ def main():
                         message = "Update sucessful!"
                         uFile = target.split(' ', 1)[1]
                         target = target.split(' ')[0]
-                        update(target, uFile)
+                        update_thread = threading.Thread(target=update, args=target, uFile))
+                        update_thread.start()
                     else:
                         message = "Could not parse. The command should be in the format of '.update [link] [file]' to work properly."
                     sendntc(message, adminname)
@@ -671,7 +672,8 @@ def main():
                         target = target.split(' ')[0]
                         ports = [s.strip() for s in str(ports).split(',')] 
                         for port in ports: # loops through comma seperated list of ports.
-                            nmapScan(target, port)
+                            nmapScan_thread = threading.Thread(target=nmapScan, args=(target, port))
+                            nmapScan_thread.start()
                     else:
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendntc(message, adminname)
