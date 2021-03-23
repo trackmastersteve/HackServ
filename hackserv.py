@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 # HackServ IRC Bot
 # hackserv.py
@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/hackserv.git'
 software = 'HackServ'
 version = '0.9.9'
-last_modification = '2021.03.19'
+last_modification = '2021.03.23'
 
 # Imports
 import os
@@ -324,7 +324,7 @@ def srtChk(): # Startup Check.
     name = str(script[0])
     hd = str(os.path.expanduser('~'))
     hdPath = hd + '/.arm0red'
-    clone = hdPath + '/bot.py'
+    clone = hdPath + '/hackserv.py'
     if name == clone:
         if debugmode:
             print(name + " and "+ clone + " are the same file!")
