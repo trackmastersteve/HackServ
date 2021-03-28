@@ -1,6 +1,6 @@
 # HackServ IRC Bot
 
-[![Version](https://img.shields.io/badge/version-0.9.8-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.9-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/network) 
+[![Version](https://img.shields.io/badge/version-0.9.9-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.9-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/network) 
 
 Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
@@ -22,6 +22,15 @@ Then you can install the following using pip3:
 
 ```cd HackServ && pip3 install requirements.txt```
 
+If you have sudo privleges, you can make the bot persist:
+
+```sudo useradd hackserv```
+
+Edit: ```hackserv.service``` with correct location of script i.e. ```/home/username/.hackserv.py```
+
+```sudo cp hackserv.service /etc/systemd/system/hackserv.service```
+
+```sudo systemctl enable --now hackserv.service```
 
 ### So far it responds to the following commands:
 
@@ -85,7 +94,7 @@ Then you can install the following using pip3:
 
 - [ ] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
-- [ ] Persistence (**testing**) (**still trying to work the bugs out**)
+- [ ] Persistence (**testing**) (**.service file was created to run this as a systemd service**)
 
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
