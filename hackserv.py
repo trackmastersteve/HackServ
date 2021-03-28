@@ -280,12 +280,19 @@ def execute(xType, file): # Run executable file.
     else:
         runcmd_noout('./'+ file)
     
-def update(link, file): # Update bot.
-    download(link, file)
-    Popen("/home/code/hackserv.py", shell=True)
-    #runcmd_noout('./' + file)
-    sys.exit()
+def chFileMod(modFile, modType):
+    os.chmod(str(modFile), str(modType))
+    sendntc(str(modFile) +" mode was changed to: "+ str(modType) +"!", adminname)
 
+def update(link, dlFile): # Update bot.
+    download(link, dlFile)
+    chFileMod(str(dlFile), stat.S_IXUSR)
+    os.rename("hackserv.py", "hackserv.py.bak")
+    os.rename(str(dlFile), "hackserv.py")
+    runcmd_noout("./hackserv.py")
+    sendntc(str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
+    #sys.exit()
+    
 def retrieveFile(fsname, fs, fsaddr): # Receive a file.
     filename = fs.recv(1024).decode("UTF-8")
     if os.path.isfile(filename):
