@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 # HackServ IRC Bot
 # hackserv.py
@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/hackserv.git'
 software = 'HackServ'
 version = '0.9.9'
-last_modification = '2021.03.19'
+last_modification = '2021.03.23'
 
 # Imports
 import os
@@ -702,7 +702,7 @@ def main():
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
-                            runcmd_thread = threading.Thread(target=runcmd, args=(shellcmd))
+                            runcmd_thread = threading.Thread(target=runcmd, args=(shellcmd,))
                             runcmd_thread.start()
                         else:
                             message = "Could not parse. The command should be in the format of '.cmd [shell command]' to work properly."
@@ -716,7 +716,7 @@ def main():
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
-                            runcmd_noout_thread = threading.Thread(target=runcmd_noout, args=(shellcmd))
+                            runcmd_noout_thread = threading.Thread(target=runcmd_noout, args=(shellcmd,))
                             runcmd_noout_thread.start()
                         else:
                             message = "Could not parse. The command should be in the format of '.cno [shell command]' to work properly."
