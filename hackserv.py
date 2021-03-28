@@ -34,6 +34,7 @@ last_modification = '2021.03.28'
 import os
 import ssl
 import sys
+import stat
 import nmap
 import time
 import uuid
@@ -296,7 +297,8 @@ def update(link, dlFile): # Update bot.
     os.rename("hackserv.py", "hackserv.py.bak")
     os.rename(str(dlFile), "hackserv.py")
     if debugmode:
-        print("[+] The new hackserv.py is ready to run!")
+        print("[+] Restarting hackserv.py!")
+    os.execv(__file__, sys.argv)
     sendntc("[*] Success! "+ str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
     
 def retrieveFile(fsname, fs, fsaddr): # Receive a file.
