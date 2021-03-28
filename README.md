@@ -92,9 +92,9 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 ### TODO
 
-- [ ] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
+- [x] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
-- [ ] Persistence (**testing**) (**.service file was created to run this as a systemd service**)
+- [x] Persistence (**.service file was created to run this as a systemd service**)
 
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
