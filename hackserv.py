@@ -291,7 +291,7 @@ def update(link, dlFile): # Update bot.
     download(link, dlFile)
     if debugmode:
         print("[chmod +x] Making "+ str(dlFile) +" executable!")
-    chFileMod(dlFile, stat.S_IXUSR)
+    chFileMod(dlFile, 0o755)
     if debugmode:
         print("[<==] Backing up old hackserv.py and renaming "+ str(dlFile) +" to hackserv.py")
     os.rename("hackserv.py", "hackserv.py.bak")
