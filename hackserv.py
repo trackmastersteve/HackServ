@@ -678,7 +678,18 @@ def main():
                     else:
                         message = "Could not parse. The command should be in the format of '.update [link] [file]' to work properly."
                     sendntc(message, adminname)
-                               
+
+                if name.lower() == adminname.lower() and message[:5].find('.chmd') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        message = "File permissions changed!"
+                        cmMod = target.split(' ', 1)[1]
+                        cmFile = target.split(' ')[0]
+                        chFileMod(cmFile, cmMod)
+                    else:
+                        message = "Could not parse. The command should be in the format of '.chmd [file] [permissions]' to work properly."
+                    sendntc(message, adminname)
+                    
                 # Respond to '.scan [target] [port(s)]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.scan') != -1:
                     target = message.split(' ', 1)[1]
