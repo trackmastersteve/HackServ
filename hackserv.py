@@ -680,6 +680,18 @@ def main():
                         message = "Could not parse. The command should be in the format of '.update [link] [file]' to work properly."
                     sendntc(message, adminname)
 
+                # Respond to '.dl [file] [link]' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.dl') != -1:
+                    target = message.split(' ', 1)[1]
+                    if target.find(' ') != -1:
+                        message = "File downloaded!"
+                        dlLink = target.split(' ', 1)[1]
+                        dlFile = taregt.split(' ')[0]
+                        download(dlFile, dlLink)
+                    else:
+                        message = "Could not parse. The command should be in the format of '.dl [file] [link]' to work properly."
+                
+                # Respond to '.chmd [file] [permissions]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.chmd') != -1:
                     target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
