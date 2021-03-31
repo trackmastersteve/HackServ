@@ -92,6 +92,8 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 ### TODO
 
+- [ ] Move configuration to external file to make updates more seamless
+
 - [x] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
 - [x] Persistence (**.service file was created to run this as a systemd service**)
@@ -108,7 +110,9 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 - [ ] Proxy Scanner
 
-- [ ] Vuln Scan
+- [ ] Vuln Scanner
+
+- [ ] Self proxy
 
 - [ ] DoS/DDoS
 
@@ -128,7 +132,7 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 - [x] Join and Part Channels
 
-- [x] Execute file/code
+- [x] Execute files/code
 
 - [x] NickServ Identify
 
