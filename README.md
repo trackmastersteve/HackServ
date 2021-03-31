@@ -58,6 +58,8 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 ```.cno [shell command]``` (run shell command without output)
 
+```.chmd [file] [permissions]``` (change permissions of a file)
+
 ```.fsdl``` (run file server to download files from)
 
 ```.scan [ip] [comma,seperated,ports]``` (nmap port scanner)
