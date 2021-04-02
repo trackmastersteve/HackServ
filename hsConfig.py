@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 #
+# HackServ IRC Bot - Config File
+# hsConfig.py
+#
 #################################################
 ############# Booleans ##########################
 debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
