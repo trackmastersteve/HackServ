@@ -48,6 +48,7 @@ import threading
 import subprocess
 import urllib.request
 from requests import get
+from hsConfig import *
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 
