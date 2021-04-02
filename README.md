@@ -100,6 +100,8 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/home/usern
 
 - [x] Persistence (**.service file was created to run this as a systemd service**)
 
+- [ ] Convert the port scanner from nmap to sockets (to remove the nmap dependency)
+
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
 - [ ] Accept uploads from admin (File Server) (**testing**)
