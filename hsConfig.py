@@ -23,6 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
+import random
 #################################################
 ############# Booleans ##########################
 debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
