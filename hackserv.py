@@ -50,6 +50,7 @@ import urllib.request
 from requests import get
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
+sys.path.insert(0, '/usr/local/bin/')
 from hsConfig import *
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
