@@ -1,6 +1,6 @@
 [Unit]
 Description=HackServ IRC Bot Service
-After=network.target
+After=network-online.target
 
 [Service]
 User=hackserv
