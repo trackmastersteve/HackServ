@@ -307,7 +307,7 @@ def fileServer(): # Open a file server on this device.
         t = threading.Thread(target=retrieveFile, args=("retreiveThread", c, addr))
         t.start()
     s.close()
-
+    
 def srtChk(): # Startup Check. (Still in testing!)
     script = sys.argv
     name = str(script[0])
@@ -765,7 +765,15 @@ def main(): # This is the main function for all of the bot controls.
 try: # Here is where we actually start the Bot.
     if not connected:
         #srtChk() # Check if file exists.
-        connect() # Connect to server.
+        if os.path.isfile('hsConfig.py'):
+            if debugmode:
+                print("hsConfig.py found. Starting HackServ...")
+            connect() # Connect to server.
+            
+        else:
+            if debugmode:
+                print("hsConfig.py does not exist. Exiting...")
+            sys.exit()
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
     ircsend("QUIT Terminated Bot using [ctrl + c]")
