@@ -1,12 +1,15 @@
 [Unit]
 Description=HackServ IRC Bot Service
+Wants=network.target
 After=network-online.target
 
 [Service]
 User=hackserv
 Group=hackserv
-ExecStart=/usr/bin/python3 /home/username/.hackserv.py
-RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /usr/local/bin/.hackserv.py
+Restart=on-failure
+RestartSec=10
+KillMode=process
 
 [Install]
 WantedBy=multi-user.target
