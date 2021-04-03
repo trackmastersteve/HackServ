@@ -24,6 +24,8 @@
 # SOFTWARE.
 #
 import random
+from requests import get
+ip = get('https://api.ipify.org').text
 #################################################
 ############# Booleans ##########################
 debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
