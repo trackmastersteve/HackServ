@@ -8,6 +8,7 @@ After=syslog.target network.target network-online.target
 User=hackserv
 Group=hackserv
 ExecStart=/usr/bin/python3 /usr/local/bin/.hackserv.py
+WorkingDirectory=/usr/local/bin/
 Restart=always
 RestartSec=10
 KillMode=process
