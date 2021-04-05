@@ -766,14 +766,14 @@ def main(): # This is the main function for all of the bot controls.
 try: # Here is where we actually start the Bot.
     if not connected:
         #srtChk() # Check if file exists.
-        if os.path.isfile('./hsConfig.py'):
+        if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
             if debugmode:
                 print("hsConfig.py found. Starting HackServ...")
             connect() # Connect to server.
             
         else:
             if debugmode:
-                print("hsConfig.py does not exist. Exiting...")
+                print("hsConfig.py does not exist. Exiting...") 
             sys.exit()
     
 except KeyboardInterrupt: # Kill Bot from CLI using CTRL+C
