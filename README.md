@@ -26,7 +26,11 @@ If you have sudo privleges, you can make the bot persist:
 
 ```sudo useradd hackserv```
 
-Edit: ```hackserv.service``` with correct location of script i.e. ```/home/username/.hackserv.py```
+Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/bin/.hackserv.py```
+
+```sudo cp hackserv.py /usr/local/bin/.hackserv.py```
+
+```sudo cp hsConfig.py /usr/local/bin/hsConfig.py``` (Don't forget to edit thios file aftwards)
 
 ```sudo cp hackserv.service /etc/systemd/system/hackserv.service```
 
