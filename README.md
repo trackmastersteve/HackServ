@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-1.0.6-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/tree/master/LICENSE) [![Python3](https://img.shields.io/badge/python-3.9-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/HackServ.svg)](https://github.com/trackmastersteve/HackServ/network) 
 
-Simple IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
+Advanced IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
 This bot can connect to IRC over SSL and is compatible with Unrealircd's nospoof:PING.
 Single python file for easy deployment. 
