@@ -29,6 +29,7 @@ ip = get('https://api.ipify.org').text
 #################################################
 ############# Booleans ##########################
 debugmode = False # If True, all print msgs will be active. (use False if you want to run in the background)
+onJoin = False # If True, the bots onJoin actions will be enabled.
 usessl = True # Connect using SSL. (True or False)
 useservpass = False # Use a password to connect to IRC Server. (True or False)
 usesasl = False # Authenticate using SASL. (True or False)
