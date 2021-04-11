@@ -416,8 +416,8 @@ def main(): # This is the main function for all of the bot controls.
             message = ircmsg.split('JOIN',1)[1].split(':',1)[1]
             if len(name) < 17:
                 if message.find(channel) != -1:
-                    sendntc('User: '+ name +' joined: '+ message, adminname)
-                    sendntc('Welcome to '+ message +'. You are being watched...', name)
+                    if onJoin:
+                        sendntc('User: '+ name +' joined: '+ message, adminname)
             
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
