@@ -417,6 +417,7 @@ def main(): # This is the main function for all of the bot controls.
             if len(name) < 17:
                 if message.find(channel) != -1:
                     if onJoin:
+                        ircsend("DNS"+ name)
                         sendntc('User: '+ name +' joined: '+ message, adminname)
             
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
