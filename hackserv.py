@@ -400,6 +400,14 @@ def main(): # This is the main function for all of the bot controls.
                 joinchan(channel)
                 sendntc(format(ip) + " Online!", adminname)
                 
+            # Respond to 'PONG ERROR' message from server.
+            if message.find('ERROR') != -1:
+                if debugmode:
+                    print("Received a 'ERROR' from the server, reconnecting in 30 seconds...")
+                connected = False
+                time.sleep(30)
+                reconnect()
+            
             # Respond to NickServ ident request.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
                 sendmsg("IDENTIFY " + nspass, nickserv)
