@@ -765,8 +765,10 @@ def main(): # This is the main function for all of the bot controls.
 
         else:
             if ircmsg.find("PING") != -1: # Reply to PINGs.
-                nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
+                nospoof = ircmsg.split(':', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsend("PONG " + nospoof)
+                if debugmode:
+                    print("Replying with '"+ nospoof +"'")
                 lastping = time.time() # Set time of last PING.
                 if (time.time() - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
                     if debugmode: # If debugmode is True, msgs will print to screen.
