@@ -403,9 +403,9 @@ def main(): # This is the main function for all of the bot controls.
             # Respond to 'PONG ERROR' message from server.
             if message.find('ERROR') != -1:
                 if debugmode:
-                    print("Received a 'ERROR' from the server, reconnecting in 30 seconds...")
+                    print("Received a 'ERROR' from the server, reconnecting in 5 seconds...")
                 connected = False
-                time.sleep(30)
+                time.sleep(5)
                 reconnect()
             
             # Respond to NickServ ident request.
