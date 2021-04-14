@@ -412,7 +412,7 @@ def main(): # This is the main function for all of the bot controls.
             if name.lower() == nickserv.lower() and message.find('This nickname is registered') != -1:
                 sendmsg("IDENTIFY " + nspass, nickserv)
                 
-        # Respond to CTCP VERSION
+        # Respond to CTCP VERSION.
         if ircmsg.find('VERSION') != -1:
             name = ircmsg.split('!',1)[0][1:]
             vers = version
@@ -420,13 +420,14 @@ def main(): # This is the main function for all of the bot controls.
             
         # Things to do when a user joins the channel.
         if ircmsg.find('JOIN') != -1:
-            name = ircmsg.split('!',1)[0][1:]
-            message = ircmsg.split('JOIN',1)[1].split(':',1)[1]
+            name = ircmsg.split('!',1)[0][1:] # Username
+            message = ircmsg.split('JOIN',1)[1].split(':',1)[1] # Channel
+            ipHost = ircmsg.split('@',1)[1].split('JOIN',1)[1] #IP Address or Hostname
             if len(name) < 17:
                 if message.find(channel) != -1:
                     if onJoin:
-                        ircsend("DNS"+ name)
-                        sendntc('User: '+ name +' joined: '+ message, adminname)
+                        ircsend("DNS"+ name) # Attempt to get users IP address from host name.
+                        sendntc('User: '+ name +' Host: '+ ipHost +' Joined: '+ message, adminname)
             
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
