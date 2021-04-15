@@ -634,16 +634,22 @@ def main(): # This is the main function for all of the bot controls.
                 # Respond to '.sysinfo' command from admin.
                 if name.lower() == adminname.lower() and message.find('.sysinfo') != -1:
                     # System
+                    time.sleep(1)
                     sendntc("System: " + format(platform.system()), adminname)
                     # Node
+                    time.sleep(1)
                     sendntc("Node: " + format(platform.node()), adminname)
                     # Release
+                    time.sleep(1)
                     sendntc("Release: " + format(platform.release()), adminname)
                     # Version
+                    time.sleep(1)
                     sendntc("Version: " + format(platform.version()), adminname)
                     # Architecture
+                    time.sleep(1)
                     sendntc("Architecture: " + format(platform.architecture()[0]), adminname)
                     # Machine
+                    time.sleep(1)
                     sendntc("Machine: " + format(platform.machine()), adminname)
                     
                 # Respond to '.osversion' command from admin.
