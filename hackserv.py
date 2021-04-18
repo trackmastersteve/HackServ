@@ -422,12 +422,12 @@ def main(): # This is the main function for all of the bot controls.
         if ircmsg.find('JOIN') != -1:
             name = ircmsg.split('!',1)[0][1:] # Username
             message = ircmsg.split('JOIN',1)[1].split(':',1)[1] # Channel
-            #ipHost = ircmsg.split('@',1)[1].split('JOIN',1)[1] #IP Address or Hostname
+            ipHost = ircmsg.split('JOIN',1)[0] #IP Address or Hostname
             if len(name) < 17:
                 if message.find(channel) != -1:
                     if onJoin:
                         ircsend("DNS "+ name) # Attempt to get users IP address from host name.
-                        sendntc('User: '+ name +' Joined: '+ message, adminname)
+                        sendntc('User: '+ name +' Hostname: '+ ipHost +' Joined: '+ message, adminname)
             
         # Messages come in from IRC in the format of: ":[Nick]!~[hostname]@[IPAddress]PRIVMSG[channel]:[message]"
         if ircmsg.find('PRIVMSG') != -1:
