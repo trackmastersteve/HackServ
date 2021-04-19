@@ -402,7 +402,7 @@ def main(): # This is the main function for all of the bot controls.
                 
             # Respond to 'PONG ERROR' message from server.
             if message.find('ERROR') != -1:
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Received a 'ERROR' from the server, reconnecting in 5 seconds...")
                 connected = False
                 time.sleep(5)
@@ -425,7 +425,7 @@ def main(): # This is the main function for all of the bot controls.
             ipHost = ircmsg.split('JOIN',1)[0] #IP Address or Hostname
             if len(name) < 17:
                 if message.find(channel) != -1:
-                    if onJoin:
+                    if onJoin: # must have 0nJoin = True in hsConfig.
                         #ircsend("DNS "+ name) # Attempt to get users IP address using DNS from IRC Server. (Commented out due to Oper requirements on most servers.)
                         sendntc('User: '+ name +' Hostname: '+ ipHost +' Joined: '+ message, adminname)
             
