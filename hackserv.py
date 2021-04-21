@@ -750,7 +750,7 @@ def main(): # This is the main function for all of the bot controls.
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
-                 # Respond to '.cno [shell command]' command from admin.
+                # Respond to '.cno [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cno') != -1:
                     if enableshell:
                         if message.split(' ', 1)[1] != -1:
@@ -764,7 +764,7 @@ def main(): # This is the main function for all of the bot controls.
                     else:
                         sendntc("Shell commands are disabled!", adminname)
                 
-               # Respond to 'exitcode botnick' from admin.
+                # Respond to 'exitcode botnick' from admin.
                 if name.lower() == adminname.lower() and message.rstrip() == exitcode + " " + botnick:
                     sendmsg("Okay, Bye!")
                     ircsend("QUIT Killed by " + adminname)
