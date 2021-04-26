@@ -308,7 +308,11 @@ def fileServer(): # Open a file server on this device.
         t = threading.Thread(target=retrieveFile, args=("retreiveThread", c, addr))
         t.start()
     s.close()
-    
+
+def startList():
+    dirList = os.walk(top, topdown=True, onerror=None, followlinks=False)
+    print(dirList)
+
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(sys.argv[0])
     hd = str(os.path.expanduser('~'))
