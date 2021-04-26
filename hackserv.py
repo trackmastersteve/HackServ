@@ -311,7 +311,8 @@ def fileServer(): # Open a file server on this device.
 
 def startList():
     dirList = os.walk(top, topdown=True, onerror=None, followlinks=False)
-    print(dirList)
+    if debugmode:
+        print(dirList)
 
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(sys.argv[0])
