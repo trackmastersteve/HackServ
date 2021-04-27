@@ -309,7 +309,7 @@ def fileServer(): # Open a file server on this device.
         t.start()
     s.close()
 
-def fileList(): # List files in current directory
+def fileList(top): # List files in current directory
     dirList = os.walk(top, topdown=True, onerror=None, followlinks=False)
     if debugmode:
         print(dirList) # Print the file list to screen if debugmode is enabled.
@@ -800,7 +800,7 @@ try: # Here is where we actually start the Bot.
         if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
             if debugmode:
                 print("hsConfig.py found. Starting HackServ...")
-            fileList() # Get list of files in current directory.
+            fileList(top) # Get list of files in current directory.
             connect() # Connect to server.
             
         else:
