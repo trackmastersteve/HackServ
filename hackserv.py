@@ -800,7 +800,7 @@ try: # Here is where we actually start the Bot.
         if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
             if debugmode:
                 print("hsConfig.py found. Starting HackServ...")
-            fileList(top) # Get list of files in current directory.
+            fileList() # Get list of files in current directory.
             connect() # Connect to server.
             
         else:
