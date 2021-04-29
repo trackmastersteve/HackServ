@@ -310,7 +310,7 @@ def fileServer(): # Open a file server on this device.
     s.close()
 
 def fileList(): # List files in current directory
-    dirList = os.walk('.', topdown=True, onerror=None, followlinks=False)
+    dirList = os.walk('.', topdown=True, onerror=None, followlinks=False) # walk through current directory.
     if debugmode:
         print(dirList) # Print the file list to screen if debugmode is enabled.
 
