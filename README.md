@@ -98,7 +98,7 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 ### TODO
 
-- [ ] Move configuration to external file to make updates more seamless
+- [x] Move configuration to external file to make updates more seamless
 
 - [x] Send/Receive CTCP commands (so far it responds to **CTCP VERSION** only)
 
