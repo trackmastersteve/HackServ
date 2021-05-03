@@ -108,17 +108,17 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 - [ ] Send/Receive DCC commands (CHAT and TRANSFER)
 
-- [ ] Accept uploads from admin (File Server) (**testing**)
+- [x] Accept uploads from admin (File Server)
 
 - [ ] Auto Vuln/Port/Proxy Scan on join
 
 - [ ] Key Logger (**testing**)
 
-- [ ] Self Replicating
+- [ ] Self Replicating (**testing**)
 
-- [ ] Proxy Scanner
+- [ ] Proxy Scanner (**testing**)
 
-- [ ] Vuln Scanner
+- [ ] Vuln Scanner (**testing**)
 
 - [ ] Self proxy
 
