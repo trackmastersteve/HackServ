@@ -311,17 +311,15 @@ def fileServer(): # Open a file server on this device.
 
 def fileList(): # List files in current directory
     os.chdir(".")
-    for root, dirs, files in os.walk(".", topdown = False):
+    for root, dirs, files in os.walk(".", topdown = False): # walk through current directory.
         for name in files:
-            if debugmode:
-                print(os.path.join(root, name))
+            if debugmode: # If debugmode is True, msgs will print to screen.
+                print(os.path.join(root, name)) # Print the file list to screen if debugmode is enabled.
+            return os.path.join(root, name)
         for name in dirs:
-            if debugmode:
-                print(os.path.join(root, name))
-    
-    dirList = os.walk('.', topdown=True, onerror=None, followlinks=False) # walk through current directory.
-    if debugmode: # If debugmode is True, msgs will print to screen.
-        print(dirList) # Print the file list to screen if debugmode is enabled.
+            if debugmode: # If debugmode is True, msgs will print to screen.
+                print(os.path.join(root, name)) # Print the dir list to screen if debugmode is enabled.
+            return os.path.join(root, name)
 
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(sys.argv[0])
