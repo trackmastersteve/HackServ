@@ -741,6 +741,10 @@ def main(): # This is the main function for all of the bot controls.
                 if name.lower() == adminname.lower() and message[:5].find('.fsdl') != -1:
                     fileServer()
 
+                # Respond to '.ls' command from admin.
+                if name.lower() == adminname.lower() and message[:5].find('.ls') != -1:
+                    sendntc(format(listFiles()), adminname)
+                
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
                     if enableshell: # If enableshell is True, you can use this command.
