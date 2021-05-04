@@ -743,7 +743,7 @@ def main(): # This is the main function for all of the bot controls.
 
                 # Respond to '.ls' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.ls') != -1:
-                    sendntc(format(listFiles()), adminname)
+                    sendntc(format(fileList()), adminname)
                 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
