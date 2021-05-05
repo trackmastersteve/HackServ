@@ -750,7 +750,8 @@ def main(): # This is the main function for all of the bot controls.
 
                 # Respond to '.ls' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.ls') != -1:
-                    fileList()
+                    target = message.split(' ', 1)[1]
+                    fileList(target)
                 
                 # Respond to '.cmd [shell command]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.cmd') != -1:
