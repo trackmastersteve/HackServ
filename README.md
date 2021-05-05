@@ -90,6 +90,8 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 ```.raw [command]``` (sends a raw command to the server)
 
+```.ls [dir]``` (list's files in a directory)
+
 ```.dl [url] [file]``` (downloads [url] and saves as [file])
 
 ```.run [execute type] [executable file]``` (execute a file)
