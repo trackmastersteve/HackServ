@@ -309,9 +309,9 @@ def fileServer(): # Open a file server on this device.
         t.start()
     s.close()
 
-def fileList(): # List files in current directory
-    os.chdir(".")
-    for root, dirs, files in os.walk(".", topdown = False): # walk through current directory.
+def fileList(dir): # List files in current directory
+    os.chdir(dir)
+    for root, dirs, files in os.walk(dir, topdown = False): # walk through current directory.
         for name in files:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print(os.path.join(root, name)) # Print the file list to screen if debugmode is enabled.
