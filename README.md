@@ -5,7 +5,7 @@
 Advanced IRC bot/botnet PoC written in python 3. This bot is for educational purposes only!
 Do **NOT** use this bot on a computer or network without written permission from the owner(s)!
 This bot can connect to IRC over SSL and is compatible with Unrealircd's nospoof:PING.
-Single python file for easy deployment. 
+Seperate config file for easy upgrades.
 
 ### Installation:
 
