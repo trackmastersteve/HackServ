@@ -352,7 +352,8 @@ def srtChk(): # Startup Check. (Still in testing!)
                 if name != clone:
                     if debugmode: # If debugmode is True, msgs will print to screen.
                         print("Copying " + name + " to: " + clone)
-                    os.system("cp " + name + " " + clone)
+                    #os.system("cp " + name + " " + clone)
+                    shutil.copyfile(name, clone)
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Running: " + clone)
                 runcmd(clone)
