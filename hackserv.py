@@ -39,6 +39,7 @@ import nmap
 import time
 import uuid
 import shlex
+import shutil
 import base64
 import random
 import socket
