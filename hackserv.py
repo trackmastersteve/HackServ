@@ -163,6 +163,10 @@ def username(): # Used to get the OS username for .username command.
     usrnm = os.getenv('USER', os.getenv('USERNAME', 'user'))
     return usrnm
 
+def guid():
+    uid = os.getuid()
+    return uid
+
 def macaddress(): # Used to get macaddress for .macaddress command.
     ma = ':'.join(hex(uuid.getnode()).strip('0x').strip('L')[i:i+2] for i in range(0,11,2)).upper()
     return ma
@@ -640,6 +644,7 @@ def main(): # This is the main function for all of the bot controls.
                 # Respond to '.username' command from admin.
                 if name.lower() == adminname.lower() and message.find('.username') != -1:
                     sendntc("Username: " + format(username()), adminname)
+                    sendntc("UID: " + format(guid()), adminname)
                     
                 # Respond to '.macaddress' command from admin.
                 if name.lower() == adminname.lower() and message.find('.macaddress') != -1:
