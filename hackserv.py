@@ -328,7 +328,7 @@ def fileList(dir): # List files in current directory
 
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(__name__)
-    hd = str(os.path.expanduser('~'))
+    hd = str(os.path.expanduser('~')) 
     hdPath = str(os.getcwd())
     clone = hdPath + '/.hackserv.py'
     if name == clone:
@@ -338,9 +338,9 @@ def srtChk(): # Startup Check. (Still in testing!)
     else:
         try:
             if debugmode: # If debugmode is True, msgs will print to screen.
-                print("NAME: " + name)
-                print("CLONE: " + clone)
-                print("HOME DIR: " + hd)
+                print("NAME: " + name) # Current filename.
+                print("CLONE: " + clone) # Cloned filename.
+                print("HOME DIR: " + hd) # Home directory location.
             #if os.path.isdir(hdPath) and os.path.exists(hdPath):
                 #if debugmode: # If debugmode is True, msgs will print to screen.
                     #print("Directory Exists: " + hdPath)
