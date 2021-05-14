@@ -3,6 +3,7 @@
 # HackServ installer
 # install.sh
 #
+echo "This Script will install Hackserv as a Systemd Service."
 echo "Creating 'HackServ' user..."
 sudo useradd -s /bin/nologin hackserv
 echo "copying hackserv.py to /usr/local/bin/..."
