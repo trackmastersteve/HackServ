@@ -23,6 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
+config_version = 1.2
 import random
 from requests import get
 ip = get('https://api.ipify.org').text
