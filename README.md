@@ -122,6 +122,8 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 - [ ] Vuln Scanner (**testing**)
 
+- [ ] Crypto Miner
+
 - [ ] Self proxy
 
 - [ ] DoS/DDoS
