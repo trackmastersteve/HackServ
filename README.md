@@ -112,7 +112,7 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 - [x] Accept uploads from admin (File Server)
 
-- [ ] Auto Vuln/Port/Proxy Scan on join
+- [ ] Auto Vuln/Port/Proxy Scan on join (Need ability to get IP from server)
 
 - [ ] Key Logger (**testing**)
 
