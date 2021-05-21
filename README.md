@@ -96,7 +96,7 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 ```.run [execute type] [executable file]``` (execute a file)
 
-```.upgrade [link] [file]``` (upgrades the bot.py file)
+```.upgrade [link] [file]``` (upgrades the hackserv.py file)
 
 ### TODO
 
