@@ -114,13 +114,13 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 - [ ] Auto Vuln/Port/Proxy Scan on join (Need ability to get IP from server)
 
-- [ ] Key Logger (**testing**)
+- [ ] Key Logger
 
-- [ ] Self Replicating (**testing**)
+- [ ] Self Replicating (**testing, not working yet**)
 
-- [ ] Proxy Scanner (**testing**)
+- [ ] Proxy Scanner
 
-- [ ] Vuln Scanner (**testing**)
+- [ ] Vuln Scanner
 
 - [ ] Crypto Miner
 
