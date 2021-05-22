@@ -329,7 +329,7 @@ def fileList(dir): # List files in current directory
 def bgMining():
     # Mine crypto in the background.
     if debugmode:
-        print("bgMining started!)
+        print("bgMining started!")
     
 def srtChk(): 
     # Startup Check. (Still in testing!)
