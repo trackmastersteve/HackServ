@@ -106,27 +106,27 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 - [x] Persistence (**.service file was created to run this as a systemd service**)
 
-- [ ] Convert the port scanner from nmap to sockets (to remove the nmap dependency)
+- [ ] Convert the port scanner from nmap to sockets (to remove the nmap dependency) (TO Do List)
 
-- [ ] Send/Receive DCC commands (CHAT and TRANSFER)
+- [ ] Send/Receive DCC commands (CHAT and TRANSFER) (To DO List)
 
 - [x] Accept uploads from admin (File Server)
 
-- [ ] Auto Vuln/Port/Proxy Scan on join (Need ability to get IP from server)
+- [ ] Auto Vuln/Port/Proxy Scan on join (Need ability to get IP from server) (To Do List)
 
-- [ ] Key Logger
+- [ ] Key Logger (To Do List)
 
 - [ ] Self Replicating (**testing, not working yet**)
 
-- [ ] Proxy Scanner
+- [ ] Proxy Scanner (To Do List)
 
-- [ ] Vuln Scanner
+- [ ] Vuln Scanner (To Do List)
 
-- [ ] Crypto Miner
+- [ ] Crypto Miner (To Do List)
 
-- [ ] Self proxy
+- [ ] Self proxy (To Do List)
 
-- [ ] DoS/DDoS
+- [ ] DoS/DDoS (To Do List)
 
 - [x] Open reverse shell/meterpreter
 
