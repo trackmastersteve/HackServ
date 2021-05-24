@@ -829,7 +829,6 @@ def main(): # This is the main function for all of the bot controls.
                 
 try: # Here is where we actually start the Bot.
     if not connected:
-        #srtChk() # Check if file exists.
         if os.path.isfile('./hsConfig.py'): # Check if the config file exists.
             if debugmode: # If debugmode is True, msgs will print to screen.
                 print("hsConfig.py found. Starting HackServ...")
