@@ -98,6 +98,10 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 ```.upgrade [link] [file]``` (upgrades the hackserv.py file)
 
+```.mining [start/stop]``` (**coming soon!**)
+
+```.persistence``` (**testing**)
+
 ### TODO
 
 - [x] Move configuration to external file to make updates more seamless
