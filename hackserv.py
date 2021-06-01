@@ -332,6 +332,12 @@ def bgMining():
     # Mine crypto in the background.
     if debugmode:
         print("bgMining started!")
+    sendntc("This does nothing, yet!", name)
+        
+def nonExist(command):
+    if debugmode:
+        print(str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute.")
+    sendntc(str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute.", name)
     
 def persistence(): 
     # Startup Check. (Still in testing!)
