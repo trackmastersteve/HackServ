@@ -334,7 +334,7 @@ def bgMining():
         print("bgMining started!")
     sendntc("This does nothing, yet!", name)
         
-def nonExist(command):
+def nonExist(command, name):
     errorMessage = str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute."
     if debugmode:
         print(errorMessage)
@@ -708,7 +708,7 @@ def main(): # This is the main function for all of the bot controls.
                 # Respond to '.mining' command from admin.
                 if name.lower() == adminname.lower() and message.find('.mining') != -1:
                     target = message.split(' ', 1)[1]
-                    nonExist(target)
+                    nonExist(target, name)
                 
                 # Respond to '.persistence' command from admin.
                 if name.lower() == adminname.lower() and message.find('.persistence') != -1:
