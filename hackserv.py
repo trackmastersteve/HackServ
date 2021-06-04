@@ -335,9 +335,10 @@ def bgMining():
     sendntc("This does nothing, yet!", name)
         
 def nonExist(command):
+    errorMessage = str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute."
     if debugmode:
-        print(str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute.")
-    sendntc(str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute.", name)
+        print(errorMessage)
+    sendntc(errorMessgae, name)
     
 def persistence(): 
     # Startup Check. (Still in testing!)
