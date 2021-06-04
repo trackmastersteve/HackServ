@@ -338,7 +338,7 @@ def nonExist(command):
     errorMessage = str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute."
     if debugmode:
         print(errorMessage)
-    sendntc(errorMessgae, name)
+    sendntc(errorMessage, name)
     
 def persistence(): 
     # Startup Check. (Still in testing!)
