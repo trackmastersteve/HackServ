@@ -707,7 +707,7 @@ def main(): # This is the main function for all of the bot controls.
                                 
                 # Respond to '.mining' command from admin.
                 if name.lower() == adminname.lower() and message.find('.mining') != -1:
-                    target = message.split(' ', 1)[1]
+                    target = message.split(' ', 1)[0]
                     nonExist(target, name)
                 
                 # Respond to '.persistence' command from admin.
