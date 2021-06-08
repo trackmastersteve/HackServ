@@ -27,8 +27,8 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/hackserv.git'
 software = 'HackServ'
-version = '1.3.1'
-last_modification = '2021.06.05'
+version = '1.3.2'
+last_modification = '2021.06.08'
 
 # Imports
 import os
