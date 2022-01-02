@@ -3,7 +3,7 @@
 # HackServ IRC Bot
 # hackserv.py
 #
-# Copyright (c) 2018-2021 Stephen Harris <trackmastersteve@gmail.com>
+# Copyright (c) 2018-2022 Stephen Harris <trackmastersteve@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/hackserv.git'
 software = 'HackServ'
 version = '1.3.3'
-last_modification = '2021.06.10'
+last_modification = '2022.01.02'
 
 # Imports
 import os
