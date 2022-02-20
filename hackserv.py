@@ -744,7 +744,7 @@ def main(): # This is the main function for all of the bot controls.
                     if target.find(' ') != -1:
                         message = "File downloaded!"
                         dlLink = target.split(' ', 1)[1]
-                        dlFile = taregt.split(' ')[0]
+                        dlFile = target.split(' ')[0]
                         download(dlFile, dlLink)
                     else:
                         message = "Could not parse. The command should be in the format of '.dl [file] [link]' to work properly."
