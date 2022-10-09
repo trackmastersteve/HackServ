@@ -12,15 +12,11 @@ Seperate config file for easy upgrades.
 The following packages are required. You'll need to install the following using the
 package manager:
 
-```sudo apt install python3 python3-pip nmap```
+```sudo apt install python3 python3-nmap nmap```
 
 Then clone this project by running the following command:
 
 ```git clone https://github.com/trackmastersteve/HackServ.git```
-
-Then you can install the following using pip3:
-
-```cd HackServ && pip3 install requirements.txt```
 
 If you have sudo privleges, you can make the bot persist:
 
