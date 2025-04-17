@@ -26,7 +26,7 @@ Edit: ```hackserv.service``` with correct location of script i.e. ```/usr/local/
 
 ```sudo cp hackserv.py /usr/local/bin/.hackserv.py```
 
-```sudo cp hsConfig.py /usr/local/bin/hsConfig.py``` (Don't forget to edit this file aftwards)
+```sudo cp hsConfig.py /usr/local/bin/hsConfig.py``` (Don't forget to edit this file afterwards)
 
 ```sudo cp hackserv.service /etc/systemd/system/hackserv.service```
 
