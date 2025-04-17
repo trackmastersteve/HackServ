@@ -12,7 +12,7 @@ Seperate config file for easy upgrades.
 The following packages are required. You'll need to install the following using the
 package manager:
 
-```sudo apt install python3 python3-nmap nmap```
+```sudo apt install python3 nmap python3-nmap metasploit-framework python3-pymetasploit3```
 
 Then clone this project by running the following command:
 
