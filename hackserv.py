@@ -819,6 +819,16 @@ def main(): # This is the main function for all of the bot controls.
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendntc(message, adminname)
 
+                if name.lower() == adminname.lower() and message[:5].find('.vulnscan' != -1:
+                    target = message.split(' '), 1)[1]
+                    if target.find(' ') != -1:
+                        message = "Vulnerability scan completed!"
+                        target = target.split(' ', 1)[1]
+                        scan_for_vulnerabilities(target)
+                    else:
+                        message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
+                    sendntc(message, adminname)
+                        
                 # Respond to '.rsh [target] [port]' command from admin.
                 if name.lower() == adminname.lower() and message[:5].find('.rsh') != -1:
                     if enableshell: # If enableshell is True, you can use this command.
