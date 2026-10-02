@@ -367,10 +367,11 @@ def bgMining():
     # Mine crypto in the background.
     if debugmode:
         print("bgMining started!")
-    sendntc("This does nothing, yet!", name)
+    sendntc("This does nothing, yet!", adminname)
         
 def nonExist(command, name):
     errorMessage = str(command) +" does not exist yet. Please go to "+ github +" if you feel like you can contribute."
+    name = adminname
     if debugmode:
         print(errorMessage)
     sendntc(errorMessage, name)
