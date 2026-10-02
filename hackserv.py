@@ -284,20 +284,45 @@ def setmode(flag, target=channel): # Sets given mode to nick or channel.
     ircsend("MODE "+ target +" "+ flag)
     
 def download(link, file): # Download a file.
-    urllib.request.urlretrieve(str(link), str(file))
-    sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
+    try:
+        if debugmode: # If debugmode is True, will print to screen.
+            print("[*] File downloaded successfully!")
+        urllib.request.urlretrieve(str(link), str(file))
+        sendntc(str(file) +" was successfully downloaded from "+ str(link) +"!", adminname)
+    except Exception as e:
+        if debugmode: # If debugmode is True, will print to screen.
+            print("Error occurred while downloading file: " + str(e))
+        sendntc("Error occurred while downloading file: " + str(e), adminname)
+
 
 def execute(xType, file): # Run executable file.
     if xType == 'ex':
+        if debugmode: # If debugmode is True, will print to screen.
+            print("[*] Running: " + str(file))
         exec(open(str(file)).read())
-    if type == 'sys':
-        os.system(str(file))
+    if xType == 'sys':
+        try:
+            if debugmode: # If debugmode is True, will print to screen.
+                print("[*] Running: " + str(file))
+            subprocess.run(file, shell=True, check=True)
+        except subprocess.CalledProcessError as e:
+            if debugmode: # If debugmode is True, will print to screen.
+                print(f"Command failed with return code {e.returncode}")
     else:
+        if debugmode: # If debugmode is True, will print to screen.
+            print("[*] Running: " + str(file))
         runcmd_noout('./'+ file)
     
-def chFileMod(modFile, modType): # Change the file permissions. (chmod)
-    os.chmod(str(modFile), modType)
-    sendntc(str(modFile) +" mode was changed to: "+ str(modType) +"!", adminname)
+def chFileMod(filename, mode):
+    try:
+        if debugmode: # If debugmode is True, will print to screen.
+            print("[*] Changing file permissions for: " + str(filename))
+        os.chmod(filename, int(mode, 8))
+        sendntc("File permissions changed successfully!", adminname)
+    except Exception as e:
+        if debugmode: # If debugmode is True, will print to screen.
+            print("Error changing file permissions: " + str(e))
+        sendntc("Error changing file permissions: " + str(e), adminname)
 
 def update(link, dlFile): # Update bot.
     if debugmode: # If debugmode is True, msgs will print to screen.
