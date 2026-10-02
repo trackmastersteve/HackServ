@@ -819,8 +819,8 @@ def main(): # This is the main function for all of the bot controls.
                         message = "Could not parse. The command should be in the format of '.scan [targetIP] [comma,seperated,ports]' to work properly."
                     sendntc(message, adminname)
 
-                if name.lower() == adminname.lower() and message[:5].find('.vulnscan' != -1:
-                    target = message.split(' '), 1)[1]
+                if name.lower() == adminname.lower() and message[:5].find('.vulnscan') != -1:
+                    target = message.split(' ', 1)[1]
                     if target.find(' ') != -1:
                         message = "Vulnerability scan completed!"
                         target = target.split(' ', 1)[1]
